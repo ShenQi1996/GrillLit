@@ -16,6 +16,16 @@
 
 ##    **Technologies and Technical Challenges**
 
+ - **Frontend**
+	 - React
+	 - Redux
+	 - Node
+	 - Google Maps API
+
+ - **Backend**
+	 - MongoDB
+	 - Express
+
 ## Group Members & Work Breakdown
 
  - **Sam Qi**
