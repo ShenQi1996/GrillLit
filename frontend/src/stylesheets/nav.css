@@ -1,0 +1,31 @@
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  position: relative;
+  width: 100vw;
+  background-color: blue;
+  z-index: 1;
+}
+
+.nav-left-links {
+  display: flex;
+  justify-content: space-between;
+  width: 200px;
+  position: absolute;
+  left: 10px;
+}
+
+.nav-right-links {
+  position: absolute;
+  right: 70px;
+}
+
+.header-nav-logo {
+  margin-right: 4vw;
+}
+
+strong {
+  font-weight: 600;
+}
