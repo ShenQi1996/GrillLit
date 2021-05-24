@@ -1,7 +1,10 @@
-##    **Background and Overview**
 **GrillLit**
+-------
 
-A networking app for those that want to get together and grill. A user will create an event and invite other users. The event will have items that will need to be brought and as user’s join the event they can check off what they wish to bring. User’s will also be able to view the location of the GrillLit event on a map.
+
+
+##    **Background and Overview**
+**GrillLit** is a networking app for those that want to get together and grill. A user will create an event and invite other users. The event will have items that will need to be brought and as user’s join the event they can check off what they wish to bring. User’s will also be able to view the location of the GrillLit event on a map.
 
 ##    **Functionality and MVP**
 **MVPs**
