@@ -5,7 +5,7 @@
   bottom: 700px;
   left: 0;
   right: 0;
-  background-image: url("./Screen\ Shot\ 2021-05-21\ at\ 5.24.02\ PM.png") ;
+  background-image: url("./grill.jpg") ;
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -14,9 +14,9 @@
 }
 
 .hero-section {
-  width: 50vw;
+  width: 35vw;
   height: 70vh;
-  right: 0;
-  background-color: rgba(255, 0, 0, 0.296);
+  right: 30px;
+  background-color: rgb(4 100 156 / .42);
   position: fixed;
 }

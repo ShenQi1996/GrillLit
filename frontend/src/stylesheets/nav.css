@@ -23,7 +23,7 @@
 }
 
 .header-nav-logo {
-  margin-right: 4vw;
+  /* margin-right: 4vw; */
 }
 
 .header-dropdown {
@@ -35,6 +35,16 @@
   display: none;
   flex-direction: column;
   justify-content: space-around;
+  padding: 10px;
+}
+
+.header-dropdown div {
+  padding: 10px 0;
+}
+
+.header-dropdown div:hover {
+  background-color: lightslategray;
+  color: white;
 }
 
 .true {
