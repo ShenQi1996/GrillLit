@@ -6,6 +6,17 @@
 ##    **Background and Overview**
 **GrillLit** is a networking app for those that want to get together and grill. A user will create an event and invite other users. The event will have items that will need to be brought and as user’s join the event they can check off what they wish to bring. User’s will also be able to view the location of the GrillLit event on a map.
 
+##    **Background and Overview**
+Often times groups of people want to get together in the summer to have fun outside and get
+their grill's lit. The issue that GrillLit solves the the chaotic process of coordinating who brings what and how much. GrillLit allows a user to create an event with specified items to bring, the event creater will also be able to invite user's. The individual users will then get an invite and upon acceptance they will choose of the remaining items where they will bring the GrillLit event. 
+
+
+To create:
+* Build a DB to store user specific information
+* Create frontend components for GrillLit web application for user interaction
+* Create backend tables for related user interactions such as creating events
+
+
 ##    **Functionality and MVP**
 **MVPs**
 
