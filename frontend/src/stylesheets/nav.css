@@ -19,11 +19,26 @@
 
 .nav-right-links {
   position: absolute;
-  right: 70px;
+  right: 20px;
 }
 
 .header-nav-logo {
   margin-right: 4vw;
+}
+
+.header-dropdown {
+  width: 140px;
+  height: 100px;
+  background-color: cornsilk;
+  position: absolute;
+  right: 1px;
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.true {
+  display: flex;
 }
 
 strong {

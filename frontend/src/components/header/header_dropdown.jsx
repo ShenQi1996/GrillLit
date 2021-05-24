@@ -10,7 +10,9 @@ class HeaderDropdown extends React.Component {
         {/* <Link>Profile Page</Link>
         <Link>Create Event</Link>
         <Link>Logout</Link> */}
-        dropdown
+        <div>Profile Page</div>
+        <div>Create Event</div>
+        <div>Logout</div>
       </div>
     )
   }
