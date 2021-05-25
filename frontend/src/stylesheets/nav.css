@@ -2,11 +2,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 50px;
-  position: relative;
+  height: 60px;
+  position: fixed;
   width: 100vw;
-  background-color: blue;
+  background-color: #e2e3f0;
   z-index: 1;
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / .19);
 }
 
 .nav-left-links {
@@ -14,7 +15,7 @@
   justify-content: space-between;
   width: 200px;
   position: absolute;
-  left: 10px;
+  left: 20px;
 }
 
 .nav-right-links {
@@ -23,7 +24,10 @@
 }
 
 .header-nav-logo {
-  /* margin-right: 4vw; */
+  font-size: 40px;
+  font-family: sans-serif;
+  text-decoration: none;
+  color: black;
 }
 
 .header-dropdown {

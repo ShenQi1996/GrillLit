@@ -7,6 +7,7 @@ class Home extends React.Component {
     return (
       <div className="home-container">
         <Hero/>
+        <div className="content2"></div>
         <footer>
           
         </footer>
