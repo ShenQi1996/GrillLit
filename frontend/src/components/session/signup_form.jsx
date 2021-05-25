@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 
 class SignupForm extends React.Component {
   constructor(props) {
@@ -16,12 +16,14 @@ class SignupForm extends React.Component {
     this.clearedErrors = false;
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.signedIn === true) {
-      this.props.history.push('/signin');
+  componentDidUpdate(prevProps) {
+    if (this.props.signedIn && !prevProps.signedIn) {
+      this.props.history.push('/');
     }
 
-    this.setState({ errors: nextProps.errors })
+    if (prevProps.errors !== this.props.errors) {
+      this.setState({ errors: this.props.errors });
+    }
   }
 
   update(field) {
@@ -39,7 +41,9 @@ class SignupForm extends React.Component {
       password2: this.state.password2
     };
 
-    this.props.signup(user, this.props.history);
+    this.props.signup(user, this.props.history).then(() => {
+      this.props.login(user)
+    });
   }
 
   renderErrors() {
@@ -57,35 +61,37 @@ class SignupForm extends React.Component {
   render() {
     return (
       <div className="signup-form-container">
+        <figure className="signup-img"></figure>
         <form onSubmit={this.handleSubmit}>
           <div className="signup-form">
-            <br />
+            {/* <br /> */}
             <input type="text"
               value={this.state.email}
               onChange={this.update('email')}
               placeholder="Email"
             />
-            <br />
+            {/* <br /> */}
             <input type="text"
               value={this.state.handle}
               onChange={this.update('handle')}
               placeholder="Handle"
             />
-            <br />
+            {/* <br /> */}
             <input type="password"
               value={this.state.password}
               onChange={this.update('password')}
               placeholder="Password"
             />
-            <br />
+            {/* <br /> */}
             <input type="password"
               value={this.state.password2}
               onChange={this.update('password2')}
               placeholder="Confirm Password"
             />
-            <br />
+            {/* <br /> */}
             <input type="submit" value="Submit" />
             {this.renderErrors()}
+            <Link to="/signin">Already have an account? Sign in.</Link>
           </div>
         </form>
       </div>

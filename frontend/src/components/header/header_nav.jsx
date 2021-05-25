@@ -9,7 +9,8 @@ class HeaderNav extends React.Component {
     this.state = {
       dropDown: false,
     }
-
+  
+    this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick() {
@@ -20,6 +21,7 @@ class HeaderNav extends React.Component {
       this.setState({ dropDown:true });
     }
   }
+
 
   render() {
     const navRight = this.props.loggedIn ? <div onClick={(e) => this.handleClick(e)} >userLogo</div> : <Link to="/signin" >Sign In</Link>;
@@ -37,7 +39,7 @@ class HeaderNav extends React.Component {
         <div className="nav-right-links">
           {/* <div onClick={(e) => this.handleClick(e)}>Sign In</div> */}
           {navRight}
-          <HeaderDropdown dropDown={this.state.dropDown} logout={this.props.logout} />
+          <HeaderDropdown dropDown={this.state.dropDown} logout={this.props.logout} toggle={this.handleClick} />
         </div>
       </nav>
     )

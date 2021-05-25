@@ -3,6 +3,7 @@ import { login } from '../../actions/session_actions';
 import LoginForm from './login_form';
 
 const mSTP = (state) => ({
+  signedIn: state.session.isAuthenticated,
   errors: state.errors.session
 });
 

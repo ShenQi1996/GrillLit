@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link  } from 'react-router-dom';
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -15,24 +15,24 @@ class LoginForm extends React.Component {
     this.renderErrors = this.renderErrors.bind(this);
   }
 
-  // Once the user has been authenticated, redirect to the Tweets page
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.currentUser === true) {
+  componentDidUpdate(prevProps) {
+    if (this.props.signedIn && !prevProps.signedIn) {
       this.props.history.push('/');
     }
 
-    // Set or clear errors
-    this.setState({ errors: nextProps.errors })
+    if (prevProps.errors !== this.props.errors) {
+      this.setState({ errors: this.props.errors });
+    }
   }
 
-  // Handle field updates (called in the render method)
+ 
   update(field) {
     return e => this.setState({
       [field]: e.currentTarget.value
     });
   }
 
-  // Handle form submission
+ 
   handleSubmit(e) {
     e.preventDefault();
 
@@ -40,11 +40,15 @@ class LoginForm extends React.Component {
       email: this.state.email,
       password: this.state.password
     };
-
     this.props.login(user);
+    // this.props.login(user).then( () => {
+    //   if (this.props.signedIn) {
+    //     this.props.history.push('/');
+    //   }
+    // });
   }
 
-  // Render the session errors if there are any
+ 
   renderErrors() {
     return (
       <ul>
@@ -59,9 +63,10 @@ class LoginForm extends React.Component {
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <div className="signup-form-container">
+      <div className="signup-form-container">
+        <figure className="signup-img"></figure>
+        <form onSubmit={this.handleSubmit} className="signup-form">
+          <div>
             <input type="text"
               value={this.state.email}
               onChange={this.update('email')}
@@ -77,6 +82,7 @@ class LoginForm extends React.Component {
             <input type="submit" value="Submit" />
             {this.renderErrors()}
           </div>
+          <Link to="/signup">Don't have an account? Sign Up.</Link>
         </form>
       </div>
     );

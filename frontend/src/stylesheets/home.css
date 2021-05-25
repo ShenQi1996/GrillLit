@@ -51,5 +51,27 @@ footer {
 
 .signup-form-container {
   top: 70px;
-  position: relative;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+}
+
+.signin-form {
+  display: flex;
+  align-items: center;
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+}
+
+.signup-img {
+  background-image: url("./signup.jpg") ;
+  width: 50vw;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }

@@ -1,15 +1,16 @@
 import { connect } from 'react-redux';
-import { signup } from '../../actions/session_actions';
+import { signup, login } from '../../actions/session_actions';
 import SignupForm from './signup_form';
 
 
 const mSTP = (state) => ({
-  signedIn: state.session.isSignedIn,
+  signedIn: state.session.isAuthenticated,
   errors: state.errors.session
 });
 
 const mDTP = (dispatch) => ({
-  signup: (user) => dispatch(signup(user))
+  signup: (user) => dispatch(signup(user)),
+  login: (user) => dispatch(login(user))
 });
 
 
