@@ -7,33 +7,38 @@ import './stylesheets/nav.css';
 import './stylesheets/home.css';
 import './stylesheets/Screen Shot 2021-05-21 at 5.24.02 PM.png';
 
-// import jwt_decode from 'jwt-decode';
-// import { setAuthToken } from './util/session_api_util';
-// import { logout } from './actions/session_actions';
+import jwt_decode from 'jwt-decode';
+import { setAuthToken } from './util/session_api_util';
+import { logout } from './actions/session_actions';
+import { signup, login } from './util/session_api_util';
 
 
 document.addEventListener('DOMContentLoaded', () => {
   let store;
 
-  // if (localStorage.jwtToken) {
+  if (localStorage.jwtToken) {
 
-  //   setAuthToken(localStorage.jwtToken);
+    setAuthToken(localStorage.jwtToken);
 
-  //   const decodedUser = jwt_decode(localStorage.jwtToken);
+    const decodedUser = jwt_decode(localStorage.jwtToken);
 
-  //   const preloadedState = { session: { isAuthenticated: true, user: decodedUser } };
+    const preloadedState = { session: { isAuthenticated: true, user: decodedUser } };
 
-  //   store = configureStore(preloadedState);
-  store = configureStore();
+    store = configureStore(preloadedState);
+  // store = configureStore();
 
-  //   const currentTime = Date.now() / 1000;
-  //   if (decodedUser.exp < currentTime) {
-  //     store.dispatch(logout());
-  //     window.location.href = '/login';
-  //   }
-  // } else {
-  //   store = configureStore({});
-  // }
+    const currentTime = Date.now() / 1000;
+    if (decodedUser.exp < currentTime) {
+      store.dispatch(logout());
+      window.location.href = '/login';
+    }
+  } else {
+    store = configureStore({});
+  }
+
+  window.signup = signup;
+
+  window.login = login;
  
   const root = document.getElementById('root');
 
