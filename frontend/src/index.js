@@ -40,6 +40,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.getState = store.getState;
 
+  // window.logout = store.dispatch(logout());
+
   window.signup = signup;
   window.login = login;
 

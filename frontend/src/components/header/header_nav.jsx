@@ -10,8 +10,6 @@ class HeaderNav extends React.Component {
       dropDown: false,
     }
 
-    // this.setState = this.setState.bind(this);
-    // this.state = this.state.bind(this)
   }
 
   handleClick() {
@@ -23,9 +21,8 @@ class HeaderNav extends React.Component {
     }
   }
 
-
   render() {
-    // const navRight = this.props.loggedIn ? <div>Sign In</div> : <div>dropdown</div>;
+    const navRight = this.props.loggedIn ? <div onClick={(e) => this.handleClick(e)} >userLogo</div> : <Link to="/signin" >Sign In</Link>;
     // debugger
     return (
       <nav className="header">
@@ -38,9 +35,9 @@ class HeaderNav extends React.Component {
         </Link>
         {/* <div className="header-nav-logo">Grill<strong>Lit</strong></div> */}
         <div className="nav-right-links">
-          <div onClick={(e) => this.handleClick(e)}>Sign In</div>
-
-          <HeaderDropdown dropDown={this.state.dropDown}/>
+          {/* <div onClick={(e) => this.handleClick(e)}>Sign In</div> */}
+          {navRight}
+          <HeaderDropdown dropDown={this.state.dropDown} logout={this.props.logout} />
         </div>
       </nav>
     )

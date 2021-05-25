@@ -48,3 +48,8 @@ footer {
   background-color: #e2e3f0;
   top: 92vh;
 }
+
+.signup-form-container {
+  top: 70px;
+  position: relative;
+}
