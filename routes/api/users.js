@@ -94,18 +94,4 @@ router.post('/login', (req, res) => {
         });
 });
 
-// router.get('/logout', (req, res) => {
-
-//     req.logout();
-//     res.redirect('/');
-// });
-
-
-router.get('/logout', (req, res) => {
-    req.logout();
-    res.status(200).json({
-    status: 'You are logged out!'
- });
-});
-
 module.exports = router;
