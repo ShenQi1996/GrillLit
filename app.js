@@ -9,24 +9,31 @@ const bodyParser = require('body-parser');
 
 
 mongoose
-  .connect(db, { useUnifiedTopology: true, useNewUrlParser: true  })
-  .then(() => console.log("Connected to MongoDB successfully"))
-  .catch(err => console.log(err));
+.connect(db, { useUnifiedTopology: true, useNewUrlParser: true  })
+.then(() => console.log("Connected to MongoDB successfully"))
+.catch(err => console.log(err));
+
+
+// app.use(passport.initialize());
+// require('./config/passport')(passport);
+
+
 
 app.get("/", (req, res) => {
-  const user = new User({
-    email: "testing@email",
-    password: "123456"
-  });
-  debugger
-  user.save()
-  debugger
-  res.send("Hello World");
+  // const user = new User({
+  //   email: "testing@email",
+  //   password: "123456"
+  // });
+  // user.save();
 });
 
 const port = process.env.PORT || 5000;
 
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 app.use(bodyParser.json());
+
 
 app.use("/api/users", users);
 

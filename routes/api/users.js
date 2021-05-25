@@ -1,12 +1,18 @@
-const bcrypt = require('bcryptjs');
-const User = require('../../models/User');
 const express = require("express");
 const router = express.Router();
-
+const bcrypt = require('bcryptjs');
+const User = require('../../models/User');
 const keys = require('../../config/keys');
+const jwt = require('jsonwebtoken');
+// const passport = require('passport');
 
-
-
+// router.get('/current', passport.authenticate('jwt', {session: false}), (req, res) => {
+//   res.json({
+//     id: req.user.id,
+//     handle: req.user.handle,
+//     email: req.user.email
+//   });
+// })
 
 router.post('/register', (req, res) => {
     // Check to make sure nobody has already registered with a duplicate email
@@ -32,6 +38,30 @@ router.post('/register', (req, res) => {
                     });
                 });
             }
+        });
+});
+
+
+router.post('/login', (req, res) => {
+    const email = req.body.email;
+    const password = req.body.password;
+
+
+    User.findOne({ email })
+        .the(user => {
+            if(!user){
+                return res.status(404).json({ email: "This user does not exist"});
+            }
+
+            bcrypt.compare(password, user.password)
+                .then(isMatch => {
+
+                    if(isMatch){
+                        res.json({ msg: "Success PW was correct"});
+                    } else {
+                        return res.status(400).json( {password: "Incorrect password"});
+                    }
+                });
         });
 });
 
