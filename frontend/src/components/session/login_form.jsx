@@ -12,6 +12,7 @@ class LoginForm extends React.Component {
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDemoUser = this.handleDemoUser.bind(this);
     this.renderErrors = this.renderErrors.bind(this);
   }
 
@@ -48,6 +49,14 @@ class LoginForm extends React.Component {
     // });
   }
 
+  handleDemoUser(e) {
+    let user = {
+      email: "greg@gemail.com",
+      password: "123456"
+    };
+    this.props.login(user);
+  }
+
  
   renderErrors() {
     return (
@@ -80,6 +89,7 @@ class LoginForm extends React.Component {
             />
             <br />
             <input type="submit" value="Submit" />
+            <button onClick={(e) => {this.handleDemoUser()}}>Demo user</button>
             {this.renderErrors()}
           </div>
           <Link to="/signup">Don't have an account? Sign Up.</Link>
