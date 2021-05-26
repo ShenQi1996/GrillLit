@@ -1,6 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
-// const db = require("./config/keys").mongoURI;
+const db = require("./config/keys").mongoURI;
 const app = express();
 const User = require("./models/User");
 const users = require("./routes/api/users");
@@ -11,9 +11,9 @@ const events = require("./routes/api/events");
 const path = require("path");
 
 mongoose;
-// .connect(db, { useUnifiedTopology: true, useNewUrlParser: true  })
-// .then(() => console.log("Connected to MongoDB successfully"))
-// .catch(err => console.log(err));
+.connect(db, { useUnifiedTopology: true, useNewUrlParser: true  })
+.then(() => console.log("Connected to MongoDB successfully"))
+.catch(err => console.log(err));
 
 // app.use(passport.initialize());
 // require('./config/passport')(passport);

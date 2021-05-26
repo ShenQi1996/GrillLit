@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const User = require("../../models/User");
-// const keys = require('../../config/keys');
+const keys = require("../../config/keys");
 const jwt = require("jsonwebtoken");
 const passport = require("passport");
 
@@ -75,7 +75,7 @@ router.post("/login", (req, res) => {
         };
         jwt.sign(
           payload,
-          //   keys.secretOrKey,
+          keys.secretOrKey,
           { expiresIn: 3600 },
           (err, token) => {
             res.json({
