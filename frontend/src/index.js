@@ -11,6 +11,7 @@ import jwt_decode from 'jwt-decode';
 import { setAuthToken } from './util/session_api_util';
 import { logout } from './actions/session_actions';
 import { signup, login } from './util/session_api_util';
+import { fetchEvents } from './util/event_api_util';
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -41,6 +42,8 @@ document.addEventListener('DOMContentLoaded', () => {
   window.getState = store.getState;
 
   // window.logout = store.dispatch(logout());
+
+  window.fetchEvents = fetchEvents;
 
   window.signup = signup;
   window.login = login;
