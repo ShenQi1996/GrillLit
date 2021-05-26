@@ -24,7 +24,7 @@ class HeaderNav extends React.Component {
 
 
   render() {
-    const navRight = this.props.loggedIn ? <div onClick={(e) => this.handleClick(e)} >userLogo</div> : <Link to="/signin" >Sign In</Link>;
+    const navRight = this.props.loggedIn ? <div onClick={(e) => this.handleClick(e)} id="user-icon" ></div> : <Link to="/signin" >Sign In</Link>;
     // debugger
     return (
       <nav className="header">
