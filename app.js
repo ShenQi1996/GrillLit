@@ -10,7 +10,7 @@ const events = require("./routes/api/events");
 
 const path = require("path");
 
-// mongoose;
+mongoose;
 // .connect(db, { useUnifiedTopology: true, useNewUrlParser: true  })
 // .then(() => console.log("Connected to MongoDB successfully"))
 // .catch(err => console.log(err));
