@@ -9,6 +9,10 @@ const UserSchema = new Schema({
     password: {
         type: String,
         required: true
+    },
+    events: {
+        type: Schema.Types.ObjectId,
+        ref: 'events'
     }
 }, {
     timestamps: true
