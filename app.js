@@ -5,6 +5,8 @@ const app = express();
 const User = require('./models/User');
 const users = require('./routes/api/users');
 const bodyParser = require('body-parser');
+const Event = require('./models/Event');
+const events= require('./routes/api/events')
 
 
 
@@ -36,5 +38,7 @@ app.use(bodyParser.json());
 
 
 app.use("/api/users", users);
+
+app.use('/api/events', events);
 
 app.listen(port, () => console.log(`Server is running on port ${port}`));
