@@ -10,10 +10,10 @@ const events = require("./routes/api/events");
 
 const path = require("path");
 
-mongoose;
-.connect(db, { useUnifiedTopology: true, useNewUrlParser: true  })
-.then(() => console.log("Connected to MongoDB successfully"))
-.catch(err => console.log(err));
+mongoose
+  .connect(db, { useUnifiedTopology: true, useNewUrlParser: true })
+  .then(() => console.log("Connected to MongoDB successfully"))
+  .catch(err => console.log(err));
 
 // app.use(passport.initialize());
 // require('./config/passport')(passport);
