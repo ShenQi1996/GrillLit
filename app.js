@@ -10,13 +10,22 @@ const events = require("./routes/api/events");
 
 const path = require("path");
 
-mongoose;
+// mongoose;
 // .connect(db, { useUnifiedTopology: true, useNewUrlParser: true  })
 // .then(() => console.log("Connected to MongoDB successfully"))
 // .catch(err => console.log(err));
 
 // app.use(passport.initialize());
 // require('./config/passport')(passport);
+
+const dbCheck = mongoose
+  .connect(db, {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log(dbCheck, "---db check----"))
+  .catch(err => console.log(err));
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("frontend/build"));
