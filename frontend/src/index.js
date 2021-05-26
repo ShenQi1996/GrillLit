@@ -36,9 +36,16 @@ document.addEventListener('DOMContentLoaded', () => {
     store = configureStore({});
   }
 
-  window.signup = signup;
+  // Testing ----------------------------------
 
+  window.getState = store.getState;
+
+  // window.logout = store.dispatch(logout());
+
+  window.signup = signup;
   window.login = login;
+
+  //-------------------------------------------
  
   const root = document.getElementById('root');
 
