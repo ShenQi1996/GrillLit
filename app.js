@@ -18,15 +18,6 @@ const path = require("path");
 // app.use(passport.initialize());
 // require('./config/passport')(passport);
 
-const dbCheck = mongoose
-  .connect(db, {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => console.log(dbCheck, "---db check----"))
-  .catch(err => console.log(err));
-
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("frontend/build"));
   app.get("/", (req, res) => {
