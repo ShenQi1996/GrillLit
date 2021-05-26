@@ -81,3 +81,9 @@ footer {
   background-repeat: no-repeat;
   background-position: center;
 }
+
+.user-info {
+  height: 300px;
+  width: 300px;
+  margin: 300px auto;
+}
