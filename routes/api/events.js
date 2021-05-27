@@ -28,6 +28,7 @@ router.get('/:id', (req, res) => {
         .catch(err => 
             res.status(404).json({ noeventfound: 'No event found with that ID' }));
 });
+
 //Make sure event route is correct
 
 router.patch('/event/:eventId', async(req, res) => {
@@ -58,10 +59,7 @@ router.patch('/event/:eventId', async(req, res) => {
 });
 
 
-
-
 // router.patch('/invite/:eventId', async(req, res) => {
-
 
 //     const invitesEdit = req.body.invites.split(" ");
 
@@ -72,16 +70,6 @@ router.patch('/event/:eventId', async(req, res) => {
 //         newEvent.set(`invites.${id_arr}`, false);
 //     });
 
-
-//     const resp = await Event.updateOne({ _id: req.params.eventId}, {
-//         invites: {},
-//         items: req.body.items
-//     });
-
-
-
-//     res.json({ success: "Invite Updated"});
-// });
 
 //Make sure event route is correct
 router.post('/event', (req, res) => {

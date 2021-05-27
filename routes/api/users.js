@@ -9,20 +9,27 @@ const passport = require('passport');
 const validateRegisterInput = require('../../validations/register');
 const validateLoginInput = require('../../validations/login');
 
-// router.get('/current', passport.authenticate('jwt', {session: false}), (req, res) => {
-//   res.json({
-//     id: req.user.id,
-//     handle: req.user.handle,
-//     email: req.user.email
-//   });
-// })
 router.get('/user/:userId', (req, res) => {
+    User.find({ _id: req.params.userId })
+        .sort({ username: -1 })   
+        .then(user => res.json(user))
+        .catch(err => res.status(404).json({ nouserfound: 'No user found'}));
+});
+
+router.get('/current', passport.authenticate('jwt', {session: false}), (req, res) => {
   res.json({
     id: req.user.id,
     username: req.user.username,
     email: req.user.email
   });
-})
+});
+
+router.get('/allusers', (req, res) => {
+    User.find()
+        .sort({ username: -1 })
+        .then(users => res.json(users))
+        .catch(err => res.status(404).json({ nousersfound: 'No users found' }));
+});
 
 router.post('/register', (req, res) => {
 

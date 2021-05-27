@@ -26,11 +26,6 @@ if (process.env.NODE_ENV === "production") {
 }
 
 app.get("/", (req, res) => {
-  // const user = new User({
-  //   email: "testing@email",
-  //   password: "123456"
-  // });
-  // user.save();
 });
 
 const port = process.env.PORT || 5000;
