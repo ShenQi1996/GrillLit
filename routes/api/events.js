@@ -28,23 +28,48 @@ router.get('/:id', (req, res) => {
         .catch(err => 
             res.status(404).json({ noeventfound: 'No event found with that ID' }));
 });
+
 //Make sure event route is correct
+
 router.patch('/event/:eventId', async(req, res) => {
 
-    const resp = await Event.updateOne({ _id: req.params.eventId}, { 
-                invites: req.body.invites,
-                title:  req.body.title,
-                description: req.body.description,
-                location: req.body.location,
-                longitude: req.body.longitude,
-                latitude: req.body.latitude,
-                date: req.body.date,
-                items: req.body.items
-            });
-            
-    res.json({ success: "update worked"});
+    const invitesEdit = req.body.invites.split(" ");
 
+    newObj = {};
+
+    invitesEdit.forEach( id_arr => {
+       
+        if(req.body.UserIdToRemove !== id_arr){
+            newObj[id_arr] = false;
+        }
+    });
+    const resp = await Event.updateOne({ _id: req.params.eventId}, {
+        userId: req.body.userId,
+        invites: newObj,
+        title:  req.body.title,
+        description: req.body.description,
+        location: req.body.location,
+        longitude: req.body.longitude,
+        latitude: req.body.latitude,
+        date: req.body.date,
+        items: req.body.items,
+
+    });
+    res.json({ success: "updated event"});
 });
+
+
+// router.patch('/invite/:eventId', async(req, res) => {
+
+//     const invitesEdit = req.body.invites.split(" ");
+
+//     invitesEdit.forEach( id_arr => {
+       
+//         if(req.body.UserIdToChange === id_arr)
+        
+//         newEvent.set(`invites.${id_arr}`, false);
+//     });
+
 
 //Make sure event route is correct
 router.post('/event', (req, res) => {
@@ -56,7 +81,7 @@ router.post('/event', (req, res) => {
 
     const newEvent = new Event({
         userId: req.body.userId,
-        invites: req.body.invites,
+        invites: {},
         title:  req.body.title,
         description: req.body.description,
         location: req.body.location,
@@ -64,11 +89,15 @@ router.post('/event', (req, res) => {
         latitude: req.body.latitude,
         date: req.body.date,
         items: req.body.items
-    })
+    });
+    const userIds = req.body.invites.split(" ");
 
-    // newEvent.date = Date.now();
+    userIds.forEach( id_arr => {
+        newEvent.set(`invites.${id_arr}`, false);
+    });
+
     if (newEvent.save()){
-        res.json(newEvent)
+        res.json(newEvent);
     } else {
         return res.status(400).json({ eventDidNotSave: "Event did not saved successfully" })
     }
