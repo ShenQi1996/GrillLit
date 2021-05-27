@@ -3,7 +3,7 @@ import { fetchEvents } from '../../actions/event_actions';
 import EventIndex from './event_index';
 
 const mSTP = (state) => {
-
+  // debugger
   return {
     signedIn: state.session.isAuthenticated,
     userId: state.session.user.id,

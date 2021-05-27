@@ -21,7 +21,7 @@ class EventDetail extends React.Component {
   }
 
   render() {
-    debugger
+    // debugger
     if (!this.props.event) {
       return (
         <h1>Loading...</h1>

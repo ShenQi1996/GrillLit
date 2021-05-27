@@ -8,26 +8,33 @@ class EventIndex extends React.Component {
 
 
   componentDidMount() {
+    // debugger
     this.props.fetchEvents();
   }
 
   render() {
-    const events = this.props.events.map( event => {
+    // debugger
+    if (!this.props.events) {
+      return <h1>Loading...</h1>
+    } else {
+      const events = this.props.events.map( event => {
+        return (
+          <Link className="event-index-card" key={event._id} to={`/events/${event._id}`  } >
+            <EventIndexCard event={event} />
+          </Link>
+        )
+      })
+  
       return (
-        <Link className="event-index-card" key={event._id} to={`/events/${event._id}`  } >
-          <EventIndexCard event={event} />
-        </Link>
-      )
-    })
-
-    return (
-      <div className="index-wrapper">
-        <MapContainer events={this.props.events} />
-        <div className="event-index-container" >
-          {events}
+        <div className="index-wrapper">
+          <MapContainer events={this.props.events} />
+          <div className="event-index-container" >
+            {events}
+          </div>
         </div>
-      </div>
-    )
+      )
+    }
+
   }
 }
 

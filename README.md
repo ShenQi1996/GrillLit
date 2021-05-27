@@ -61,7 +61,7 @@ ___
 ### Day 3
 - Setup and integrate Maps API
 
-### Day 
+### Day 4
 - Work on filter feature
 
 ### Day 5

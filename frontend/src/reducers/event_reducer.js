@@ -5,7 +5,7 @@ const EventsReducer = (state = { all: {}, selected: {} , new: undefined }, actio
   let newState = Object.assign({}, state);
   switch (action.type) {
     case RECEIVE_EVENT:
-      debugger
+      // debugger
       newState.selected = action.event.data;
       return newState
     case RECEIVE_EVENTS:
@@ -16,7 +16,7 @@ const EventsReducer = (state = { all: {}, selected: {} , new: undefined }, actio
     //   newState.user = action.events.data;
     //   return newState;
     case RECEIVE_NEW_EVENT:
-      debugger
+      // debugger
       newState.new = action.event.data;
       return newState;
     default:

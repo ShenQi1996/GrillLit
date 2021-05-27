@@ -1,4 +1,8 @@
 import React from 'react';
+const googleMapsClient = require('@google/maps').createClient({
+  key: 'AIzaSyCxTWMHUwu0pODv9S2DiafnoridPYTHP00',
+  Promise: Promise
+});
 
 class EventCreate extends React.Component {
   constructor(props) {
@@ -18,20 +22,31 @@ class EventCreate extends React.Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.update = this.update.bind(this);
+    this.geocode = this.geocode.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
-    debugger
+    // debugger
     this.setState({ newEvent: nextProps.newEvent });
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    // let event = {
-    //   text: this.state.text
-    // };
+    // const res = this.geocode(this.state.location);
+    // this.geocode(this.state.location);
+    
+    // debugger
+    let event = {
+      userId: this.props.userId,
+      title: this.state.title,
+      description: this.state.description,
+      location: this.state.location,
+      longitude: this.state.longitude.toString(),
+      latitude: this.state.latitude.toString(),
+      date: this.state.date,
+    };
 
-    this.props.createEvent(this.state);
+    this.props.createEvent(event);
     this.setState({ 
       userId: this.props.userId,
       title: '',
@@ -41,6 +56,23 @@ class EventCreate extends React.Component {
       latitude: '',
       date: '',
      })
+  }
+
+  geocode(e) {
+    e.preventDefault();
+    googleMapsClient.geocode({ address: this.state.location })
+      .asPromise()
+      .then((response) => {
+        console.log(response.json.results);
+        this.setState({
+          latitude: response.json.results[0].geometry.location.lat,
+          longitude: response.json.results[0].geometry.location.lng,
+          location: response.json.results[0].formatted_address
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   update(field) {
@@ -102,6 +134,7 @@ class EventCreate extends React.Component {
             placeholder="Date"
           />
 
+          <button onClick={this.geocode} >Confirm Location</button>
           <input type="submit" value="submit" />
         </form>
       </div>
