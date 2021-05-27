@@ -16,6 +16,16 @@ class SignupForm extends React.Component {
     this.clearedErrors = false;
   }
 
+  componentDidMount() {
+    const navBar = document.querySelector(".header");
+    navBar.classList.add("white");
+  }
+
+  componentWillUnmount() {
+    const navBar = document.querySelector(".header");
+    navBar.classList.remove("white");
+  }
+
   componentDidUpdate(prevProps) {
     if (this.props.signedIn && !prevProps.signedIn) {
       this.props.history.push('/');

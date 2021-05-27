@@ -5,12 +5,19 @@ import React from 'react';
 class EventDetail extends React.Component {
   constructor(props) {
     super(props);
-
+    
+    this.handleClick = this.handleClick.bind(this);
   }
 
 
   componentDidMount() {
     this.props.fetchEvent(this.props.eventId);
+  }
+
+  handleClick() {
+    if (!this.props.signedIn) {
+      this.props.history.push('/signin');
+    }
   }
 
   render() {
@@ -32,7 +39,7 @@ class EventDetail extends React.Component {
               <div className="event-l-a">
                 <div className="event-l-a-1">{title}</div>
                 <div className="event-l-a-2">
-                  <button>Join</button>
+                  <button onClick={this.handleClick} >Join</button>
                 </div>
               </div>
               <div className="event-l-b">

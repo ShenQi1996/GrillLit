@@ -50,8 +50,9 @@ export const fetchEvent = (eventId) => dispatch => (
 );
 
 
-export const createEvent = (data) => (dispatch) => (
-  EventAPIUtil.createEvent(data)
+export const createEvent = (data) => (dispatch) => {
+  debugger
+  return(EventAPIUtil.createEvent(data)
     .then(event => dispatch(receiveNewEvent(event)))
-    .catch(err => console.log(err))
-);
+    .catch(err => console.log(err)))
+};
