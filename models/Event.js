@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const UserSchema = require('./User');
+
 
 const EventSchema = new Schema({
     userId: {
@@ -7,8 +9,9 @@ const EventSchema = new Schema({
         ref: 'users'
     },
     invites: {
-        type: Schema.Types.ObjectId,
-        ref: 'users'
+
+        type: Map,
+        of: String
     },
     title: {
         type: String, 
@@ -25,21 +28,17 @@ const EventSchema = new Schema({
         require: true
     },
     longitude: {
-        type: Number,
-        require: true
+        type: Number
     },
     latitude: {
-        type: Number,
-        require: true
+        type: Number
     },
     date: {
         type: Date,
         required: true
     },
-    // https://attacomsian.com/blog/mongoose-schema-types#maps
     items: {
-        type: Map,
-        of: Boolean
+        type: String
     }
     
 });

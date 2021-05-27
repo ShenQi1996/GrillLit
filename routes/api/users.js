@@ -16,6 +16,13 @@ const validateLoginInput = require('../../validations/login');
 //     email: req.user.email
 //   });
 // })
+router.get('/user/:userId', (req, res) => {
+  res.json({
+    id: req.user.id,
+    username: req.user.username,
+    email: req.user.email
+  });
+})
 
 router.post('/register', (req, res) => {
 
