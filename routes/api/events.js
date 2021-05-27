@@ -29,26 +29,25 @@ router.get('/:id', (req, res) => {
             res.status(404).json({ noeventfound: 'No event found with that ID' }));
 });
 //Make sure event route is correct
-router.put('/event/:eventId', (req, res) => {
-    const event = Event.findById(req.params.eventId);
+router.patch('/event/:eventId', async(req, res) => {
 
-    if(!event) return rest.status(404).json({});
-    event.userId = req.body.userId;
-    event.invites = req.body.invites;
-    event.title = req.body.title;
-    event.description = req.body.description;
-    event.location = req.body.location;
-    event.longitude = req.body.longitude;
-    event.latitude = req.body.latitude;
-    event.date = req.body.date;
-    event.items = req.body.items;
+    const resp = await Event.updateOne({ _id: req.params.eventId}, { 
+                invites: req.body.invites,
+                title:  req.body.title,
+                description: req.body.description,
+                location: req.body.location,
+                longitude: req.body.longitude,
+                latitude: req.body.latitude,
+                date: req.body.date,
+                items: req.body.items
+            });
+            
+    res.json({ success: "update worked"});
 
-    res.json(event);
 });
 
 //Make sure event route is correct
 router.post('/event', (req, res) => {
-
     const { errors, isValid } = validateEventInput(req.body);
     
     if (!isValid){
@@ -82,22 +81,24 @@ router.post('/event', (req, res) => {
 
 router.delete('/event/:eventId', (req, res) => {
 
+
     const event_found = Event.findById(req.params.eventId);
 
     if( !event_found ){
         return res.status(400).json({ eventNotFound: "Event doesn't exist"});
     } else {
-        Event.deleteOne( req.params.eventId);
+        
+        Event.findByIdAndRemove(req.params.eventId, function(err){
+            if(err){
+                res.json(err);
+            } else {
+                
+                res.json({ delete: "Delete worked"});
+            }
+        });
     }
 
 
-    // Event.findByIdAndRemove(req.params.eventId, function(err){
-    //     if(err){
-    //         res.redirect('/index')
-    //     } else {
-    //         res.redirect('/index')
-    //     }
-    // })
 });
 
 
