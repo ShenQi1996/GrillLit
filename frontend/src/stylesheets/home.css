@@ -215,3 +215,9 @@ footer {
   display: flex;
   flex-direction: column;
 }
+
+.event-map-container {
+  width: 44vw;
+  height: 47vh;
+  position: fixed;
+}

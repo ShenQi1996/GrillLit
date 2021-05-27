@@ -1,4 +1,5 @@
 import React from 'react';
+import EventShowMap from '../map/event_show_map'
 // import EventIndexCard from './event_index_card'
 
 
@@ -54,7 +55,9 @@ class EventDetail extends React.Component {
                 <div className="event-r-a-1">items</div>
                 <div className="event-r-a-2">invites</div>
               </div>
-              <div className="event-r-b">map</div>
+              <div className="event-r-b">
+                <EventShowMap event={this.props.event} />
+              </div>
             </div>
           </div>
         </div>

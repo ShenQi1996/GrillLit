@@ -58,6 +58,7 @@ export class MapContainer extends Component {
             name={event.title}
             location={event.location}
             id={event._id}
+            key={event.id}
           />
         )
       })

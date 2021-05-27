@@ -14,7 +14,7 @@ class UserProfile extends React.Component {
 
 
   render() {
-    debugger
+    // debugger
     if (!this.props.events) {
       return <h1>Loading...</h1>
     } else {
