@@ -55,11 +55,38 @@ footer {
   box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / .19);
 }
 
-.signup-form-container, .profile-wrapper {
+.signup-form-container, .profile-wrapper, .index-wrapper{
   top: 70px;
   height: 100vh;
   width: 100vw;
   display: flex;
+}
+
+/* _________________________________EVENTS__________________________________ */
+
+.event-index-container {
+  width: 50vw;
+  height: 87vh;
+  display: flex;
+  position: fixed;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px 20px 20px 20px;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / .19);
+  max-width: 50vw;
+  overflow-y: scroll;
+  right: 0;
+  bottom: 0;
+}
+
+.event-index-card {
+  margin: 10px 0;
+  width: 100%;
+  height: 120px;
+  background-color: blueviolet;
+}
+.event-index-small {
 }
 
 .signin-form {
@@ -86,4 +113,82 @@ footer {
   height: 300px;
   width: 300px;
   margin: 300px auto;
+}
+
+.event-detail-img {
+  height: 100vh;
+  width: 100vw;
+  z-index: 2;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.event-detail-wrapper {
+  /* height: 100vh;
+  width: 100vw;
+  background-color: chartreuse;
+  z-index: 2;
+  position: fixed;
+  display: flex; */
+
+  height: 80vh;
+  width: 90vw;
+  background-color: rgba(255, 255, 255, 0.316);
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / .19);
+  z-index: 2;
+  position: fixed;
+  display: flex;
+  margin-top: 7vh;
+}
+
+.event-left, .event-right {
+  width: 50%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.296);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.event-l-a {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 10vh;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: grey;
+}
+
+.event-l-b {
+  list-style: none;
+  height: 10%;
+  background: bisque;
+  padding: 10px 20px;
+}
+
+.event-l-c {
+  height: 50%;
+  background-color: green;
+  padding: 20px;
+}
+
+.event-r-a {
+  height: 30%;
+  padding: 20px;
+  background-color: cadetblue;
+}
+
+.event-r-b {
+  height: 60%;
+  width: 100%;
+  background-color: brown;
+}
+
+#back-button {
+  position: absolute;
+  right: 20px;
+  top: 10vh;
 }

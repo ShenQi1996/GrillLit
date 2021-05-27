@@ -3,10 +3,12 @@ import {
   RECEIVE_USER_LOGOUT,
   RECEIVE_USER_SIGN_IN
 } from '../actions/session_actions';
+import { RECEIVE_USER_EVENTS } from '../actions/event_actions';
 
 const initialState = {
   isAuthenticated: false,
-  user: {}
+  user: {},
+  userEvents: {}
 };
 
 const SessionReducer = (state = initialState, action) => {
@@ -18,11 +20,17 @@ const SessionReducer = (state = initialState, action) => {
         isAuthenticated: !!action.currentUser,
         user: action.currentUser
       };
+    case RECEIVE_USER_EVENTS:
+      return {
+        ...state,
+        userEvents: action.events.data
+      }
     case RECEIVE_USER_LOGOUT:
       
       return {
         isAuthenticated: false,
-        user: undefined
+        user: {},
+        userEvents: {}
       };
     case RECEIVE_USER_SIGN_IN:
       
