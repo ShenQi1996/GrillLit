@@ -1,8 +1,9 @@
 import { connect } from 'react-redux';
 import UserProfile from './user_profile';
-import { fetchUserEvents } from '../../actions/event_actions';
+import { fetchUserEvents, deleteEvent } from '../../actions/event_actions';
 
 const mSTP = (state) => {
+  debugger
   return {
     user: state.session.user,
     events: state.session.userEvents,
@@ -10,7 +11,8 @@ const mSTP = (state) => {
 };
 
 const mDTP = (dispatch) => ({
-  fetchUserEvents: (userId) => dispatch(fetchUserEvents(userId))
+  fetchUserEvents: (userId) => dispatch(fetchUserEvents(userId)),
+  deleteEvent: (eventId) => dispatch(deleteEvent(eventId)),
 });
 
 

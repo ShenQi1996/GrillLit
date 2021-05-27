@@ -92,7 +92,7 @@ router.delete('/event/:eventId', (req, res) => {
                 res.json(err);
             } else {
                 
-                res.json({ delete: "Delete worked"});
+                res.json({ eventId: `${req.params.eventId}`});
             }
         });
     }

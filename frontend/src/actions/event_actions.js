@@ -4,6 +4,8 @@ export const RECEIVE_EVENTS = "RECEIVE_EVENTS";
 export const RECEIVE_EVENT = "RECEIVE_EVENT";
 export const RECEIVE_USER_EVENTS = "RECEIVE_USER_EVENTS";
 export const RECEIVE_NEW_EVENT = "RECEIVE_NEW_EVENT";
+export const DELETE_EVENT = "DELETE_EVENT";
+
 
 const receiveEvents = (events) => ({
   type: RECEIVE_EVENTS,
@@ -24,6 +26,12 @@ const receiveNewEvent = (event) => ({
   type: RECEIVE_NEW_EVENT,
   event
 });
+
+const removeEvent = (eventId) => {
+  debugger
+  return{type: DELETE_EVENT,
+  eventId}
+};
 
 export const fetchEvents = () => (dispatch) => (
   EventAPIUtil.fetchEvents().then((events) => (
@@ -54,5 +62,12 @@ export const createEvent = (data) => (dispatch) => {
   // debugger
   return(EventAPIUtil.createEvent(data)
     .then(event => dispatch(receiveNewEvent(event)))
+    .catch(err => console.log(err.response)))
+};
+
+export const deleteEvent = (eventId) => (dispatch) => {
+  debugger
+  return(EventAPIUtil.deleteEvent(eventId)
+    .then(eventId => dispatch(removeEvent(eventId)))
     .catch(err => console.log(err.response)))
 };

@@ -15,3 +15,7 @@ export const fetchUserEvents = id => {
 export const createEvent = data => {
   return axios.post('/api/events/event', data);
 };
+
+export const deleteEvent = eventId => {
+  return axios.delete(`/api/events/event/${eventId}`);
+};

@@ -3,7 +3,7 @@ import {
   RECEIVE_USER_LOGOUT,
   RECEIVE_USER_SIGN_IN
 } from '../actions/session_actions';
-import { RECEIVE_USER_EVENTS } from '../actions/event_actions';
+import { RECEIVE_USER_EVENTS, DELETE_EVENT } from '../actions/event_actions';
 
 const initialState = {
   isAuthenticated: false,
@@ -20,6 +20,14 @@ const SessionReducer = (state = initialState, action) => {
         isAuthenticated: !!action.currentUser,
         user: action.currentUser
       };
+    case DELETE_EVENT:
+      let newState = Object.assign({}, state);
+      debugger
+      const filtered = newState.userEvents.filter(event => event._id !== action.eventId.data.eventId );
+      return {
+        ...newState,
+        userEvents: filtered
+      }
     case RECEIVE_USER_EVENTS:
       return {
         ...state,
