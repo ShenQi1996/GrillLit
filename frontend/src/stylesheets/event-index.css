@@ -1,0 +1,60 @@
+.event-index-card-index {
+  margin: 10px 0;
+  width: 100%;
+  height: 120px;
+  background-color: white;
+  list-style: none;
+  text-align: center;
+  border: 2px solid black;
+  text-align: center;
+  border: 2px solid black;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  text-overflow: ellipsis;
+}
+
+.event-index-card-index:hover {
+  border-color: lightslategray;
+  color: lightslategray;
+}
+
+#back-button {
+  background-image: url("./back-arrow.png");
+  width: 40px;
+  height: 40px;
+  background-size: contain;
+  cursor: pointer;
+}
+
+.event-l-a {
+  border-bottom: 1px solid black;
+}
+
+.event-l-b {
+  display: flex;
+  flex-direction: column;
+}
+
+.event-l-b h2 {
+  font-weight: 600;
+}
+
+#join-button {
+  margin: 10px;
+  padding: 7px 10px;
+  border: none;
+  border-radius: 5px;
+  font-weight: bolder;
+  font-size: 15px;
+  background-color: rgb(129, 124, 124);
+  color: white;
+  transition: all 0.5s ease-in;
+}
+
+#join-button:hover {
+  background-color: rgb(218, 210, 210);
+  color: rgb(43, 39, 39);
+}
