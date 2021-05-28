@@ -21,6 +21,7 @@ ___
 * Ability to create events and invite user's giving the invites item options to select from upon accepting the invite
 * Google map feature where user's can view the location of the event on a map
 * User's will be able to search for specific titles from all events
+* 
 **MVPs**
 
  1. User Auth/ Splash Page
@@ -62,7 +63,7 @@ ___
 - Setup and integrate Maps API
 
 ### Day 4
-- Work on filter feature
+- Work on 'joining events' for user
 
 ### Day 5
 - Readme - **All**
