@@ -6,6 +6,8 @@
   position: fixed;
   width: 100vw;
   z-index: 33;
+  padding-top: 10px;
+  padding-bottom: 5px;
 }
 
 .white {
@@ -21,17 +23,33 @@
   left: 20px;
 }
 
+.nav-left-links-events {
+  text-decoration: none;
+  font-size: 25px;
+  color: black;
+  font-weight: bolder;
+  margin-left: 40px;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.nav-left-links-events:hover {
+  color: rgb(240, 124, 78);
+}
 .nav-right-links {
   position: absolute;
   right: 20px;
 }
 
 .header-nav-logo {
-  font-size: 40px;
+  font-size: 50px;
   font-family: "Fjalla One", sans-serif;
-
   text-decoration: none;
   color: black;
+}
+
+.header-nav-logo > strong {
+  color: rgb(240, 124, 78);
 }
 
 .header-dropdown {
@@ -75,6 +93,20 @@
   height: 40px;
   background-size: contain;
   cursor: pointer;
+  margin-right: 40px;
+}
+
+.nav-signin {
+  margin-right: 40px;
+  font-size: 25px;
+  text-decoration: none;
+  color: black;
+  padding: 5px 10px;
+}
+
+.nav-signin:hover {
+  border-radius: 5px;
+  color: rgb(240, 124, 78);
 }
 
 .true {

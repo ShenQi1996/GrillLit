@@ -72,9 +72,12 @@ class SignupForm extends React.Component {
     return (
       <div className="signup-form-container">
         <figure className="signup-img"></figure>
-        <form onSubmit={this.handleSubmit}>
-          <div className="signup-form">
+        <form onSubmit={this.handleSubmit}  className="signup-form">
             {/* <br /> */}
+            <h1 className="signup-h1">
+              Sign Up
+            </h1>
+            <div>
             <input type="text"
               value={this.state.email}
               onChange={this.update('email')}
@@ -101,8 +104,8 @@ class SignupForm extends React.Component {
             {/* <br /> */}
             <input type="submit" value="Submit" />
             {this.renderErrors()}
+            </div>
             <Link to="/signin">Already have an account? Sign in.</Link>
-          </div>
         </form>
       </div>
     );

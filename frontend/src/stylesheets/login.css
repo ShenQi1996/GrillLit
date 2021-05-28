@@ -1,0 +1,69 @@
+.signup-form-container {
+  display: flex;
+  font-family: “Fjalla One”, sans-serif;
+  background-size: cover;
+  text-align: center;
+  justify-content: center;
+}
+.signup-form {
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.3);
+  padding: 25px;
+  margin: 10% auto 0;
+  display: flex;
+  text-align: center;
+  justify-content: space-evenly;
+  z-index: 2;
+  overflow: hidden;
+  height: 50%;
+  width: 25%;
+}
+.signup-h1 {
+  color: #e86313;
+  margin-bottom: 30px;
+  font-size: 30px;
+}
+input {
+  border-radius: 20px;
+  padding: 10px;
+  margin: 15px 0;
+  border: 1px solid black;
+  outline: black;
+  width: 70%;
+  font-size: 15px;
+}
+
+.input-buttom {
+  border: none;
+  transition: all 0.5s ease-in;
+  font-size: 20px;
+}
+.input-buttom:hover {
+  background-color: #E86313(70, 70, 73);
+  color: rgb(43, 39, 39);
+}
+button {
+  color: #E86313(70, 70, 73);
+  width: 50%;
+  padding: 10px;
+  border-radius: 25px;
+  font-size: 10px;
+  margin: 10px 0;
+  border: 1px gray;
+  outline: none;
+  cursor: pointer;
+  font-size: 15px;
+}
+.signup-link {
+  color: blue;
+  width: 50%;
+  padding: 10px;
+  border-radius: 25px;
+  font-size: 10px;
+  margin: 10px 0;
+  border: 1px gray;
+  outline: none;
+  cursor: pointer;
+}
+button:hover {
+  background-color: lightsalmon;
+}

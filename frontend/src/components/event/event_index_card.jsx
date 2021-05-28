@@ -11,7 +11,7 @@ class EventIndexCard extends React.Component {
     // debugger
     return (
       <div className="event-index-small" >
-        <li>{title}</li>
+        <li className="event-index-small-title">{title}</li>
         <li>{location}</li>
         <li>{description}</li>
       </div>

@@ -107,6 +107,7 @@ class EventCreate extends React.Component {
     <div className="event-detail-img">
       <div className="new-event-wrapper">
         <form className="new-event-form" onSubmit={this.handleSubmit} >
+          <h1>Create Form</h1>
           <input 
             type="text" 
             value={this.state.title}

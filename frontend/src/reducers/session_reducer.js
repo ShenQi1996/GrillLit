@@ -1,55 +1,53 @@
 import {
   RECEIVE_CURRENT_USER,
   RECEIVE_USER_LOGOUT,
-  RECEIVE_USER_SIGN_IN
-} from '../actions/session_actions';
-import { RECEIVE_USER_EVENTS, DELETE_EVENT } from '../actions/event_actions';
+  RECEIVE_USER_SIGN_IN,
+} from "../actions/session_actions";
+import { RECEIVE_USER_EVENTS, DELETE_EVENT } from "../actions/event_actions";
 
 const initialState = {
   isAuthenticated: false,
   user: {},
-  userEvents: {}
+  userEvents: {},
 };
 
 const SessionReducer = (state = initialState, action) => {
   switch (action.type) {
     case RECEIVE_CURRENT_USER:
-      debugger
       return {
         ...state,
         isAuthenticated: !!action.currentUser,
-        user: action.currentUser
+        user: action.currentUser,
       };
     case DELETE_EVENT:
       let newState = Object.assign({}, state);
-      
-      const filtered = newState.userEvents.filter(event => event._id !== action.eventId.data.eventId );
+
+      const filtered = newState.userEvents.filter(
+        event => event._id !== action.eventId.data.eventId
+      );
       return {
         ...newState,
-        userEvents: filtered
-      }
+        userEvents: filtered,
+      };
     case RECEIVE_USER_EVENTS:
-      
       return {
         ...state,
-        userEvents: action.events.data
-      }
+        userEvents: action.events.data,
+      };
     case RECEIVE_USER_LOGOUT:
-      
       return {
         isAuthenticated: false,
         user: {},
-        userEvents: {}
+        userEvents: {},
       };
     case RECEIVE_USER_SIGN_IN:
-      
       return {
         ...state,
-        isSignedIn: true
-      }
+        isSignedIn: true,
+      };
     default:
       return state;
   }
-}
+};
 
 export default SessionReducer;
