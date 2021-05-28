@@ -6,10 +6,16 @@ import MapContainer from '../map/event_index_map';
 
 class EventIndex extends React.Component {
 
+  componentWillUnmount() {
+    const navBar = document.querySelector(".header");
+    navBar.classList.remove("white");
+  }
 
   componentDidMount() {
     // debugger
     this.props.fetchEvents();
+    const navBar = document.querySelector(".header");
+    navBar.classList.add("white");
   }
 
   render() {
@@ -19,7 +25,7 @@ class EventIndex extends React.Component {
     } else {
       const events = this.props.events.map( event => {
         return (
-          <Link className="event-index-card" key={event._id} to={`/events/${event._id}`  } >
+          <Link className="event-index-card-index" key={event._id} to={`/events/${event._id}`  } >
             <EventIndexCard event={event} />
           </Link>
         )

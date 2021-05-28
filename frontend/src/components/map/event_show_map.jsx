@@ -17,7 +17,7 @@ export class EventShowMap extends Component {
   render() {
     const centerLat = this.props.event.latitude;
     const centerLon = this.props.event.longitude;
-  
+    debugger
     return (
       <div className="event-map-container">
         <Map

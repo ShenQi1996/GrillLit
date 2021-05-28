@@ -26,7 +26,18 @@ class EventDetail extends React.Component {
 
   componentDidMount() {
     this.props.fetchEvent(this.props.eventId).then( res => {
-      this.setState({ invites: res.event.data.invites });
+      this.setState({ 
+        _id: res.event.data._id,
+        userId: res.event.data.userId,
+        title: res.event.data.title,
+        description: res.event.data.description,
+        location: res.event.data.location,
+        longitude: res.event.data.longitude,
+        latitude: res.event.data.latitude,
+        date: res.event.data.date,
+        items: res.event.data.items,
+        invites: res.event.data.invites 
+      });
     })
   
   }
@@ -67,41 +78,55 @@ class EventDetail extends React.Component {
   }
 
   render() {
-    // debugger
-    if (!this.props.event) {
+    if (!this.props.event || this.props.event === {}) {
       return (
         <h1>Loading...</h1>
-      )
-    } else {
-      
-      const { title, date, location, description } = this.props.event
-
-
+        )
+      } else {
+        
+        const { title, date, location, description, invites } = this.props.event
+        
+        let inviteList
+        if (invites && invites.length > 0) {
+          // invites = invites.split(' ')
+          inviteList = invites.split(" ").map((invite, i) => <li key={`invite-${i}`}>{invite}</li> )
+        }
+        debugger
+        
       return (
         <div className="event-detail-img">
-          <div id="back-button" onClick={() => this.props.history.goBack()} >BACK</div>
+          <div id="back-button" onClick={() => this.props.history.goBack()} ></div>
           <div className="event-detail-wrapper">
             <div className="event-left">
               <div className="event-l-a">
                 <div className="event-l-a-1">{title}</div>
                 <div className="event-l-a-2">
-                  <button onClick={this.handleClick} >Join</button>
+                  <button onClick={this.handleClick} id="join-button" >Join Event</button>
                 </div>
               </div>
               <div className="event-l-b">
-                <li>{date}</li>
-                <li>{location}</li>
+                <div className="b-1">
+                  <h2>Date</h2>
+                  <li>{date}</li>
+                </div>
+                <div className="b-2">
+                  <h2>Location</h2>
+                  <li>{location}</li>
+                </div>
               </div>
               <div className="event-l-c">{description}</div>
             </div>
 
             <div className="event-right">
               <div className="event-r-a">
-                <div className="event-r-a-1">items</div>
-                <div className="event-r-a-2">{this.state.invites}</div>
+                <div className="event-r-a-1"></div>
+                <div className="event-r-a-2">
+                  <h2>People attending the event:</h2>
+                  {inviteList}
+                  </div>
               </div>
               <div className="event-r-b">
-                <EventShowMap event={this.props.event} />
+                <EventShowMap event={this.state} />
               </div>
             </div>
           </div>
