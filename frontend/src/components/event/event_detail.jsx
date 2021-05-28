@@ -84,14 +84,14 @@ class EventDetail extends React.Component {
         )
       } else {
         
-        const { title, date, location, description, invites } = this.props.event
-        
+        const { title, date, location, description } = this.props.event
+        const invites = this.state.invites
         let inviteList
         if (invites && invites.length > 0) {
           // invites = invites.split(' ')
           inviteList = invites.split(" ").map((invite, i) => <li key={`invite-${i}`}>{invite}</li> )
         }
-        debugger
+      
         
       return (
         <div className="event-detail-img">

@@ -81,7 +81,7 @@ export class MapContainer extends Component {
       <div className="events-map-container">
         <Map
           google={this.props.google}
-          zoom={14}
+          zoom={13}
           style={mapStyles}
           disableDefaultUI={true}
 

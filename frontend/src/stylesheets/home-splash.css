@@ -1,13 +1,32 @@
-.main-splash-home-txt{
-    color: black;
-    font-size: 25px;
+.main-splash-home-txt {
+  color: black;
 }
 
+.home_wrapper_detail {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  text-align: center;
+  font-size: 30px;
+  font-weight: bolder;
+}
 
-
-.home_wrapper_detail{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
+.main-splash-home-box1 {
+  width: 50%;
+  height: 100%;
+  padding: 20px 30px;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: rgba(169, 169, 169, 0.377);
+}
+.main-splash-home-box2 {
+  width: 50%;
+  height: 100%;
+  background-image: url("./home_box.jpg");
+  background-size: cover;
 }

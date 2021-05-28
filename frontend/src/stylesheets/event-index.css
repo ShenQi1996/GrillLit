@@ -31,6 +31,8 @@
 
 .event-l-a {
   border-bottom: 1px solid black;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .event-l-b {
@@ -44,7 +46,7 @@
 
 #join-button {
   margin: 10px;
-  padding: 7px 10px;
+  padding: 7px 20px;
   border: none;
   border-radius: 5px;
   font-weight: bolder;
@@ -55,6 +57,12 @@
 }
 
 #join-button:hover {
-  background-color: rgb(218, 210, 210);
+  background-color: rgb(240, 124, 78);
   color: rgb(43, 39, 39);
+}
+
+.event-l-a-2 {
+  width: 50%;
+  display: flex;
+  justify-content: center;
 }
