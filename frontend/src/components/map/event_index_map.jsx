@@ -25,12 +25,10 @@ export class MapContainer extends Component {
   }
 
   handleClick() {
-    debugger
     this.props.history.push(`/events/${this.state.selectedPlace.id}`);
   }
 
   onMarkerClick(props, marker, e) {
-    debugger
     this.setState({
       selectedPlace: props,
       activeMarker: marker,

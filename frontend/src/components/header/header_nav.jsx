@@ -24,12 +24,12 @@ class HeaderNav extends React.Component {
 
 
   render() {
-    const navRight = this.props.loggedIn ? <div onClick={(e) => this.handleClick(e)} id="user-icon" ></div> : <Link to="/signin" >Sign In</Link>;
+    const navRight = this.props.loggedIn ? <div onClick={(e) => this.handleClick(e)} id="user-icon" ></div> : <Link className="nav-signin" to="/signin" >Sign In</Link>;
     // debugger
     return (
       <nav className="header">
         <div className="nav-left-links">
-          <Link to="/events" >Events</Link>
+          <Link className="nav-left-links-events" to="/events" >Events</Link>
         </div>
         <Link className="header-nav-logo" to="/" >
           Grill<strong>Lit</strong>

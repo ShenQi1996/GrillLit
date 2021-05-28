@@ -101,6 +101,10 @@ footer {
 }
 .event-index-small {
 }
+.event-index-small-title {
+  font-size: larger;
+  padding-bottom: 10px;
+}
 
 .signin-form {
   display: flex;
@@ -259,13 +263,14 @@ footer {
 }
 
 .event-list {
-  height: 100%;
   width: 50%;
+  margin: 0px 10px;
+  border-radius: 5px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  padding: 10px 0px;
+  border: 4px solid white;
 }
 
 .event-map-container {
@@ -276,5 +281,80 @@ footer {
 
 .event-litem {
   color: black;
+  display: flex;
+  align-items: center;
+  text-align: start;
+}
+
+.event-litem-pro {
+  width: 90%;
+  border-bottom: 4px solid white;
+  border-top: 4px solid white;
+  margin: 10px;
+  text-align: center;
+  padding: 10px 0px;
+  transition: all 0.8s ease-in;
+  background-color: rgba(163, 148, 148, 0.473);
+}
+
+.event-litem-pro:hover {
+  background-color: rgb(68, 64, 64);
+}
+
+.event-index-card-pro {
+  text-decoration: none;
+  list-style-type: none;
+  color: white;
+  font-weight: bolder;
+  font-size: larger;
+}
+
+.event-index-card-pro-button {
+  margin: 10px;
+  padding: 7px 10px;
+  border: none;
+  border-radius: 5px;
+  font-weight: bolder;
+  font-size: 15px;
+  background-color: rgb(129, 124, 124);
+  color: white;
+  transition: all 0.5s ease-in;
+}
+
+.event-index-card-pro-button:hover {
+  background-color: lightsalmon;
+  color: rgb(43, 39, 39);
+}
+
+.new-event-wrapper {
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+.new-event-form {
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 10px;
   border: 4px solid white;
+  border-radius: 5px;
+  width: 50%;
+}
+.new-event-form > h1 {
+  color: white;
+  font-size: 40px;
+}
+.new-event-form > input {
+  width: 60%;
+  height: 5%;
+  padding: 5px;
+}
+.new-event-form > textarea {
+  height: 10%;
+  width: 60%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
 }

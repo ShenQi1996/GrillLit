@@ -1,11 +1,10 @@
-import axios from 'axios';
+import axios from "axios";
 
 export const fetchEvents = () => {
-  return axios.get('/api/events/index');
+  return axios.get("/api/events/index");
 };
 
-export const fetchEvent = (eventId) => {
-  debugger
+export const fetchEvent = eventId => {
   return axios.get(`/api/events/${eventId}`);
 };
 
@@ -14,7 +13,7 @@ export const fetchUserEvents = id => {
 };
 
 export const createEvent = data => {
-  return axios.post('/api/events/event', data);
+  return axios.post("/api/events/event", data);
 };
 
 export const deleteEvent = eventId => {
@@ -22,6 +21,5 @@ export const deleteEvent = eventId => {
 };
 
 export const editEvent = event => {
-  debugger
   return axios.patch(`/api/events/event/${event._id}`, event);
 };

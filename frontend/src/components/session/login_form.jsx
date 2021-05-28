@@ -84,6 +84,9 @@ class LoginForm extends React.Component {
       <div className="signup-form-container">
         <figure className="signup-img"></figure>
         <form onSubmit={this.handleSubmit} className="signup-form">
+          <h1 className="signup-h1">
+            Sign In
+          </h1>
           <div>
             <input type="text"
               value={this.state.email}
@@ -97,8 +100,8 @@ class LoginForm extends React.Component {
               placeholder="Password"
             />
             <br />
-            <input type="submit" value="Submit" />
-            <button onClick={(e) => {this.handleDemoUser()}}>Demo user</button>
+            <button  onClick={(e) => {this.handleDemoUser()}}>Demo user</button>
+            <input className="input-buttom"  type="submit" value="Submit" />
             {this.renderErrors()}
           </div>
           <Link to="/signup">Don't have an account? Sign Up.</Link>
