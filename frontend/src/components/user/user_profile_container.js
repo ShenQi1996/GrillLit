@@ -1,12 +1,18 @@
 import { connect } from 'react-redux';
 import UserProfile from './user_profile';
+import { fetchUserEvents, deleteEvent } from '../../actions/event_actions';
 
-const mSTP = (state) => ({
-  user: state.session.user.email
-});
+const mSTP = (state) => {
+  debugger
+  return {
+    user: state.session.user,
+    events: state.session.userEvents,
+  }
+};
 
 const mDTP = (dispatch) => ({
-  
+  fetchUserEvents: (userId) => dispatch(fetchUserEvents(userId)),
+  deleteEvent: (eventId) => dispatch(deleteEvent(eventId)),
 });
 
 

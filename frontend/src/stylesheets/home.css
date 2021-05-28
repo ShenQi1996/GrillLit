@@ -13,12 +13,16 @@
   bottom: 700px;
   left: 0;
   right: 0;
-  background-image: url("./grill.jpg") ;
+  /* background-image: url("./grill.jpg") ; */
   background-size: cover;
   background-repeat: no-repeat;
   /* background-attachment: fixed; */
   background-position: center; 
   min-height: 50%;
+
+
+  background-image: linear-gradient(to left, rgba(245, 246, 252, 0.315), rgba(238, 229, 236, 0.056)),
+    url('./grill.jpg');
 }
 
 .hero-section {
@@ -26,15 +30,16 @@
   height: 60vh;
   right: 60px;
   /* background-color: rgb(4 100 156 / .42); */
-  background-color: white;
+  /* background-color: white; */
   position: absolute;
   top: 15vh;
+  display: none;
 }
 
 .hero-section h1 {
   text-align: center;
   font-size: 30px;
-  margin-top: 60px;
+  margin-top: 40%;
 }
 
 .content2 {
@@ -55,11 +60,38 @@ footer {
   box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / .19);
 }
 
-.signup-form-container, .profile-wrapper {
+.signup-form-container, .profile-wrapper, .index-wrapper{
   top: 70px;
   height: 100vh;
   width: 100vw;
   display: flex;
+}
+
+/* _________________________________EVENTS__________________________________ */
+
+.event-index-container {
+  width: 50vw;
+  height: 87vh;
+  display: flex;
+  position: fixed;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px 20px 20px 20px;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / .19);
+  max-width: 50vw;
+  overflow-y: scroll;
+  right: 0;
+  bottom: 0;
+}
+
+.event-index-card {
+  margin: 10px 0;
+  width: 100%;
+  height: 120px;
+  background-color: blueviolet;
+}
+.event-index-small {
 }
 
 .signin-form {
@@ -80,4 +112,112 @@ footer {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+}
+
+.user-info {
+  height: 300px;
+  width: 300px;
+  margin: 300px auto;
+}
+
+.event-detail-img {
+  height: 100vh;
+  width: 100vw;
+  z-index: 2;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-image: url("./grill.jpg") ;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center; */
+}
+
+.event-detail-wrapper, .new-event-wrapper, .profile-wrapper {
+  /* height: 100vh;
+  width: 100vw;
+  background-color: chartreuse;
+  z-index: 2;
+  position: fixed;
+  display: flex; */
+
+  height: 80vh;
+  width: 90vw;
+  background-color: rgba(255, 255, 255, 0.316);
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / .19);
+  z-index: 2;
+  position: fixed;
+  display: flex;
+  margin-top: 7vh;
+}
+
+.event-left, .event-right {
+  width: 50%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.296);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.event-l-a {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 10vh;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: grey;
+}
+
+.event-l-b {
+  list-style: none;
+  height: 10%;
+  background: bisque;
+  padding: 10px 20px;
+}
+
+.event-l-c {
+  height: 50%;
+  background-color: green;
+  padding: 20px;
+}
+
+.event-r-a {
+  height: 30%;
+  padding: 20px;
+  background-color: cadetblue;
+}
+
+.event-r-b {
+  height: 60%;
+  width: 100%;
+  background-color: brown;
+}
+
+#back-button {
+  position: absolute;
+  right: 20px;
+  top: 10vh;
+}
+
+.events-map-container {
+  width: 50vw;
+  height: 92vh;
+  position: fixed;
+  bottom: 0;
+}
+
+.event-list {
+  height: 100%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.event-map-container {
+  width: 44vw;
+  height: 47vh;
+  position: fixed;
 }
