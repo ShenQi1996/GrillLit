@@ -34,8 +34,10 @@ const EventSchema = new Schema({
         type: Number
     },
     date: {
-        type: Date,
+        type: String,
         required: true
+        // type: Date,
+        // required: true
     },
     items: {
         type: String

@@ -5,7 +5,8 @@ import configureStore from './store/store';
 import './stylesheets/reset.css';
 import './stylesheets/nav.css';
 import './stylesheets/home.css';
-import './stylesheets/Screen Shot 2021-05-21 at 5.24.02 PM.png';
+import './stylesheets/event-index.css';
+import './stylesheets/home-splash.css';
 
 import jwt_decode from 'jwt-decode';
 import { setAuthToken } from './util/session_api_util';
