@@ -1,11 +1,11 @@
-import { RECEIVE_EVENTS, RECEIVE_EVENT, RECEIVE_USER_EVENTS, DELETE_EVENT, RECEIVE_NEW_EVENT } from '../actions/event_actions';
+import { RECEIVE_EVENTS, RECEIVE_EVENT, EDIT_EVENT, DELETE_EVENT, RECEIVE_NEW_EVENT } from '../actions/event_actions';
 
 const EventsReducer = (state = { all: {}, selected: {} , new: undefined }, action) => {
   Object.freeze(state);
   let newState = Object.assign({}, state);
   switch (action.type) {
-    // case DELETE_EVENT:
-    //   delete 
+    // case EDIT_EVENT:
+    //   debugger
     //   return newState;
     case RECEIVE_EVENT:
       // debugger

@@ -10,8 +10,8 @@ const EventSchema = new Schema({
     },
     invites: {
 
-        type: Map,
-        of: String
+        type: String,
+        // of: String
     },
     title: {
         type: String, 

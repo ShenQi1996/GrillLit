@@ -10,14 +10,14 @@ class EventCreate extends React.Component {
 
     this.state = {
       userId: this.props.userId,
-      // invites: [],
+      // invites: {},
       title: '',
       description: '',
       location: '' ,
       longitude: '',
       latitude: '',
       date: '',
-      // items: []
+      items: ''
     }
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -38,23 +38,27 @@ class EventCreate extends React.Component {
     // debugger
     let event = {
       userId: this.props.userId,
+      // invites: this.state.invites,
       title: this.state.title,
       description: this.state.description,
       location: this.state.location,
       longitude: this.state.longitude.toString(),
       latitude: this.state.latitude.toString(),
       date: this.state.date,
+      items: this.state.items,
     };
 
     this.props.createEvent(event);
     this.setState({ 
       userId: this.props.userId,
+      // invites: {},
       title: '',
       description: '',
       location: '',
       longitude: '',
       latitude: '',
       date: '',
+      items: '',
      })
   }
 
@@ -133,6 +137,16 @@ class EventCreate extends React.Component {
             onChange={this.update('date')}
             placeholder="Date"
           />
+          <textarea
+              value={this.state.description}
+              onChange={this.update('description')}
+              placeholder="Description"
+          ></textarea>
+          <textarea
+              value={this.state.items}
+              onChange={this.update('items')}
+              placeholder="items"
+          ></textarea>
 
           <button onClick={this.geocode} >Confirm Location</button>
           <input type="submit" value="submit" />

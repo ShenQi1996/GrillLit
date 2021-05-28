@@ -5,6 +5,7 @@ export const RECEIVE_EVENT = "RECEIVE_EVENT";
 export const RECEIVE_USER_EVENTS = "RECEIVE_USER_EVENTS";
 export const RECEIVE_NEW_EVENT = "RECEIVE_NEW_EVENT";
 export const DELETE_EVENT = "DELETE_EVENT";
+export const EDIT_EVENT = "EDIT_EVENT";
 
 
 const receiveEvents = (events) => ({
@@ -28,8 +29,14 @@ const receiveNewEvent = (event) => ({
 });
 
 const removeEvent = (eventId) => {
-  debugger
+  // debugger
   return{type: DELETE_EVENT,
+  eventId}
+};
+
+const alterEvent = (eventId) => {
+  debugger
+  return{type: EDIT_EVENT,
   eventId}
 };
 
@@ -66,8 +73,15 @@ export const createEvent = (data) => (dispatch) => {
 };
 
 export const deleteEvent = (eventId) => (dispatch) => {
-  debugger
+  // debugger
   return(EventAPIUtil.deleteEvent(eventId)
     .then(eventId => dispatch(removeEvent(eventId)))
+    .catch(err => console.log(err.response)))
+};
+
+export const editEvent = (eventId) => (dispatch) => {
+  debugger
+  return(EventAPIUtil.editEvent(eventId)
+    .then(event => dispatch(alterEvent(event)))
     .catch(err => console.log(err.response)))
 };

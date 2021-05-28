@@ -15,20 +15,26 @@ class UserProfile extends React.Component {
 
   render() {
     // debugger
+    
+
     if (!this.props.events) {
+      
       return <h1>Loading...</h1>
     } else {
        
-      const events = this.props.events.map(event => {
-        return (
-          <>
-            <Link className="event-index-card" key={event._id} to={`/events/${event._id}`} >
-              <EventIndexCard event={event} />
-            </Link>
-            <button onClick={() => this.props.deleteEvent(event._id)} >Cancel Event</button>
-          </>
-        )
-      })
+      let events
+      if (Object.keys(this.props.events).length > 0) {
+        events = this.props.events.map(event => {
+          return (
+            <>
+              <Link className="event-index-card" key={event._id} to={`/events/${event._id}`} >
+                <EventIndexCard event={event} />
+              </Link>
+              <button onClick={() => this.props.deleteEvent(event._id)} >Cancel Event</button>
+            </>
+          )
+        })
+      }
   
       return (
         <div className="event-detail-img">

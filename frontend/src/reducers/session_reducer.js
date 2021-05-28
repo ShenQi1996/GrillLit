@@ -14,7 +14,7 @@ const initialState = {
 const SessionReducer = (state = initialState, action) => {
   switch (action.type) {
     case RECEIVE_CURRENT_USER:
-      
+      debugger
       return {
         ...state,
         isAuthenticated: !!action.currentUser,
@@ -22,13 +22,14 @@ const SessionReducer = (state = initialState, action) => {
       };
     case DELETE_EVENT:
       let newState = Object.assign({}, state);
-      debugger
+      
       const filtered = newState.userEvents.filter(event => event._id !== action.eventId.data.eventId );
       return {
         ...newState,
         userEvents: filtered
       }
     case RECEIVE_USER_EVENTS:
+      
       return {
         ...state,
         userEvents: action.events.data

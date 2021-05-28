@@ -5,6 +5,7 @@ export const fetchEvents = () => {
 };
 
 export const fetchEvent = (eventId) => {
+  debugger
   return axios.get(`/api/events/${eventId}`);
 };
 
@@ -18,4 +19,9 @@ export const createEvent = data => {
 
 export const deleteEvent = eventId => {
   return axios.delete(`/api/events/event/${eventId}`);
+};
+
+export const editEvent = event => {
+  debugger
+  return axios.patch(`/api/events/event/${event._id}`, event);
 };

@@ -33,19 +33,27 @@ router.get('/:id', (req, res) => {
 
 router.patch('/event/:eventId', async(req, res) => {
 
+    debugger
     const invitesEdit = req.body.invites.split(" ");
 
-    newObj = {};
-
+    let newArr = [];
+    
     invitesEdit.forEach( id_arr => {
-       
+       debugger
         if(req.body.UserIdToRemove !== id_arr){
-            newObj[id_arr] = false;
+            debugger
+            newArr.push(id_arr);
+
         }
     });
+    debugger
+    let finalArr = newArr.join(" ");
+    
     const resp = await Event.updateOne({ _id: req.params.eventId}, {
         userId: req.body.userId,
-        invites: newObj,
+        // --------------
+        invites: finalArr,
+        // --------------
         title:  req.body.title,
         description: req.body.description,
         location: req.body.location,
@@ -81,7 +89,7 @@ router.post('/event', (req, res) => {
 
     const newEvent = new Event({
         userId: req.body.userId,
-        invites: {},
+        invites: "",
         title:  req.body.title,
         description: req.body.description,
         location: req.body.location,
@@ -90,11 +98,11 @@ router.post('/event', (req, res) => {
         date: req.body.date,
         items: req.body.items
     });
-    const userIds = req.body.invites.split(" ");
+    // const userIds = req.body.invites.split(" ");
 
-    userIds.forEach( id_arr => {
-        newEvent.set(`invites.${id_arr}`, false);
-    });
+    // userIds.forEach( id_arr => {
+    //     newEvent.set(`invites.${id_arr}`, false);
+    // });
 
     if (newEvent.save()){
         res.json(newEvent);

@@ -7,18 +7,63 @@ class EventDetail extends React.Component {
   constructor(props) {
     super(props);
     
+    this.state =  {
+      _id: this.props.event._id,
+      userId: this.props.event.userId,
+      invites: this.props.event.invites,
+      title: this.props.event.title,
+      description: this.props.event.description,
+      location: this.props.event.location,
+      longitude: this.props.event.longitude,
+      latitude: this.props.event.latitude,
+      date: this.props.event.date,
+      items: this.props.event.items,
+    }
+    // debugger
     this.handleClick = this.handleClick.bind(this);
   }
 
 
   componentDidMount() {
-    this.props.fetchEvent(this.props.eventId);
+    this.props.fetchEvent(this.props.eventId).then( res => {
+      this.setState({ invites: res.event.data.invites });
+    })
+  
   }
 
   handleClick() {
     if (!this.props.signedIn) {
       this.props.history.push('/signin');
     }
+ 
+    let users = this.props.event.invites;
+    if (users.length > 0) {
+     
+      users = users.split(" ");
+      users.push(this.props.username);
+      users = users.join(" ");
+    } else {
+      users = this.props.username;
+    }
+    
+
+    const editEvent = {
+      _id: this.props.event._id,
+      userId: this.props.event.userId,
+      invites: users,
+      title:this.props.event.title,
+      description: this.props.event.description,
+      location:this.props.event.location,
+      longitude: this.props.event.longitude,
+      latitude: this.props.event.latitude,
+      date: this.props.event.date,
+      items: this.props.event.items,
+    };
+
+   
+
+    this.props.editEvent(editEvent);
+    this.setState({ invites: users });
   }
 
   render() {
@@ -53,7 +98,7 @@ class EventDetail extends React.Component {
             <div className="event-right">
               <div className="event-r-a">
                 <div className="event-r-a-1">items</div>
-                <div className="event-r-a-2">invites</div>
+                <div className="event-r-a-2">{this.state.invites}</div>
               </div>
               <div className="event-r-b">
                 <EventShowMap event={this.props.event} />
