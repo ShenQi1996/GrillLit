@@ -1,14 +1,17 @@
+* {
+  font-family: "Anton", sans-serif;
+}
 .home-container {
   display: flex;
-  flex-direction: column;
-  height: 200vh;
-  justify-content: space-between;
+  flex-direction: row;
+  height: 100%;
+  justify-content: center;
 }
 
 .hero-image {
   /* position: absolute; */
   width: 100vw;
-  height: 80vh;
+  height: 100vh;
   top: 50px;
   bottom: 700px;
   left: 0;
@@ -17,12 +20,15 @@
   background-size: cover;
   background-repeat: no-repeat;
   /* background-attachment: fixed; */
-  background-position: center; 
+  background-position: center;
   min-height: 50%;
 
-
-  background-image: linear-gradient(to left, rgba(245, 246, 252, 0.315), rgba(238, 229, 236, 0.056)),
-    url('./grill.jpg');
+  background-image: linear-gradient(
+      to left,
+      rgba(245, 246, 252, 0.315),
+      rgba(238, 229, 236, 0.056)
+    ),
+    url("./grill.jpg");
 }
 
 .hero-section {
@@ -42,8 +48,8 @@
   margin-top: 40%;
 }
 
-.content2 {
-  background-image: url("./kabab.jpg") ;
+/* .content2 {
+  background-image: url("./kabab.jpg");
   height: 40vh;
   width: 100vw;
   position: relative;
@@ -57,10 +63,12 @@ footer {
   width: 100vw;
   position: relative;
   background-color: #e2e3f0;
-  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / .19);
-}
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 0.19);
+} */
 
-.signup-form-container, .profile-wrapper, .index-wrapper{
+.signup-form-container,
+.profile-wrapper,
+.index-wrapper {
   top: 70px;
   height: 100vh;
   width: 100vw;
@@ -78,7 +86,7 @@ footer {
   justify-content: space-between;
   padding: 20px 20px 20px 20px;
   background-color: white;
-  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / .19);
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 0.19);
   max-width: 50vw;
   overflow-y: scroll;
   right: 0;
@@ -107,7 +115,7 @@ footer {
 }
 
 .signup-img {
-  background-image: url("./signup.jpg") ;
+  background-image: url("./signup.jpg");
   width: 50vw;
   background-size: cover;
   background-repeat: no-repeat;
@@ -115,9 +123,23 @@ footer {
 }
 
 .user-info {
-  height: 300px;
+  /* height: 300px;
   width: 300px;
-  margin: 300px auto;
+  margin: 300px auto; */
+  width: 50%;
+  background-image: url("./kabab.jpg");
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+}
+.user-info-left {
+  border: 4px solid white;
+  color: white;
+  padding: 5%;
+  font-size: 40px;
+  font-weight: bolder;
 }
 
 .event-detail-img {
@@ -128,31 +150,58 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* background-image: url("./grill.jpg") ;
+  background-image: url("./pro1.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center; */
+  background-position: center;
 }
 
-.event-detail-wrapper, .new-event-wrapper, .profile-wrapper {
+.event-detail-wrapper,
+.new-event-wrapper,
+.profile-wrapper {
   /* height: 100vh;
   width: 100vw;
   background-color: chartreuse;
   z-index: 2;
   position: fixed;
   display: flex; */
-
+  backdrop-filter: blur(8px);
   height: 80vh;
   width: 90vw;
   background-color: rgba(255, 255, 255, 0.316);
-  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / .19);
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 0.19);
   z-index: 2;
   position: fixed;
   display: flex;
   margin-top: 7vh;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
-.event-left, .event-right {
+.profile-wrapper {
+  flex-direction: row;
+  justify-content: space-evenly;
+  justify-content: center;
+}
+
+.home_wrapper {
+  height: 80vh;
+  width: 90vw;
+  background-color: rgba(255, 255, 255, 0.316);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 0.19);
+  z-index: 2;
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 7%;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.event-left,
+.event-right {
   width: 50%;
   height: 100%;
   background-color: rgba(255, 255, 255, 0.296);
@@ -214,10 +263,18 @@ footer {
   width: 50%;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10px 0px;
 }
 
 .event-map-container {
   width: 44vw;
   height: 47vh;
   position: fixed;
+}
+
+.event-litem {
+  color: black;
+  border: 4px solid white;
 }

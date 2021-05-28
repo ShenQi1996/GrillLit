@@ -26,12 +26,12 @@ class UserProfile extends React.Component {
       if (Object.keys(this.props.events).length > 0) {
         events = this.props.events.map(event => {
           return (
-            <>
+            <div  className="event-litem">
               <Link className="event-index-card" key={event._id} to={`/events/${event._id}`} >
                 <EventIndexCard event={event} />
               </Link>
               <button onClick={() => this.props.deleteEvent(event._id)} >Cancel Event</button>
-            </>
+            </div>
           )
         })
       }
@@ -39,7 +39,11 @@ class UserProfile extends React.Component {
       return (
         <div className="event-detail-img">
           <div className="profile-wrapper">
-            <div className="user-info">{this.props.user.email}</div>
+            <div className="user-info">
+              <div className="user-info-left">
+                {this.props.user.email}
+              </div>
+              </div>
             <div className="event-list">
               {events}
             </div>

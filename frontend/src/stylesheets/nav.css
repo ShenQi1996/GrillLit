@@ -10,7 +10,7 @@
 
 .white {
   background-color: #e2e3f0;
-  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / .19);
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 0.19);
 }
 
 .nav-left-links {
@@ -28,7 +28,8 @@
 
 .header-nav-logo {
   font-size: 40px;
-  font-family: sans-serif;
+  font-family: "Fjalla One", sans-serif;
+
   text-decoration: none;
   color: black;
 }
@@ -44,7 +45,7 @@
   justify-content: space-around;
   padding: 10px 0;
   border-radius: 7px;
-  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / .19);
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 0.19);
 }
 
 .header-dropdown-screen {
@@ -69,7 +70,7 @@
 }
 
 #user-icon {
-  background-image: url("./user.png") ;
+  background-image: url("./user.png");
   width: 40px;
   height: 40px;
   background-size: contain;
