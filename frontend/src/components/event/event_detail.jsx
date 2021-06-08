@@ -114,17 +114,20 @@ class EventDetail extends React.Component {
                   <li>{location}</li>
                 </div>
               </div>
-              <div className="event-l-c">{description}</div>
-            </div>
-
-            <div className="event-right">
+              <div className="event-l-c">
+                  <h2>Description:</h2>
+                  {description}
+                </div>
               <div className="event-r-a">
-                <div className="event-r-a-1"></div>
+                {/* <div className="event-r-a-1"></div> */}
                 <div className="event-r-a-2">
                   <h2>People attending the event:</h2>
                   {inviteList}
                   </div>
               </div>
+            </div>
+
+            <div className="event-right">
               <div className="event-r-b">
                 <EventShowMap event={this.state} />
               </div>
