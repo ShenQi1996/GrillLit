@@ -79,14 +79,12 @@ router.patch("/event/:eventId", async (req, res) => {
 //Make sure event route is correct
 router.post("/event", (req, res) => {
   const { errors, isValid } = validateEventInput(req.body);
-
   if (!isValid) {
     return res.status(400).json(errors);
   }
-
   const newEvent = new Event({
     userId: req.body.userId,
-    invites: "",
+    invites: req.body.invites,
     title: req.body.title,
     description: req.body.description,
     location: req.body.location,
