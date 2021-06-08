@@ -7,7 +7,7 @@ const mSTP = (state, ownProps) => {
   return {
     signedIn: state.session.isAuthenticated,
     // eventId: ownProps.match.params.eventId,
-    userId: state.session.user.id,
+    user: state.session.user,
     newEvent: state.events.new
   };
 };

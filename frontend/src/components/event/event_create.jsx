@@ -9,8 +9,8 @@ class EventCreate extends React.Component {
     super(props);
 
     this.state = {
-      userId: this.props.userId,
-      // invites: {},
+      userId: this.props.user.id,
+      // invites: `${this.props.user.username}`,
       title: '',
       description: '',
       location: '' ,
@@ -38,8 +38,8 @@ class EventCreate extends React.Component {
     
     // debugger
     let event = {
-      userId: this.props.userId,
-      // invites: this.state.invites,
+      userId: this.props.user.id,
+      invites: this.props.user.username,
       title: this.state.title,
       description: this.state.description,
       location: this.state.location,
@@ -49,11 +49,13 @@ class EventCreate extends React.Component {
       items: this.state.items,
     };
 
+    debugger
+
     this.props.createEvent(event).then(({event}) => {
       this.props.history.push(`/events/${event.data._id}`);
     });
     this.setState({ 
-      userId: this.props.userId,
+      userId: this.props.user.id,
       // invites: {},
       title: '',
       description: '',

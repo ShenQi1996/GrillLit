@@ -19,7 +19,7 @@ const EventsReducer = (state = { all: {}, selected: {} , new: undefined }, actio
     //   newState.user = action.events.data;
     //   return newState;
     case RECEIVE_NEW_EVENT:
-      // debugger
+      debugger
       newState.new = action.event.data;
       return newState;
     default:
