@@ -36,12 +36,38 @@ input {
   border: none;
   transition: all 0.5s ease-in;
   font-size: 20px;
+  cursor: pointer;
 }
 .input-buttom:hover {
   background-color: #E86313(70, 70, 73);
   color: rgb(43, 39, 39);
 }
-button {
+.login-button {
+  color: #E86313(70, 70, 73);
+  width: 50%;
+  padding: 10px;
+  border-radius: 25px;
+  font-size: 10px;
+  margin: 10px 0;
+  border: 1px gray;
+  outline: none;
+  cursor: pointer;
+  font-size: 15px;
+}
+.dummy-button {
+  color: lightgray;
+  width: 50%;
+  padding: 10px;
+  border-radius: 25px;
+  font-size: 10px;
+  margin: 10px 0;
+  border: 1px gray;
+  outline: none;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.create-button {
   color: #E86313(70, 70, 73);
   width: 50%;
   padding: 10px;
@@ -64,6 +90,6 @@ button {
   outline: none;
   cursor: pointer;
 }
-button:hover {
+.create-button:hover {
   background-color: lightsalmon;
 }

@@ -10,35 +10,43 @@ const mapStyles = {
 
 export class EventShowMap extends Component {
   constructor(props) {
-    super(props)
+    super(props);
+    this.state = {
+      latitude: this.props.event.latitude,
+      longitude: this.props.event.longitude
+    };
   }
 
-
   render() {
-    const centerLat = this.props.event.latitude;
-    const centerLon = this.props.event.longitude;
-   
-    return (
-      <div className="event-map-container">
-        <Map
-          google={this.props.google}
-          zoom={14}
-          style={mapStyles}
-          disableDefaultUI={true}
+    // const centerLat = this.props.event.latitude;
+    // const centerLon = this.props.event.longitude;
+    if (!this.state.latitude) {
+      return <h1>Loading...</h1>
+    } else {
+      
+      return (
+        <div className="event-map-container">
+          <Map
+            google={this.props.google}
+            zoom={14}
+            style={mapStyles}
+            disableDefaultUI={true}
+            scrollwheel={false}
 
-          initialCenter={
-            {
-              lat: centerLat,
-              lng: centerLon
+            initialCenter={
+              {
+                lat: this.state.latitude,
+                lng: this.state.longitude
+              }
             }
-          }
-        >
-          <Marker
-            position={{ lat: centerLat, lng: centerLon }}
-          />
-        </Map>
-      </div>
-    );
+          >
+            <Marker
+              position={{ lat: this.state.latitude, lng: this.state.longitude }}
+            />
+          </Map>
+        </div>
+      );
+    }
   }
 }
 

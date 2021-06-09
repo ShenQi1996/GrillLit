@@ -27,7 +27,6 @@ class EventCreate extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    // debugger
     this.setState({ newEvent: nextProps.newEvent });
   }
 
@@ -36,7 +35,7 @@ class EventCreate extends React.Component {
     // const res = this.geocode(this.state.location);
     // this.geocode(this.state.location);
     
-    // debugger
+    
     let event = {
       userId: this.props.user.id,
       invites: this.props.user.username,
@@ -49,7 +48,7 @@ class EventCreate extends React.Component {
       items: this.state.items,
     };
 
-    debugger
+    
 
     this.props.createEvent(event).then(({event}) => {
       this.props.history.push(`/events/${event.data._id}`);
@@ -87,12 +86,14 @@ class EventCreate extends React.Component {
   }
 
   update(field) {
-    console.log(this.state);
     return (e) => this.setState({ [field]: e.currentTarget.value });
   }
 
   render() {
-    let submitButton = this.state.confirmed ? <input type="submit" value="submit" /> : '';
+    // let submitButton = this.state.confirmed ? <input type="submit" value="submit" /> : '';
+    let submitButton = this.state.confirmed ? 
+      <button type="submit" className="create-button">Submit</button>: 
+      <button onClick={e => e.preventDefault()} className="dummy-button">Submit</button>;
 
     return (
     <div className="event-detail-img">
@@ -140,7 +141,7 @@ class EventCreate extends React.Component {
               placeholder="items"
           ></textarea>
 
-          <button onClick={this.geocode} >Confirm Location</button>
+          <button onClick={this.geocode} className="create-button">Confirm Location</button>
           {submitButton}
         </form>
       </div>

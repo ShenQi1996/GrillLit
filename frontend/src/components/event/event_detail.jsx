@@ -8,16 +8,16 @@ class EventDetail extends React.Component {
     super(props);
     
     this.state =  {
-      _id: this.props.event._id,
-      userId: this.props.event.userId,
-      invites: this.props.event.invites,
-      title: this.props.event.title,
-      description: this.props.event.description,
-      location: this.props.event.location,
-      longitude: this.props.event.longitude,
-      latitude: this.props.event.latitude,
-      date: this.props.event.date,
-      items: this.props.event.items,
+      _id: null,
+      userId: null,
+      invites: null,
+      title: null,
+      description: null,
+      location: null,
+      longitude: null,
+      latitude: null,
+      date: null,
+      items: null,
     }
     // debugger
     this.handleClick = this.handleClick.bind(this);
@@ -41,6 +41,8 @@ class EventDetail extends React.Component {
     })
   
   }
+
+
 
   handleClick() {
     if (!this.props.signedIn) {
@@ -78,11 +80,12 @@ class EventDetail extends React.Component {
   }
 
   render() {
-    if (!this.props.event || this.props.event === {}) {
+    // if (!this.props.event || this.props.event === {}) {
+    if (!this.state._id) {
       return (
         <h1>Loading...</h1>
         )
-      } else {
+    } else {
         
         const { title, date, location, description } = this.props.event
         const invites = this.state.invites
