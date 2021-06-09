@@ -101,7 +101,7 @@ class LoginForm extends React.Component {
             />
             <br />
             <input className="input-buttom"  type="submit" value="Submit" />
-            <button  onClick={(e) => {this.handleDemoUser()}}>Demo user</button>
+            <button className="login-button" onClick={(e) => {this.handleDemoUser()}}>Demo user</button>
             {this.renderErrors()}
           </div>
           <Link to="/signup">Don't have an account? Sign Up.</Link>
