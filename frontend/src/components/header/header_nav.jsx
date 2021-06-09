@@ -30,7 +30,8 @@ class HeaderNav extends React.Component {
       <nav className="header">
         <div className="nav-left-links">
           <Link className="nav-left-links-events" to="/events" >Events</Link>
-        </div>
+        </div>  
+        
         <Link className="header-nav-logo" to="/" >
           Grill<strong>Lit</strong>
           
