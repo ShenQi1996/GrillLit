@@ -18,7 +18,7 @@
   width: 25%;
 }
 .signup-h1 {
-  color: #e86313;
+  color: #e18045;
   margin-bottom: 30px;
   font-size: 30px;
 }
@@ -39,11 +39,11 @@ input {
   cursor: pointer;
 }
 .input-buttom:hover {
-  background-color: #E86313(70, 70, 73);
+  background-color: #e18045(70, 70, 73);
   color: rgb(43, 39, 39);
 }
 .login-button {
-  color: #E86313(70, 70, 73);
+  color: #e18045(70, 70, 73);
   width: 50%;
   padding: 10px;
   border-radius: 25px;
@@ -68,7 +68,7 @@ input {
 }
 
 .create-button {
-  color: #E86313(70, 70, 73);
+  color: #e18045(70, 70, 73);
   width: 50%;
   padding: 10px;
   border-radius: 25px;
