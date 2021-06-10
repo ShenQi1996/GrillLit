@@ -8,55 +8,127 @@ class EventDetail extends React.Component {
     super(props);
     
     this.state =  {
-      _id: null,
-      userId: null,
-      invites: null,
-      title: null,
-      description: null,
-      location: null,
-      longitude: null,
-      latitude: null,
-      date: null,
-      items: null,
-    }
-    // debugger
+      event: {
+        _id: null,
+        userId: null,
+        invites: null,
+        title: null,
+        description: null,
+        location: null,
+        longitude: null,
+        latitude: null,
+        date: null,
+        items: null,
+        likes: null
+      },
+      liked: false,
+      joined: false
+    };
     this.handleClick = this.handleClick.bind(this);
   }
 
 
   componentDidMount() {
     this.props.fetchEvent(this.props.eventId).then( res => {
+      // this.setState({ 
+        // _id: res.event.data._id,
+        // userId: res.event.data.userId,
+        // title: res.event.data.title,
+        // description: res.event.data.description,
+        // location: res.event.data.location,
+        // longitude: res.event.data.longitude,
+        // latitude: res.event.data.latitude,
+        // date: res.event.data.date,
+        // items: res.event.data.items,
+        // invites: res.event.data.invites 
+      // });
+      const likes = res.event.data.likes.split(" ");
+      let liked = false;
+
+      if (likes.includes(`${res.event.data.userId}`)) {
+        liked = true;
+      }
+
+      const invites = res.event.data.invites.split(" ");
+      let joined = false;
+
+      if (invites.includes(this.props.username)) {
+        joined = true;
+      }
+
       this.setState({ 
-        _id: res.event.data._id,
-        userId: res.event.data.userId,
-        title: res.event.data.title,
-        description: res.event.data.description,
-        location: res.event.data.location,
-        longitude: res.event.data.longitude,
-        latitude: res.event.data.latitude,
-        date: res.event.data.date,
-        items: res.event.data.items,
-        invites: res.event.data.invites 
+        event: {
+          _id: res.event.data._id,
+          userId: res.event.data.userId,
+          title: res.event.data.title,
+          description: res.event.data.description,
+          location: res.event.data.location,
+          longitude: res.event.data.longitude,
+          latitude: res.event.data.latitude,
+          date: res.event.data.date,
+          items: res.event.data.items,
+          invites: res.event.data.invites,
+          likes: res.event.data.likes
+        },
+        liked: liked,
+        joined: joined
       });
-    })
-  
+    });
   }
 
 
 
-  handleClick() {
+  handleClick(e) {
     if (!this.props.signedIn) {
       this.props.history.push('/signin');
     }
- 
-    let users = this.props.event.invites;
-    if (users.length > 0) {
-     
-      users = users.split(" ");
-      users.push(this.props.username);
-      users = users.join(" ");
+
+    const target = e.currentTarget.id;
+    let users = this.state.event.invites;
+    let likers = this.state.event.likes;
+    let liked = this.state.liked;
+    let joined = this.state.joined;
+
+    if ( target === "join-button" ) {
+      if (users.length > 0) {
+        users = users.split(" ");
+
+        if (users.includes(this.props.username)) {
+          users = users.filter(name => name !== this.props.username);
+        } else {
+          users.push(this.props.username);
+        }
+
+        users = users.join(" ");
+      } else {
+        users = this.props.username;
+      }
+
+      if (this.state.joined) {
+        joined = false;
+      } else {
+        joined = true;
+      }
     } else {
-      users = this.props.username;
+      if (likers.length > 0) {
+        likers = likers.split(" ");
+
+        if (likers.includes(this.props.userId)) {
+          likers = likers.filter(id => id !== `${this.props.userId}`);
+        } else {
+          likers.push(`${this.props.userId}`);
+        }
+
+        likers = likers.join(" ");
+      } else {
+        likers = `${this.props.userId}`;
+      }
+
+      if (this.state.liked) {
+        liked = false;
+      } else {
+        liked = true;
+      }
     }
     
 
@@ -71,30 +143,41 @@ class EventDetail extends React.Component {
       latitude: this.props.event.latitude,
       date: this.props.event.date,
       items: this.props.event.items,
+      likes: likers
     };
 
    
 
     this.props.editEvent(editEvent);
-    this.setState({ invites: users });
+    this.setState({ 
+      event: editEvent,
+      liked: liked,
+      joined: joined 
+    });
   }
 
   render() {
     // if (!this.props.event || this.props.event === {}) {
-    if (!this.state._id) {
+    if (!this.state.event._id) {
       return (
         <h1>Loading...</h1>
         )
     } else {
         
         const { title, date, location, description } = this.props.event
-        const invites = this.state.invites
+        const invites = this.state.event.invites
         let inviteList
         if (invites && invites.length > 0) {
           // invites = invites.split(' ')
           inviteList = invites.split(" ").map((invite, i) => <li key={`invite-${i}`}>{invite}</li> )
         }
-      
+        // const likes = this.state.event.likes.split(" ");
+        const heart = this.state.liked ?
+          <div id="liked-button" onClick={this.handleClick} ></div> :
+          <div id="like-button" onClick={this.handleClick} ></div>;
+
+        const joinText = this.state.joined ? "Leave Event" : "Join Event"
+
         
       return (
         <div className="event-detail-img">
@@ -104,8 +187,9 @@ class EventDetail extends React.Component {
               <div className="event-l-a">
                 <div className="event-l-a-1">{title}</div>
                 <div className="event-l-a-2">
-                  <button onClick={this.handleClick} id="join-button" >Join Event</button>
+                  <button onClick={this.handleClick} id="join-button" >{joinText}</button>
                 </div>
+                <div className="event-l-a-3" >{heart}</div>
               </div>
               <div className="event-l-b">
                 <div className="b-1">
@@ -132,7 +216,7 @@ class EventDetail extends React.Component {
 
             <div className="event-right">
               <div className="event-r-b">
-                <EventShowMap event={this.state} />
+                <EventShowMap event={this.state.event} />
               </div>
             </div>
           </div>

@@ -41,7 +41,7 @@ class UserProfile extends React.Component {
           <div className="profile-wrapper">
             <div className="user-info">
               <div className="user-info-left">
-                {this.props.user.email}
+                {this.props.user.username}
               </div>
               </div>
             <div className="event-list">

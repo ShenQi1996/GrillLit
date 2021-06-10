@@ -28,7 +28,6 @@ const receiveNewEvent = event => ({
 });
 
 const removeEvent = eventId => {
-  // debugger
   return { type: DELETE_EVENT, eventId };
 };
 
@@ -58,14 +57,12 @@ export const fetchEvent = eventId => dispatch =>
     .catch(err => console.log(err));
 
 export const createEvent = data => dispatch => {
-  debugger
   return EventAPIUtil.createEvent(data)
     .then(event => dispatch(receiveNewEvent(event)))
     .catch(err => console.log(err.response));
 };
 
 export const deleteEvent = eventId => dispatch => {
-  // debugger
   return EventAPIUtil.deleteEvent(eventId)
     .then(eventId => dispatch(removeEvent(eventId)))
     .catch(err => console.log(err.response));

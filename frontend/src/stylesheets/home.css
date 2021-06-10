@@ -296,6 +296,7 @@ footer {
   justify-content: flex-start;
   align-items: center;
   border: 4px solid white;
+  overflow: scroll;
 }
 
 .event-map-container {

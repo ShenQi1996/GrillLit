@@ -67,3 +67,19 @@
   display: flex;
   justify-content: center;
 }
+
+#like-button {
+  background-image: url("./save.png");
+  width: 40px;
+  height: 40px;
+  background-size: contain;
+  cursor: pointer;
+}
+
+#liked-button {
+  background-image: url("./saved.png");
+  width: 40px;
+  height: 40px;
+  background-size: contain;
+  cursor: pointer;
+}
