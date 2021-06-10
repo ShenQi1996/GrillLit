@@ -70,10 +70,12 @@
 
 #like-button {
   background-image: url("./save.png");
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   background-size: contain;
   cursor: pointer;
+  margin: 20px 25px 20px 20px;
+  opacity: 50%;
 }
 
 #liked-button {
@@ -82,4 +84,5 @@
   height: 40px;
   background-size: contain;
   cursor: pointer;
+  margin: 20px;
 }
