@@ -13,7 +13,6 @@ export const fetchUserEvents = id => {
 };
 
 export const createEvent = data => {
-  debugger
   return axios.post("/api/events/event", data);
 };
 
