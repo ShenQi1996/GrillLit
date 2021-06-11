@@ -11,7 +11,10 @@ class Home extends React.Component {
         <footer>
           
         </footer> */}
-        <div className="home_wrapper">
+        {/* <div className="home_wrapper"> */}
+          
+          
+{/*           
           <div className="home_wrapper_detail">
             <div className="main-splash-home-box1">
             <h1 className="main-splash-home-txt">
@@ -37,8 +40,16 @@ class Home extends React.Component {
             <div className="main-splash-home-box2">
            
             </div>
-          </div>
-        </div>
+          </div> */}
+
+
+
+        {/* </div> */}
+
+
+
+
+
       </div>
     );
   }
