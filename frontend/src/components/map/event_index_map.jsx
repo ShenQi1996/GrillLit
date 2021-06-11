@@ -86,7 +86,7 @@ export class MapContainer extends Component {
   }
 
   componentDidMount() {
-    this.grillListeners();
+    // this.grillListeners();
     this.setState({ markers: this.setMarkers() });
   }
 

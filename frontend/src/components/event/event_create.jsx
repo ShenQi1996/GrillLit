@@ -72,7 +72,7 @@ class EventCreate extends React.Component {
     googleMapsClient.geocode({ address: this.state.location })
       .asPromise()
       .then((response) => {
-        console.log(response.json.results);
+        // console.log(response.json.results);
         this.setState({
           latitude: response.json.results[0].geometry.location.lat,
           longitude: response.json.results[0].geometry.location.lng,

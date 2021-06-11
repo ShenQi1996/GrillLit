@@ -35,7 +35,7 @@ class EventIndex extends React.Component {
 
   matches() {
     // debugger
-    const matches = [];
+    let matches = [];
     if (this.state.inputVal.length === 0) {
       return this.props.events;
     }
@@ -49,7 +49,7 @@ class EventIndex extends React.Component {
     });
 
     if (matches.length === 0) {
-      matches.push('No matches');
+      matches = this.props.events;
     }
 
     return matches;
@@ -64,6 +64,7 @@ class EventIndex extends React.Component {
         // debugger
     const results = this.matches().map(event => {
       // debugger
+      
         return (
             <Link className="event-index-card-index" key={event._id} to={`/events/${event._id}`} >
               <EventIndexCard event={event} />
