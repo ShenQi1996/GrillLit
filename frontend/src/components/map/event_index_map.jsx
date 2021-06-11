@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 
 const mapStyles = {
@@ -12,9 +12,14 @@ export class MapContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showingInfoWindow: false,  // Hides or shows the InfoWindow
-      activeMarker: {},          // Shows the active marker upon click
-      selectedPlace: {}          // Shows the InfoWindow to the selected place upon a marker
+      showingInfoWindow: false, 
+      activeMarker: {},       
+      selectedPlace: {},          
+      center: {
+        lat: 40.72289645557674,
+        lng: - 73.96002115930136
+      },
+      markers: []
     };
 
     this.setMarkers = this.setMarkers.bind(this);
@@ -22,6 +27,7 @@ export class MapContainer extends Component {
     this.onMarkerClick = this.onMarkerClick.bind(this);
     this.onClose = this.onClose.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.handleHover = this.handleHover.bind(this);
   }
 
   handleClick() {
@@ -48,7 +54,6 @@ export class MapContainer extends Component {
   };
 
   setMarkers() {
-    // debugger
     return (
       this.props.events.map(event => {
         return (
@@ -65,18 +70,31 @@ export class MapContainer extends Component {
     )
   }
 
+  grillListeners() {
+    const events = document.querySelectorAll(".event-index-card-index");
+    events.forEach((event) => event.addEventListener("mouseover", () => this.handleHover(event.id)));
+  }
+
+  handleHover(e) {
+    let marker = this.state.markers.filter(marker => marker.props.id == e);
+    var latLng = marker[0].props.position;
+
+    setTimeout(
+      () => this.setState({ center: latLng }),
+      200
+    );
+  }
 
   componentDidMount() {
-    
+    this.grillListeners();
+    this.setState({ markers: this.setMarkers() });
   }
 
 
 
   render() {
-    // const centerLat = this.props.events[3].latitude;
-    // const centerLon = this.props.events[3].longitude;
     const markers = this.setMarkers();
-    // debugger
+    
     return (
       <div className="events-map-container">
         <Map
@@ -86,10 +104,10 @@ export class MapContainer extends Component {
           disableDefaultUI={true}
 
           initialCenter={
-            {
-              lat: 40.72289645557674, 
-              lng: - 73.96002115930136
-            }
+            this.state.center
+          }
+          center={
+            this.state.center
           }
         >
           {markers}
@@ -112,8 +130,13 @@ export class MapContainer extends Component {
   }
 }
 
-export default GoogleApiWrapper({
+// export default GoogleApiWrapper({
+//   apiKey: 'AIzaSyCxTWMHUwu0pODv9S2DiafnoridPYTHP00'
+// })(MapContainer);
+const EventIndexMap = GoogleApiWrapper({
   apiKey: 'AIzaSyCxTWMHUwu0pODv9S2DiafnoridPYTHP00'
 })(MapContainer);
+
+export default withRouter(EventIndexMap);
 
 

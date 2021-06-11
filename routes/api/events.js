@@ -6,6 +6,7 @@ const passport = require("passport");
 const Event = require("../../models/Event");
 const validateEventInput = require("../../validations/events");
 
+
 router.get("/index", (req, res) => {
   Event.find()
     .sort({ date: -1 })
@@ -34,6 +35,14 @@ router.get("/:id", (req, res) => {
 
 //Make sure event route is correct
 
+router.put('/like:eventId', async (req, res )=> {
+const resp = await Event.update(
+  { }
+)
+})
+
+
+
 router.patch("/event/:eventId", async (req, res) => {
   const invitesEdit = req.body.invites.split(" ");
 
@@ -45,6 +54,8 @@ router.patch("/event/:eventId", async (req, res) => {
     }
   });
   let finalArr = newArr.join(" ");
+
+
 
   const resp = await Event.updateOne(
     { _id: req.params.eventId },
@@ -60,6 +71,8 @@ router.patch("/event/:eventId", async (req, res) => {
       latitude: req.body.latitude,
       date: req.body.date,
       items: req.body.items,
+      
+      likes: req.body.likes
     }
   );
   res.json({ success: "updated event" });
@@ -79,14 +92,12 @@ router.patch("/event/:eventId", async (req, res) => {
 //Make sure event route is correct
 router.post("/event", (req, res) => {
   const { errors, isValid } = validateEventInput(req.body);
-
   if (!isValid) {
     return res.status(400).json(errors);
   }
-
   const newEvent = new Event({
     userId: req.body.userId,
-    invites: "",
+    invites: req.body.invites,
     title: req.body.title,
     description: req.body.description,
     location: req.body.location,
@@ -94,6 +105,7 @@ router.post("/event", (req, res) => {
     latitude: req.body.latitude,
     date: req.body.date,
     items: req.body.items,
+    likes: req.body.likes,
   });
   // const userIds = req.body.invites.split(" ");
 
@@ -127,5 +139,7 @@ router.delete("/event/:eventId", (req, res) => {
     });
   }
 });
+
+
 
 module.exports = router;

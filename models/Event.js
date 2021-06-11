@@ -9,7 +9,6 @@ const EventSchema = new Schema({
         ref: 'users'
     },
     invites: {
-
         type: String,
         // of: String
     },
@@ -41,7 +40,11 @@ const EventSchema = new Schema({
     },
     items: {
         type: String
+    },
+    likes: {
+        type: String
     }
+    // likes: [ { type: Schema.Types.ObjectId, ref: 'users'} ]
     
 });
 

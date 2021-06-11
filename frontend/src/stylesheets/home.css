@@ -32,21 +32,103 @@
 }
 
 .hero-section {
-  width: 35vw;
-  height: 60vh;
-  right: 60px;
+  width: 100vw;
+  height: 100%;
+  /* margin-top: 15%; */
+  /* right: 60px; */
   /* background-color: rgb(4 100 156 / .42); */
   /* background-color: white; */
   position: absolute;
-  top: 15vh;
-  display: none;
+
+  text-align: center;
+
+  display: block;
 }
 
 .hero-section h1 {
+margin-top: 15%;
   text-align: center;
-  font-size: 30px;
-  margin-top: 40%;
+  font-weight: 500;
+  font-size: 45px;
+  font-family: 'Ubuntu', sans-serif;
+  margin-bottom: 50px;
 }
+
+.hero-section .link-new-a {
+  margin-top: 15%;
+  color: black;
+  text-decoration: none;
+  margin-top: 20%;
+  font-size: 30px;
+  border-radius: 25px;
+  /* background-color: #e86313; */
+  background-color: #e18045;
+  padding: 10px 30px;
+  font-family: 'Ubuntu', sans-serif;
+
+}
+
+.link-new-b {
+  all: unset;
+  margin-top: 5%;
+  margin-bottom: 2%;
+  color: black;
+  text-decoration: none;
+  font-size: 30px;
+  border-radius: 25px;
+  /* background-color: #e86313; */
+  background-color: #e18045;
+  padding: 10px 30px;
+  font-family: 'Ubuntu', sans-serif;
+  cursor: pointer;
+}
+
+.list-home{
+  margin-top: 2%;
+  /* padding-left: 6%; */
+  display: flex;
+  align-items: flex-start;
+  align-self: center;
+  flex-direction: column;
+  padding-bottom: 20%;
+  text-align: left;
+  font-size: 20px;
+  width: 90%;
+
+}
+
+line{
+  align-self: center;
+  margin-top: 4%;
+  height: 1px;
+  width: 85%;
+  color: black;
+  border: solid;
+  border-color: black;
+  border-width: 1px;
+ 
+}
+
+.list-home div {
+  padding-inline-start: 10%;
+}
+
+.list-home p {
+  padding-block: 2%;
+  font-weight: 600;
+  padding-inline-start: 5%;
+}
+
+
+
+.title-about {
+  padding-top: 6%;
+  justify-self: flex-start;
+  font-weight: 600;
+  font-size: 40px;
+
+}
+
 
 /* .content2 {
   background-image: url("./kabab.jpg");
@@ -233,21 +315,37 @@ footer {
   justify-content: center;
 }
 
+
+
 .home_wrapper {
-  height: 80vh;
-  width: 90vw;
+  display: none;
+  height: 40vh;
+  font-family: 'Ubuntu', sans-serif;
+  width: 50vw;
   background-color: rgba(255, 255, 255, 0.316);
   backdrop-filter: blur(8px);
   box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 0.19);
   z-index: 2;
-  position: fixed;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin-top: 7%;
+  /* position: fixed; */
+  /* display: flex; */
+  flex-direction: column;
+  justify-content: space-between;
+  /* margin-top: 7%; */
   border-radius: 10px;
   overflow: hidden;
+  align-self: center;
+  margin: 0 auto;
 }
+
+button{
+  cursor: pointer;
+}
+
+.open{
+  display: flex;
+}
+
+
 
 .event-left,
 .event-right {
@@ -256,7 +354,9 @@ footer {
   background-color: rgba(255, 255, 255, 0.296);
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
+  margin-right: 10px;
+  font-size: 25px;
 }
 
 .event-l-a {
@@ -268,29 +368,49 @@ footer {
   align-items: center;
   /* background-color: grey; */
 }
+.event-l-a-1 {
+  font-size: 30px;
+  font-weight: bolder;
+  padding: 10px;
+}
 
 .event-l-b {
   list-style: none;
-  height: 10%;
+  height: 15%;
   /* background: bisque; */
-  padding: 10px 20px;
+  padding: 0px 20px;
+  border-bottom: 1px solid black;
+  position: relative;
+  bottom: 5%;
+  text-align: center;
 }
 
 .event-l-c {
-  height: 50%;
+  /* height: 50%; */
   /* background-color: green; */
   padding: 20px;
+  border-bottom: 1px solid black;
+  position: relative;
+  bottom: 15%;
 }
-
+.event-l-c > h2 {
+  font-weight: bolder;
+}
 .event-r-a {
-  height: 30%;
+  /* height: 30%; */
   padding: 20px;
   /* background-color: cadetblue; */
+  position: relative;
+  bottom: 20%;
+}
+.event-r-a-2 > h2 {
+  font-weight: bolder;
 }
 
 .event-r-b {
-  height: 60%;
+  height: 100%;
   width: 100%;
+  padding: 10px;
   /* background-color: brown; */
 }
 
@@ -316,11 +436,12 @@ footer {
   justify-content: flex-start;
   align-items: center;
   border: 4px solid white;
+  overflow: scroll;
 }
 
 .event-map-container {
   width: 44vw;
-  height: 47vh;
+  height: 78vh;
   position: fixed;
 }
 
@@ -402,4 +523,8 @@ footer {
   padding: 10px;
   margin-bottom: 10px;
   border-radius: 5px;
+}
+
+#like-button:hover {
+  opacity: 100%;
 }

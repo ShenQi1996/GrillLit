@@ -3,6 +3,7 @@ import EventIndexCard from './event_index_card';
 import { Link } from 'react-router-dom';
 import MapContainer from '../map/event_index_map';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import EventIndexMap from '../map/event_index_map';
 
 
 class EventIndex extends React.Component {

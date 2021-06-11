@@ -4,22 +4,19 @@ const EventsReducer = (state = { all: {}, selected: {} , new: undefined }, actio
   Object.freeze(state);
   let newState = Object.assign({}, state);
   switch (action.type) {
-    // case EDIT_EVENT:
-    //   debugger
-    //   return newState;
-    case RECEIVE_EVENT:
+    case EDIT_EVENT:
       // debugger
+      return newState;
+    case RECEIVE_EVENT:
       newState.selected = action.event.data;
       return newState
     case RECEIVE_EVENTS:
-      // debugger
       newState.all = action.events.data;
       return newState;
     // case RECEIVE_USER_EVENTS:
     //   newState.user = action.events.data;
     //   return newState;
     case RECEIVE_NEW_EVENT:
-      // debugger
       newState.new = action.event.data;
       return newState;
     default:

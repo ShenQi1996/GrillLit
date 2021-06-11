@@ -9,16 +9,17 @@ class EventCreate extends React.Component {
     super(props);
 
     this.state = {
-      userId: this.props.userId,
-      // invites: {},
+      userId: this.props.user.id,
+      // invites: `${this.props.user.username}`,
       title: '',
       description: '',
       location: '' ,
       longitude: '',
       latitude: '',
       date: '',
-      items: ''
-    }
+      items: '',
+      confirmed: false
+    };
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.update = this.update.bind(this);
@@ -26,7 +27,6 @@ class EventCreate extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    // debugger
     this.setState({ newEvent: nextProps.newEvent });
   }
 
@@ -35,10 +35,10 @@ class EventCreate extends React.Component {
     // const res = this.geocode(this.state.location);
     // this.geocode(this.state.location);
     
-    // debugger
+    
     let event = {
-      userId: this.props.userId,
-      // invites: this.state.invites,
+      userId: this.props.user.id,
+      invites: this.props.user.username,
       title: this.state.title,
       description: this.state.description,
       location: this.state.location,
@@ -48,9 +48,13 @@ class EventCreate extends React.Component {
       items: this.state.items,
     };
 
-    this.props.createEvent(event);
+    
+
+    this.props.createEvent(event).then(({event}) => {
+      this.props.history.push(`/events/${event.data._id}`);
+    });
     this.setState({ 
-      userId: this.props.userId,
+      userId: this.props.user.id,
       // invites: {},
       title: '',
       description: '',
@@ -59,7 +63,8 @@ class EventCreate extends React.Component {
       latitude: '',
       date: '',
       items: '',
-     })
+     });
+
   }
 
   geocode(e) {
@@ -71,7 +76,8 @@ class EventCreate extends React.Component {
         this.setState({
           latitude: response.json.results[0].geometry.location.lat,
           longitude: response.json.results[0].geometry.location.lng,
-          location: response.json.results[0].formatted_address
+          location: response.json.results[0].formatted_address,
+          confirmed: true
         });
       })
       .catch((err) => {
@@ -80,29 +86,15 @@ class EventCreate extends React.Component {
   }
 
   update(field) {
-    console.log(this.state);
     return (e) => this.setState({ [field]: e.currentTarget.value });
   }
 
-  // render() {
-  //   return (
-  //     <div>
-  //       <form onSubmit={this.handleSubmit}>
-  //         <div>
-  //           <input type="textarea"
-  //             value={this.state.text}
-  //             onChange={this.update()}
-  //             placeholder="Write your tweet..."
-  //           />
-  //           <input type="submit" value="Submit" />
-  //         </div>
-  //       </form>
-        
-        
-  //     </div>
-  //   )
-  // }
   render() {
+    // let submitButton = this.state.confirmed ? <input type="submit" value="submit" /> : '';
+    let submitButton = this.state.confirmed ? 
+      <button type="submit" className="create-button">Submit</button>: 
+      <button onClick={e => e.preventDefault()} className="dummy-button">Submit</button>;
+
     return (
     <div className="event-detail-img">
       <div className="new-event-wrapper">
@@ -120,7 +112,7 @@ class EventCreate extends React.Component {
             onChange={this.update('location')}
             placeholder="Location"
           />
-          <input 
+          {/* <input 
             type="text" 
             value={this.state.latitude}
             onChange={this.update('latitude')}
@@ -131,7 +123,7 @@ class EventCreate extends React.Component {
             value={this.state.longitude}
             onChange={this.update('longitude')}
             placeholder="Longitude"
-          />
+          /> */}
           <input 
             type="text" 
             value={this.state.date}
@@ -149,8 +141,8 @@ class EventCreate extends React.Component {
               placeholder="items"
           ></textarea>
 
-          <button onClick={this.geocode} >Confirm Location</button>
-          <input type="submit" value="submit" />
+          <button onClick={this.geocode} className="create-button">Confirm Location</button>
+          {submitButton}
         </form>
       </div>
     </div>
