@@ -46,6 +46,7 @@ class EventCreate extends React.Component {
       latitude: this.state.latitude.toString(),
       date: this.state.date,
       items: this.state.items,
+      likes: ''
     };
 
     
@@ -125,7 +126,7 @@ class EventCreate extends React.Component {
             placeholder="Longitude"
           /> */}
           <input 
-            type="text" 
+            type="date" 
             value={this.state.date}
             onChange={this.update('date')}
             placeholder="Date"
