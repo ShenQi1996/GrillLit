@@ -43,7 +43,6 @@
   text-align: center;
 
   display: block;
-
 }
 
 .hero-section h1 {
@@ -344,7 +343,7 @@ button {
   background-color: rgba(255, 255, 255, 0.296);
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
+  justify-content: space-around;
   margin-right: 10px;
   font-size: 25px;
 }
@@ -373,6 +372,7 @@ button {
   /* position: relative; */
   /* bottom: 5%; */
   text-align: center;
+  align-items: center;
 }
 
 .event-l-c {
@@ -518,3 +518,78 @@ button {
 /* #like-button:hover {
   opacity: 100%;
 } */
+
+.edit-form-btns {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.Edit-btn,
+.edit-confim-btn,
+.edit-submit-btn {
+  width: 30%;
+  height: 40px;
+  margin: 20px;
+  padding: 7px 20px;
+  border: none;
+  border-radius: 5px;
+  font-weight: bolder;
+  font-size: 15px;
+  background-color: rgb(129, 124, 124);
+  color: white;
+  transition: all 0.5s ease-in;
+}
+.edit-dummy-button {
+  width: 30%;
+  height: 40px;
+  margin: 20px;
+  padding: 7px 20px;
+  font-size: 15px;
+  background-color: rgb(129, 124, 124);
+  color: rgb(196, 189, 189);
+  border: none;
+  border-radius: 5px;
+  font-weight: bolder;
+}
+.edit-cancel-btn {
+  width: 25%;
+  background-color: rgb(129, 124, 124);
+  color: white;
+  transition: all 0.5s ease-in;
+  padding: 10px 20px;
+  font-size: 15px;
+  border: none;
+  border-radius: 5px;
+  margin: 10px;
+}
+
+.Edit-btn:hover,
+.edit-confim-btn:hover,
+.edit-cancel-btn:hover,
+.edit-submit-btn:hover {
+  background-color: rgb(240, 124, 78);
+  color: rgb(43, 39, 39);
+}
+
+.edit-container {
+  width: 100%;
+  height: 100%;
+}
+.edit-form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.edit-form input {
+  width: 70%;
+  height: 10px;
+  font-size: 15px;
+}
+
+.edit-form textarea {
+  width: 70%;
+  height: 100px;
+  margin: 10px;
+}

@@ -206,7 +206,7 @@ class EventDetail extends React.Component {
         const joinText = this.state.joined ? "Leave Event" : "Join Event"
         
         const organizer = this.state.organizer ? 
-          <button onClick={() => this.openUpdate()} >Edit</button> :
+          <button className="Edit-btn" onClick={() => this.openUpdate()} >Edit</button> :
           <div></div>
       if (this.state.updating) {
         
@@ -223,6 +223,7 @@ class EventDetail extends React.Component {
                   <div className="event-l-a-3" >{heart}</div>
                 </div>
                 <div className="event-l-b">
+                <h1>Edit Event</h1>
                   <EventUpdate 
                     event={this.state.event} 
                     userId={this.state.event.userId}
@@ -231,10 +232,10 @@ class EventDetail extends React.Component {
                   />
                   <div className="event-r-a">
                     {/* <div className="event-r-a-1"></div> */}
-                    <div className="event-r-a-2">
+                    {/* <div className="event-r-a-2">
                       <h2>People attending the event:</h2>
                       {inviteList}
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>
@@ -276,7 +277,6 @@ class EventDetail extends React.Component {
                     <h2>Description:</h2>
                     {description}
                   </div>
-                  {organizer}
                 <div className="event-r-a">
                   {/* <div className="event-r-a-1"></div> */}
                   <div className="event-r-a-2">
@@ -284,6 +284,7 @@ class EventDetail extends React.Component {
                     {inviteList}
                     </div>
                 </div>
+                {organizer}
                 </div>
               </div>
   

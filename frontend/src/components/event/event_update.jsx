@@ -130,15 +130,14 @@ class EventUpdate extends React.Component {
   render() {
     // let submitButton = this.state.confirmed ? <input type="submit" value="submit" /> : '';
     let submitButton = this.state.confirmed ?
-      <button type="submit" className="create-button">Submit</button> :
-      <button onClick={e => e.preventDefault()} className="dummy-button">Submit</button>;
+      <button type="submit" className="edit-submit-btn">Submit</button> :
+      <button onClick={e => e.preventDefault()} className="edit-dummy-button">Submit</button>;
 
     let errorMsg = this.state.error ? 'Invalid Date' : ''
 
     return (
-      <div className="event-edit-section">
-        <div className="event-edit-wrapper">
-          <form className="edit-event-form" onSubmit={this.handleSubmit} >
+        <div className="edit-container">
+          <form className="edit-form" onSubmit={this.handleSubmit} >
             
             <input
               type="text"
@@ -176,13 +175,13 @@ class EventUpdate extends React.Component {
               onChange={this.update('description')}
               placeholder={this.props.description}
             ></textarea>
-
-            <button onClick={this.geocode} className="create-button">Confirm Location</button>
+            <div className="edit-form-btns">
+            <button onClick={this.geocode} className="edit-confim-btn">Confirm Location</button>
             {submitButton}
-            <div onClick={() => this.props.closeUpdate()}>Cancel</div>
+            </div>
+            <div className="edit-cancel-btn" onClick={() => this.props.closeUpdate()}>Cancel</div>
           </form>
         </div>
-      </div>
     )
   }
 }
