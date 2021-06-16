@@ -36,7 +36,7 @@ class Hero extends React.Component {
           <div className="title-about">You’re just steps away 
           <br/> from your next barbecue</div> 
 
-          <line/>
+          {/* <line/> */}
 
           <ol className="list-home">
             <p> 1. Browse</p>

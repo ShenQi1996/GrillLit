@@ -1,6 +1,6 @@
-* {
+/* * {
   font-family: "Anton", sans-serif;
-}
+} */
 .home-container {
   display: flex;
   flex-direction: column;
@@ -344,7 +344,7 @@ button {
   background-color: rgba(255, 255, 255, 0.296);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   margin-right: 10px;
   font-size: 25px;
 }
@@ -366,12 +366,12 @@ button {
 
 .event-l-b {
   list-style: none;
-  height: 15%;
+  /* height: 15%; */
   /* background: bisque; */
-  padding: 0px 20px;
+  padding: 10px 20px;
   border-bottom: 1px solid black;
-  position: relative;
-  bottom: 5%;
+  /* position: relative; */
+  /* bottom: 5%; */
   text-align: center;
 }
 
@@ -380,8 +380,8 @@ button {
   /* background-color: green; */
   padding: 20px;
   border-bottom: 1px solid black;
-  position: relative;
-  bottom: 15%;
+  /* position: relative;
+  bottom: 15%; */
 }
 .event-l-c > h2 {
   font-weight: bolder;
@@ -390,8 +390,8 @@ button {
   /* height: 30%; */
   padding: 20px;
   /* background-color: cadetblue; */
-  position: relative;
-  bottom: 20%;
+  /* position: relative;
+  bottom: 20%; */
 }
 .event-r-a-2 > h2 {
   font-weight: bolder;
@@ -430,7 +430,7 @@ button {
 }
 
 .event-map-container {
-  width: 44vw;
+  width: 43vw;
   height: 78vh;
   position: fixed;
 }
