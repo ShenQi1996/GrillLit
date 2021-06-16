@@ -35,6 +35,20 @@ router.get("/allusers", (req, res) => {
     .catch(err => res.status(404).json({ nousersfound: "No users found" }));
 });
 
+// ------
+router.patch('/likeadd/:userId', (req, res) => {
+
+User.updateOne(
+  {_id: req.params.userId},
+    {
+      likes: req.body.likes
+    }
+).then( () => res.json( req.body.likes ) ).catch( res.json({ err: "did not save" }))
+
+})
+// -----
+
+
 router.post("/register", (req, res) => {
   const { errors, isValid } = validateRegisterInput(req.body);
 
