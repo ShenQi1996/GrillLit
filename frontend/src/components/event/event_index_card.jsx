@@ -7,7 +7,7 @@ class EventIndexCard extends React.Component {
 
 
   render() {
-    const { title, location, description } = this.props.event;
+    const { title, location, description, _id } = this.props.event;
     let desc = this.props.event.description;
 
     if (description.length > 40) {
@@ -15,7 +15,7 @@ class EventIndexCard extends React.Component {
     }
     // debugger
     return (
-      <div className="event-index-small" >
+      <div className="event-index-small" id={_id}>
         <li className="event-index-small-title">{title}</li>
         <li>{location}</li>
         <li>{desc}</li>
