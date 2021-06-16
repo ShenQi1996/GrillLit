@@ -1,6 +1,7 @@
 import React from 'react';
 import EventShowMap from '../map/event_show_map'
 // import EventIndexCard from './event_index_card'
+import EventUpdate from './event_update';
 
 
 class EventDetail extends React.Component {
@@ -22,9 +23,13 @@ class EventDetail extends React.Component {
         likes: null
       },
       liked: false,
-      joined: false
+      joined: false,
+      organizer: false,
+      updating: false
     };
     this.handleClick = this.handleClick.bind(this);
+    this.openUpdate = this.openUpdate.bind(this);
+    this.closeUpdate = this.closeUpdate.bind(this);
   }
 
 
@@ -56,6 +61,12 @@ class EventDetail extends React.Component {
         joined = true;
       }
 
+      let organizer = false;
+
+      if (res.event.data.userId === this.props.userId ) {
+        organizer = true;
+      }
+
       this.setState({ 
         event: {
           _id: res.event.data._id,
@@ -71,7 +82,8 @@ class EventDetail extends React.Component {
           likes: res.event.data.likes
         },
         liked: liked,
-        joined: joined
+        joined: joined,
+        organizer: organizer
       });
     });
   }
@@ -156,6 +168,21 @@ class EventDetail extends React.Component {
     });
   }
 
+  closeUpdate(event) {
+    if (event) {
+      this.setState({ 
+        updating: false,
+        event: event 
+      });
+    } else {
+      this.setState({ updating: false });
+    }
+  }
+
+  openUpdate() {
+    this.setState({ updating: true });
+  }
+
   render() {
     // if (!this.props.event || this.props.event === {}) {
     if (!this.state.event._id) {
@@ -164,7 +191,7 @@ class EventDetail extends React.Component {
         )
     } else {
         
-        const { title, date, location, description } = this.props.event
+        const { title, date, location, description } = this.state.event
         const invites = this.state.event.invites
         let inviteList
         if (invites && invites.length > 0) {
@@ -177,51 +204,99 @@ class EventDetail extends React.Component {
           <div id="like-button" onClick={this.handleClick} ></div>;
 
         const joinText = this.state.joined ? "Leave Event" : "Join Event"
-
         
-      return (
-        <div className="event-detail-img">
-          <div id="back-button" onClick={() => this.props.history.goBack()} ></div>
-          <div className="event-detail-wrapper">
-            <div className="event-left">
-              <div className="event-l-a">
-                <div className="event-l-a-1">{title}</div>
-                <div className="event-l-a-2">
-                  <button onClick={this.handleClick} id="join-button" >{joinText}</button>
-                </div>
-                <div className="event-l-a-3" >{heart}</div>
-              </div>
-              <div className="event-l-b">
-                <div className="b-1">
-                  <h2>Date</h2>
-                  <li>{date}</li>
-                </div>
-                <div className="b-2">
-                  <h2>Location</h2>
-                  <li>{location}</li>
-                </div>
-                <div className="event-l-c">
-                  <h2>Description:</h2>
-                  {description}
-                </div>
-              <div className="event-r-a">
-                {/* <div className="event-r-a-1"></div> */}
-                <div className="event-r-a-2">
-                  <h2>People attending the event:</h2>
-                  {inviteList}
+        const organizer = this.state.organizer ? 
+          <button onClick={() => this.openUpdate()} >Edit</button> :
+          <div></div>
+      if (this.state.updating) {
+        
+        return (
+          <div className="event-detail-img">
+            <div id="back-button" onClick={() => this.props.history.goBack()} ></div>
+            <div className="event-detail-wrapper">
+              <div className="event-left">
+                <div className="event-l-a">
+                  <div className="event-l-a-1">{title}</div>
+                  <div className="event-l-a-2">
+                    <button onClick={this.handleClick} id="join-button" >{joinText}</button>
                   </div>
+                  <div className="event-l-a-3" >{heart}</div>
+                </div>
+                <div className="event-l-b">
+                  <EventUpdate 
+                    event={this.state.event} 
+                    userId={this.state.event.userId}
+                    editEvent={this.props.editEvent}
+                    closeUpdate={this.closeUpdate}
+                  />
+                  <div className="event-r-a">
+                    {/* <div className="event-r-a-1"></div> */}
+                    <div className="event-r-a-2">
+                      <h2>People attending the event:</h2>
+                      {inviteList}
+                    </div>
+                  </div>
+                </div>
               </div>
-              </div>
-            </div>
 
-            <div className="event-right">
-              <div className="event-r-b">
-                <EventShowMap event={this.state.event} />
+              <div className="event-right">
+                <div className="event-r-b">
+                  <EventShowMap event={this.state.event} />
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      )
+        )
+
+
+      } else {
+
+        return (
+          <div className="event-detail-img">
+            <div id="back-button" onClick={() => this.props.history.goBack()} ></div>
+            <div className="event-detail-wrapper">
+              <div className="event-left">
+                <div className="event-l-a">
+                  <div className="event-l-a-1">{title}</div>
+                  <div className="event-l-a-2">
+                    <button onClick={this.handleClick} id="join-button" >{joinText}</button>
+                  </div>
+                  <div className="event-l-a-3" >{heart}</div>
+                </div>
+                <div className="event-l-b">
+                  <div className="b-1">
+                    <h2>Date</h2>
+                    <li>{date}</li>
+                  </div>
+                  <div className="b-2">
+                    <h2>Location</h2>
+                    <li>{location}</li>
+                  </div>
+                  <div className="event-l-c">
+                    <h2>Description:</h2>
+                    {description}
+                  </div>
+                  {organizer}
+                <div className="event-r-a">
+                  {/* <div className="event-r-a-1"></div> */}
+                  <div className="event-r-a-2">
+                    <h2>People attending the event:</h2>
+                    {inviteList}
+                    </div>
+                </div>
+                </div>
+              </div>
+  
+              <div className="event-right">
+                <div className="event-r-b">
+                  <EventShowMap event={this.state.event} />
+                </div>
+              </div>
+            </div>
+          </div>
+        )
+        
+      }
     }
 
   }
