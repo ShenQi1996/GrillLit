@@ -200,8 +200,7 @@ class EventDetail extends React.Component {
                   <h2>Location</h2>
                   <li>{location}</li>
                 </div>
-              </div>
-              <div className="event-l-c">
+                <div className="event-l-c">
                   <h2>Description:</h2>
                   {description}
                 </div>
@@ -211,6 +210,7 @@ class EventDetail extends React.Component {
                   <h2>People attending the event:</h2>
                   {inviteList}
                   </div>
+              </div>
               </div>
             </div>
 
