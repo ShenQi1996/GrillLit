@@ -3,7 +3,7 @@
 }
 .home-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   height: 100%;
   justify-content: center;
 }
@@ -43,6 +43,7 @@
   text-align: center;
 
   display: block;
+
 }
 
 .hero-section h1 {

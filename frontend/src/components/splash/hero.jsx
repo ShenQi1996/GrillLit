@@ -31,13 +31,14 @@ class Hero extends React.Component {
 
         <div className="home_wrapper">
 
+            {/* <p className="the-x"> &#10005;</p> */}
+
           <div className="title-about">You’re just steps away 
           <br/> from your next barbecue</div> 
 
           <line/>
 
           <ol className="list-home">
-
             <p> 1. Browse</p>
             <div>Start by exploring barbecues in your area and see what you can contribute to the party</div>
 
