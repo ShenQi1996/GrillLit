@@ -19,7 +19,8 @@ export class MapContainer extends Component {
         lat: 40.72289645557674,
         lng: - 73.96002115930136
       },
-      markers: []
+      markers: null,
+      events: null
     };
 
     this.setMarkers = this.setMarkers.bind(this);
@@ -53,31 +54,48 @@ export class MapContainer extends Component {
     }
   };
 
+  componentDidMount() {
+    this.setState({ events: this.props.events },
+      () => this.setState({ markers: this.setMarkers() },
+        () => this.grillListeners())
+    );
+  }
+  
   setMarkers() {
-    return (
-      this.props.events.map(event => {
-        return (
+    const markers = {};
+      this.props.events.forEach(event => {
+        markers[event._id] = 
           <Marker
             onClick={this.onMarkerClick}
             position={{lat: event.latitude, lng: event.longitude }}
             name={event.title}
             location={event.location}
             id={event._id}
-            key={event.id}
+            key={event._id}
           />
-        )
+        
       })
-    )
+    return markers
   }
 
   grillListeners() {
-    const events = document.querySelectorAll(".event-index-card-index");
-    events.forEach((event) => event.addEventListener("mouseover", () => this.handleHover(event.id)));
+    const events = {}
+    debugger
+    this.props.events.forEach(event => events[event._id] = event);
+    const filtered = Object.keys(events).filter(event => !this.state.markers[event._id]);
+    // const events = document.querySelectorAll(".event-index-card-index");
+    // events.forEach((event) => event.addEventListener("mouseenter", () => this.handleHover(event.id)));
+    filtered.forEach((eventId) => {
+      debugger
+      const eSelect = document.getElementById(eventId)
+      eSelect.addEventListener("mouseenter", () => this.handleHover(eventId));
+    });
   }
 
   handleHover(e) {
-    let marker = this.state.markers.filter(marker => marker.props.id == e);
-    var latLng = marker[0].props.position;
+    // let marker = this.state.markers.values.filter(marker => marker.props.id == e);
+    // var latLng = marker[0].props.position;
+    const latLng = this.state.markers[e].props.position
 
     setTimeout(
       () => this.setState({ center: latLng }),
@@ -85,54 +103,49 @@ export class MapContainer extends Component {
     );
   }
 
-  componentDidMount() {
-    // this.grillListeners();
-    this.setState({ markers: this.setMarkers() });
-  }
-
-
-
   render() {
-    const markers = this.setMarkers();
-    
-    return (
-      <div className="events-map-container">
-        <Map
-          google={this.props.google}
-          zoom={13}
-          style={mapStyles}
-          disableDefaultUI={true}
-
-          initialCenter={
-            this.state.center
-          }
-          center={
-            this.state.center
-          }
-        >
-          {markers}
-          <InfoWindow
-            marker={this.state.activeMarker}
-            visible={this.state.showingInfoWindow}
-            onClose={this.onClose}
+    if (!this.state.markers) {
+      return <h1>loading...</h1>
+    } else {
+      const markers = this.setMarkers();
+      
+      return (
+        <div className="events-map-container">
+          <Map
+            google={this.props.google}
+            zoom={13}
+            style={mapStyles}
+            disableDefaultUI={true}
+  
+            initialCenter={
+              this.state.center
+            }
+            center={
+              this.state.center
+            }
           >
-            <div onClick={this.handleClick} id="click-me" >
-              <div >
-                <a href={`/#/events/${this.state.selectedPlace.id}`} >{this.state.selectedPlace.name}</a>
-                <p>{this.state.selectedPlace.location}</p>
+            {Object.values(markers)}
+            <InfoWindow
+              marker={this.state.activeMarker}
+              visible={this.state.showingInfoWindow}
+              onClose={this.onClose}
+            >
+              <div onClick={this.handleClick} id="click-me" >
+                <div >
+                  <a href={`/#/events/${this.state.selectedPlace.id}`} >{this.state.selectedPlace.name}</a>
+                  <p>{this.state.selectedPlace.location}</p>
+                </div>
               </div>
-            </div>
-          </InfoWindow>
-        
-        </Map>
-      </div>
-    );
+            </InfoWindow>
+          
+          </Map>
+        </div>
+      );
+
+    }
   }
 }
 
-// export default GoogleApiWrapper({
-//   apiKey: 'AIzaSyCxTWMHUwu0pODv9S2DiafnoridPYTHP00'
-// })(MapContainer);
 const EventIndexMap = GoogleApiWrapper({
   apiKey: 'AIzaSyCxTWMHUwu0pODv9S2DiafnoridPYTHP00'
 })(MapContainer);

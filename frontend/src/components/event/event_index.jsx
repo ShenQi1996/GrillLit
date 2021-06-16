@@ -11,7 +11,8 @@ class EventIndex extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      inputVal: ''
+      inputVal: '',
+      matches: null
     };
     this.selectName = this.selectName.bind(this);
     this.handleInput = this.handleInput.bind(this);
@@ -24,13 +25,17 @@ class EventIndex extends React.Component {
 
   componentDidMount() {
     // debugger
-    this.props.fetchEvents();
+    this.props.fetchEvents().then(({ events }) => {
+      this.setState({ matches: events.data });
+    });
     const navBar = document.querySelector(".header");
     navBar.classList.add("white");
   }
 
   handleInput(event){
-    this.setState({ inputVal: event.currentTarget.value });
+
+    this.setState({ inputVal: event.currentTarget.value },
+      () => this.setState({ matches: this.matches() }));
   }
 
   matches() {
@@ -53,6 +58,7 @@ class EventIndex extends React.Component {
     }
 
     return matches;
+    // this.setState({ matches: matches });
   }
 
   selectName(event){
@@ -62,84 +68,86 @@ class EventIndex extends React.Component {
 
   render() {
         // debugger
-    const results = this.matches().map(event => {
-      // debugger
-      
-        return (
-            <Link className="event-index-card-index" key={event._id} to={`/events/${event._id}`} >
-              <EventIndexCard event={event} />
-            </Link>
-        )
-
-    });
-    // debugger;
-        if (!this.props.events) {
-            return <h1>Loading...</h1>
+        
+        const matches = this.matches();
+        // debugger;
+        if (!this.state.matches) {
+          return <h1>Loading...</h1>
         } else {
-          const events = this.props.events.map(event => {
+
+          const results = this.state.matches.map(event => {
+            // debugger
+            
               return (
-                <Link className="event-index-card-index" key={event._id} to={`/events/${event._id}`} >
+                  <Link className="event-index-card-index" key={event._id} to={`/events/${event._id}`} id={event._id} >
                     <EventIndexCard event={event} />
-                </Link>
+                  </Link>
               )
-
-          })
-          // debugger 
-          if (results.length === 0){
+          });
+          
+          const events = this.props.events.map(event => {
             return (
-              <div className="event-index-container" >
-                {/* <div className="interactive"> */}
-                {/* <Filter events={this.props.events} /> */}
-                {/* <div className="auto"> */}
-                <input
-                  onChange={this.handleInput}
-                  value={this.state.inputVal}
-                  placeholder='Search...'
-                />
-                <ul>
-                  <ReactCSSTransitionGroup
-                    transitionName='auto'
-                    transitionEnterTimeout={600}
-                    transitionLeaveTimeout={600}>
-                    {events}
-                  </ReactCSSTransitionGroup>
-                </ul>
-                {/* </div> */}
-                {/* </div> */}
-                {/* {events} */}
-              </div>
-            )
-          } else {
-              return (
-                  <div className="index-wrapper">
-                      <MapContainer events={this.props.events} />
-                      <div className="event-index-container" >
-                          {/* <div className="interactive"> */}
-                
-                              {/* <div className="auto"> */}
-                                <input
-                                  onChange={this.handleInput}
-                                  value={this.state.inputVal}
-                                  placeholder='Search...'
-                                />
-                                <ul>     
-                                  <ReactCSSTransitionGroup
-                                    transitionName='auto'
-                                    transitionEnterTimeout={600}
-                                    transitionLeaveTimeout={600}>
-                                    {results}
-                                  </ReactCSSTransitionGroup>
-                                </ul>
-                              {/* </div> */}
-                          {/* </div> */}
-                          {/* {events} */}
-                      </div>
-                  </div>
-              )
-        }
-        }
+            <Link className="event-index-card-index" key={event._id} to={`/events/${event._id}`} >
+                <EventIndexCard event={event} />
+            </Link>
+          )
 
+      })
+      // debugger 
+      if (results.length === 0){
+        return (
+          <div className="event-index-container" >
+            {/* <div className="interactive"> */}
+            {/* <Filter events={this.props.events} /> */}
+            {/* <div className="auto"> */}
+            <input
+              onChange={this.handleInput}
+              value={this.state.inputVal}
+              placeholder='Search...'
+            />
+            <ul>
+              <ReactCSSTransitionGroup
+                transitionName='auto'
+                transitionEnterTimeout={600}
+                transitionLeaveTimeout={600}>
+                {events}
+              </ReactCSSTransitionGroup>
+            </ul>
+            {/* </div> */}
+            {/* </div> */}
+            {/* {events} */}
+          </div>
+        )
+      } else {
+        return (
+            <div className="index-wrapper">
+                <MapContainer events={this.state.matches} />
+                <div className="event-index-container" >
+                    {/* <div className="interactive"> */}
+          
+                        {/* <div className="auto"> */}
+                          <input
+                            onChange={this.handleInput}
+                            value={this.state.inputVal}
+                            placeholder='Search...'
+                          />
+                          <ul>     
+                            <ReactCSSTransitionGroup
+                              transitionName='auto'
+                              transitionEnterTimeout={600}
+                              transitionLeaveTimeout={600}>
+                              {results}
+                            </ReactCSSTransitionGroup>
+                          </ul>
+                        {/* </div> */}
+                    {/* </div> */}
+                    {/* {events} */}
+                </div>
+            </div>
+        )
+      }
     }
+  }
 }
 
 export default EventIndex;
