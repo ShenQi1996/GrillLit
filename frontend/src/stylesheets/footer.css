@@ -24,8 +24,8 @@
     align-content: space-around;
     border-left: black solid 1px;
     height: 40%;
-    width: 13%;
-
+    width: 25vw;
+    min-width: 200px;
 }
 
 .profile-box p {
