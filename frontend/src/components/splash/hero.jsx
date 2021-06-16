@@ -5,13 +5,39 @@ import { Link } from 'react-router-dom';
 class Hero extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      solid: false,
+      header: document.querySelector(".header")
+    };
 
     this.handelClick = this.handelClick.bind(this);
+    this.headerSwitch = this.headerSwitch.bind(this);
+  }
+
+  componentDidMount() {
+    window.addEventListener("scroll", this.headerSwitch);
+  }
+
+  componentWillUnmount() {
+    const navBar = document.querySelector(".header");
+    navBar.classList.remove("white");
+    window.removeEventListener("scroll", this.headerSwitch);
+  }
+
+  headerSwitch() {
+    let header = document.querySelector(".header");
+    if (window.scrollY >= 125) {
+      header.classList.add("white");
+      this.setState({ solid: true });
+    } else {
+      header.classList.remove("white");
+      this.setState({ solid: false });
+    }
   }
 
   handelClick(e){
-    const about = document.querySelector(".home_wrapper")
-    about.classList.toggle("open")
+    const about = document.querySelector(".home_wrapper");
+    about.classList.toggle("open");
   }
 
   render() {
@@ -26,7 +52,7 @@ class Hero extends React.Component {
           <Link className="link-new-a" to="/new">Plan and organize your next group picnic here</Link>
 
           <div>
-            <button className="link-new-b" onClick={ this.handelClick }> About </button>
+            <button className="link-new-b" onClick={ this.handelClick }> How It Works </button>
           </div>
 
         <div className="home_wrapper">
