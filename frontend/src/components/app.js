@@ -23,7 +23,7 @@ const App = () => (
       <ProtectedRoute path="/new" component={EventCreateContainer} />
       <Route  path="/events" component={EventIndexContainer} />
     </Switch>
-
+    
   </div>
 );
 

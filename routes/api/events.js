@@ -61,9 +61,7 @@ router.patch("/event/:eventId", async (req, res) => {
     { _id: req.params.eventId },
     {
       userId: req.body.userId,
-      // --------------
       invites: finalArr,
-      // --------------
       title: req.body.title,
       description: req.body.description,
       location: req.body.location,

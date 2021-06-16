@@ -1,5 +1,8 @@
 import React from 'react';
 import Hero from './hero';
+import Github from '../../stylesheets/github.png';
+import LinkedIn from '../../stylesheets/linkedin-logo.png';
+import AngelList from '../../stylesheets/angelList-logo.png';
 
 class Home extends React.Component {
 
@@ -48,7 +51,59 @@ class Home extends React.Component {
 
 
 
+          <footer className="footer-splash">
 
+
+          <div className="footer-flex">
+
+            <div className="profile-box" >
+              <p>Shen(Sam) Qi</p>
+              
+              <div>
+                <a target="_blank" href="https://github.com/ShenQi1996"><img className="info-logo" src={Github} alt="gitHub"/></a>
+                <a target="_blank" href="https://www.linkedin.com/in/shenqi1993/"><img className="info-logo" src={LinkedIn} alt="LinkedIn"/></a>
+                <a target="_blank" href="https://angel.co/u/shen-sam-qi"><img className="info-logo" src={AngelList} alt="AngelList"/></a>
+              </div>
+            </div>
+
+
+            <div className="profile-box" >
+              <p>Christopher Sweeting</p>
+              
+              <div>
+                <a target="_blank" href="https://github.com/chrisweeting"><img className="info-logo" src={Github} alt="gitHub"/></a>
+                <a target="_blank" href="https://www.linkedin.com/in/christopher-sweeting-6878211a3/"><img className="info-logo" src={LinkedIn} alt="LinkedIn"/></a>
+                <a target="_blank" href=""><img className="info-logo" src={AngelList} alt="AngelList"/></a>
+              </div>
+            </div>
+
+
+            <div className="profile-box" >
+              <p>Abir Mahamud</p>
+              
+              <div>
+                <a target="_blank" href="https://github.com/Abir-Al-Mahamud"><img className="info-logo" src={Github} alt="gitHub"/></a>
+                <a target="_blank" href="https://www.linkedin.com/in/abir-mahamud-2495571b3/"><img className="info-logo" src={LinkedIn} alt="LinkedIn"/></a>
+                <a target="_blank" href="https://angel.co/u/abir-mahamud"><img className="info-logo" src={AngelList} alt="AngelList"/></a>
+              </div>
+            </div>
+
+
+            <div className="profile-box" >
+              <p>Joseph Sipiorski</p>
+
+              <div>
+                <a target="_blank" href="https://github.com/JosefSipi"><img className="info-logo" src={Github} alt="gitHub"/></a>
+                <a target="_blank" href="https://www.linkedin.com/in/joseph-sipiorski-590452195/"><img className="info-logo" src={LinkedIn} alt="LinkedIn"/></a>
+                <a target="_blank" href="https://angel.co/u/joseph-sipiorski"><img className="info-logo" src={AngelList} alt="AngelList"/></a>
+              </div>
+
+            </div>
+
+          </div>
+
+
+          </footer>
 
       </div>
     );
