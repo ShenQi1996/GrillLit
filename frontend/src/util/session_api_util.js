@@ -17,6 +17,10 @@ export const signup = (userData) => {
   });
 };
 
+// export const editUser = event => {
+//   return axios.patch(`/api/users//likeadd/${user.id}`, user);
+// };
+
 export const login = (userData) => {
 
   return axios.post('/api/users/login', userData, {
