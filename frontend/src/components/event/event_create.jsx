@@ -18,10 +18,12 @@ class EventCreate extends React.Component {
       latitude: '',
       date: '',
       items: '',
-      confirmed: false
+      confirmed: false,
+      error: false
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.validateDate = this.validateDate.bind(this);
     this.update = this.update.bind(this);
     this.geocode = this.geocode.bind(this);
   }
@@ -87,14 +89,46 @@ class EventCreate extends React.Component {
   }
 
   update(field) {
-    return (e) => this.setState({ [field]: e.currentTarget.value });
+    return (e) => {
+      if (field === 'date' && !this.validateDate(e.currentTarget.value)) {
+        // console.log("error");
+        this.setState({ error: true });
+      } else if (field === 'date' && this.validateDate(e.currentTarget.value)) {
+        this.setState({ 
+          [field]: e.currentTarget.value,
+          error: false 
+        });
+      } else {
+        this.setState({ [field]: e.currentTarget.value });
+      }
+    };
   }
+
+  validateDate(date) {
+    debugger
+    const currentDate = new Date();
+    let formattedCurrentDate = currentDate.toLocaleDateString("en-US");
+    formattedCurrentDate = formattedCurrentDate.split("/");
+    const splitDate = date.split("-");
+    // const eventDate = `${splitDate[1][1]}/${splitDate[2]}/${splitDate[0]}`;
+    return (
+        formattedCurrentDate[2] <= splitDate[0] &&
+        formattedCurrentDate[1] <= splitDate[2] &&
+        formattedCurrentDate[0] <= splitDate[1][1]
+    ); 
+      
+    // const formattedDate = eventDate.toLocaleDateString("en-US");
+    // return (formattedCurrentDate === formattedDate);
+  }
+
 
   render() {
     // let submitButton = this.state.confirmed ? <input type="submit" value="submit" /> : '';
     let submitButton = this.state.confirmed ? 
       <button type="submit" className="create-button">Submit</button>: 
       <button onClick={e => e.preventDefault()} className="dummy-button">Submit</button>;
+
+    let errorMsg = this.state.error ? 'Invalid Date' : ''
 
     return (
     <div className="event-detail-img">
@@ -131,6 +165,7 @@ class EventCreate extends React.Component {
             onChange={this.update('date')}
             placeholder="Date"
           />
+          <div className="form-error">{errorMsg}</div>
           <textarea
               value={this.state.description}
               onChange={this.update('description')}
