@@ -4,20 +4,21 @@ const googleMapsClient = require('@google/maps').createClient({
   Promise: Promise
 });
 
-class EventCreate extends React.Component {
+class EventUpdate extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      userId: this.props.user.id,
-      // invites: `${this.props.user.username}`,
-      title: '',
-      description: '',
-      location: '' ,
-      longitude: '',
-      latitude: '',
+      userId: this.props.userId,
+      invites: this.props.invites,
+      title: this.props.event.title,
+      description: this.props.event.description,
+      location: this.props.event.location,
+      longitude: this.props.event.longitude,
+      latitude: this.props.event.latitude,
       date: '',
-      items: '',
+      items: this.props.event.items,
+      likes: this.props.event.likes,
       confirmed: false,
       error: false
     };
@@ -36,13 +37,14 @@ class EventCreate extends React.Component {
     e.preventDefault();
     // const res = this.geocode(this.state.location);
     // this.geocode(this.state.location);
-    
+
     let splitDate = this.state.date.split("-");
     let formatted = `${splitDate[1][1]}/${splitDate[2]}/${splitDate[0]}`;
 
     let event = {
-      userId: this.props.user.id,
-      invites: this.props.user.username,
+      _id: this.props.event._id,
+      userId: this.props.userId,
+      invites: this.props.event.invites,
       title: this.state.title,
       description: this.state.description,
       location: this.state.location,
@@ -50,25 +52,27 @@ class EventCreate extends React.Component {
       latitude: this.state.latitude.toString(),
       date: formatted,
       items: this.state.items,
-      likes: ''
+      likes: this.state.likes
     };
 
     
+    this.props.editEvent(event);
+    this.props.closeUpdate(event);
+    // this.props.editEvent(event).then(() => {
+    //   this.props.closeUpdate();
+    // });
 
-    this.props.createEvent(event).then(({event}) => {
-      this.props.history.push(`/events/${event.data._id}`);
-    });
-    this.setState({ 
-      userId: this.props.user.id,
-      // invites: {},
-      title: '',
-      description: '',
-      location: '',
-      longitude: '',
-      latitude: '',
-      date: '',
-      items: '',
-     });
+    // this.setState({
+    //   userId: this.props.userId,
+    //   // invites: {},
+    //   title: '',
+    //   description: '',
+    //   location: '',
+    //   longitude: '',
+    //   latitude: '',
+    //   date: '',
+    //   items: '',
+    // });
 
   }
 
@@ -96,9 +100,9 @@ class EventCreate extends React.Component {
         // console.log("error");
         this.setState({ error: true });
       } else if (field === 'date' && this.validateDate(e.currentTarget.value)) {
-        this.setState({ 
+        this.setState({
           [field]: e.currentTarget.value,
-          error: false 
+          error: false
         });
       } else {
         this.setState({ [field]: e.currentTarget.value });
@@ -113,11 +117,11 @@ class EventCreate extends React.Component {
     const splitDate = date.split("-");
     // const eventDate = `${splitDate[1][1]}/${splitDate[2]}/${splitDate[0]}`;
     return (
-        formattedCurrentDate[2] <= splitDate[0] &&
-        formattedCurrentDate[1] <= splitDate[2] &&
-        formattedCurrentDate[0] <= splitDate[1][1]
-    ); 
-      
+      formattedCurrentDate[2] <= splitDate[0] &&
+      formattedCurrentDate[1] <= splitDate[2] &&
+      formattedCurrentDate[0] <= splitDate[1][1]
+    );
+
     // const formattedDate = eventDate.toLocaleDateString("en-US");
     // return (formattedCurrentDate === formattedDate);
   }
@@ -125,30 +129,30 @@ class EventCreate extends React.Component {
 
   render() {
     // let submitButton = this.state.confirmed ? <input type="submit" value="submit" /> : '';
-    let submitButton = this.state.confirmed ? 
-      <button type="submit" className="create-button">Submit</button>: 
+    let submitButton = this.state.confirmed ?
+      <button type="submit" className="create-button">Submit</button> :
       <button onClick={e => e.preventDefault()} className="dummy-button">Submit</button>;
 
     let errorMsg = this.state.error ? 'Invalid Date' : ''
 
     return (
-    <div className="event-detail-img">
-      <div className="new-event-wrapper">
-        <form className="new-event-form" onSubmit={this.handleSubmit} >
-          <h1>Create Form</h1>
-          <input 
-            type="text" 
-            value={this.state.title}
-            onChange={this.update('title')}
-            placeholder="Title"
-          />
-          <input 
-            type="text" 
-            value={this.state.location}
-            onChange={this.update('location')}
-            placeholder="Location"
-          />
-          {/* <input 
+      <div className="event-edit-section">
+        <div className="event-edit-wrapper">
+          <form className="edit-event-form" onSubmit={this.handleSubmit} >
+            
+            <input
+              type="text"
+              value={this.state.title}
+              onChange={this.update('title')}
+              placeholder={this.props.title}
+            />
+            <input
+              type="text"
+              value={this.state.location}
+              onChange={this.update('location')}
+              placeholder={this.props.location}
+            />
+            {/* <input 
             type="text" 
             value={this.state.latitude}
             onChange={this.update('latitude')}
@@ -160,31 +164,27 @@ class EventCreate extends React.Component {
             onChange={this.update('longitude')}
             placeholder="Longitude"
           /> */}
-          <input 
-            type="date" 
-            value={this.state.date}
-            onChange={this.update('date')}
-            placeholder="Date"
-          />
-          <div className="form-error">{errorMsg}</div>
-          <textarea
+            <input
+              type="date"
+              value={this.state.date}
+              onChange={this.update('date')}
+              placeholder="Date"
+            />
+            <div className="form-error">{errorMsg}</div>
+            <textarea
               value={this.state.description}
               onChange={this.update('description')}
-              placeholder="Description"
-          ></textarea>
-          <textarea
-              value={this.state.items}
-              onChange={this.update('items')}
-              placeholder="items"
-          ></textarea>
+              placeholder={this.props.description}
+            ></textarea>
 
-          <button onClick={this.geocode} className="create-button">Confirm Location</button>
-          {submitButton}
-        </form>
+            <button onClick={this.geocode} className="create-button">Confirm Location</button>
+            {submitButton}
+            <div onClick={() => this.props.closeUpdate()}>Cancel</div>
+          </form>
+        </div>
       </div>
-    </div>
     )
   }
 }
 
-export default EventCreate;
+export default EventUpdate;

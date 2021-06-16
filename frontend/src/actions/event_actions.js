@@ -69,6 +69,7 @@ export const deleteEvent = eventId => dispatch => {
 };
 
 export const editEvent = eventId => dispatch => {
+  debugger
   return EventAPIUtil.editEvent(eventId)
     .then(event => dispatch(alterEvent(event)))
     .catch(err => console.log(err.response));
