@@ -27,7 +27,7 @@ class UserProfile extends React.Component {
 
   handleClick(e) {
     const target = e.currentTarget.id;
-    debugger
+    
     if (target === "liked-events") {
       this.setState({ nextTab: true });
     } else {
@@ -38,14 +38,14 @@ class UserProfile extends React.Component {
   actButtonClick(e) {
     const target = e.currentTarget.innerText;
     const targetId = e.currentTarget.parentElement.id;
-    debugger
+    
     if (target === "Cancel Event") {
       this.props.deleteEvent(targetId)
     } else {
       let likes = this.props.likes;
-      debugger
+      
       delete likes[targetId];
-      debugger
+      
       const user = {
         email: this.props.user.email,
         id: this.props.user.id,
@@ -59,10 +59,10 @@ class UserProfile extends React.Component {
 
 
   render() {
-
+    
     if (!this.props.userEvents) {
       
-      return <h1>Loading...</h1>
+      return <div className="loading-screen"><div className="loading"></div></div>
     } else {
       
       // const filtered = this.props.events.filter(event => {
@@ -70,11 +70,19 @@ class UserProfile extends React.Component {
       //     this.props.user.likes.includes(event._id):
       //     event.userId === this.props.user.id;
       // })
+      const likTabClass = this.state.nextTab ?
+        "":
+        "open-tab"
 
-      const filtered = this.state.nextTab ?
+      const orgTabClass = this.state.nextTab ?
+        "open-tab":
+        ""
+
+
+      let filtered = this.state.nextTab ?
         this.props.likedEvents :
         this.props.userEvents;
-
+      
       const actButton = this.state.nextTab ?
         <button 
           className="event-index-card-pro-button" 
@@ -88,8 +96,8 @@ class UserProfile extends React.Component {
       const events = filtered.map(event => {
           if (typeof(event) === "object" ) {
             return (
-              <div className="event-litem-pro" id={event._id}>
-                <Link className="event-index-card-pro" key={event._id} to={`/events/${event._id}`}  >
+              <div className="event-litem-pro" id={event._id} key={event._id}>
+                <Link className="event-index-card-pro"  to={`/events/${event._id}`}  >
                   <EventIndexCard event={event} />
                 </Link>
                 {actButton}
@@ -109,8 +117,8 @@ class UserProfile extends React.Component {
               </div>
             <div className="event-list">
               <nav className="event-list-nav">
-                <div id="organized-events" onClick={this.handleClick}>Created Events</div>
-                <div id="liked-events" onClick={this.handleClick}>Liked Events</div>
+                <div id="organized-events" className={orgTabClass} onClick={this.handleClick}>Created Events</div>
+                <div id="liked-events" className={likTabClass} onClick={this.handleClick}>Liked Events</div>
               </nav>
               {events}
             </div>

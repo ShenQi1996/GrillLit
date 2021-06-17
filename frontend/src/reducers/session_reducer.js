@@ -10,7 +10,7 @@ import { RECEIVE_USER_EVENTS, DELETE_EVENT } from "../actions/event_actions";
 const initialState = {
   isAuthenticated: false,
   user: {},
-  userEvents: {},
+  userEvents: [],
 };
 
 const SessionReducer = (state = initialState, action) => {
@@ -47,7 +47,7 @@ const SessionReducer = (state = initialState, action) => {
       return {
         isAuthenticated: false,
         user: {},
-        userEvents: {},
+        userEvents: [],
       };
     case RECEIVE_USER_SIGN_IN:
       return {
