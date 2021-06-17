@@ -107,7 +107,6 @@ class EventCreate extends React.Component {
   }
 
   validateDate(date) {
-    debugger
     const currentDate = new Date();
     let formattedCurrentDate = currentDate.toLocaleDateString("en-US");
     formattedCurrentDate = formattedCurrentDate.split("/");
@@ -131,7 +130,6 @@ class EventCreate extends React.Component {
     let month = date.getMonth() + 1;
     var dateNow = `2021-0${month}-${day}`;
 
-    debugger
     let submitButton = this.state.confirmed ? 
       <button type="submit" className="create-button">Submit</button>: 
       <button onClick={e => e.preventDefault()} className="dummy-button">Submit</button>;
