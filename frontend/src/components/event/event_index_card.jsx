@@ -13,7 +13,7 @@ class EventIndexCard extends React.Component {
       if (description.length > 40) {
         desc = description.slice(0, 30) + "...";
       }
-      debugger
+      
       return (
         <div className="event-index-small" id={_id}>
           <li className="event-index-small-title">{title}</li>
