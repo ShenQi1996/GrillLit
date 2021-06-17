@@ -13,8 +13,8 @@
   text-align: center;
   justify-content: space-evenly;
   z-index: 2;
-  overflow: hidden;
-  height: 50%;
+  /* overflow: hidden; */
+  height: fit-content;
   width: 25%;
 }
 .signup-h1 {

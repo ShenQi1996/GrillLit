@@ -593,3 +593,37 @@ button {
   height: 100px;
   margin: 10px;
 }
+
+.event-list-nav {
+  display: flex;
+  width: 100%;
+}
+
+.event-list-nav div {
+  height: 50px;
+  width: 50%;
+  text-align: center;
+  padding: 8% 0 0 0;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.open-tab {
+  border: 4px solid white;
+}
+
+.loading {
+  background-image: url("./loading.gif");
+  height: 250px;
+  width: 250px;
+  background-repeat: no-repeat;
+}
+
+.loading-screen {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

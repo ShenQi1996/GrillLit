@@ -21,6 +21,7 @@ import {
   createEvent,
   deleteEvent,
 } from "./util/event_api_util";
+import { editUser, fetchUser } from "./util/session_api_util";
 
 document.addEventListener("DOMContentLoaded", () => {
   let store;
@@ -51,6 +52,9 @@ document.addEventListener("DOMContentLoaded", () => {
   window.getState = store.getState;
 
   // window.logout = store.dispatch(logout());
+
+  window.editUser = editUser;
+  window.fetchUser = fetchUser;
 
   window.deleteEvent = deleteEvent;
   window.createEvent = createEvent;

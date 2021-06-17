@@ -10,8 +10,8 @@ const validateRegisterInput = require("../../validations/register");
 const validateLoginInput = require("../../validations/login");
 
 router.get("/user/:userId", (req, res) => {
-  User.find({ _id: req.params.userId })
-    .sort({ username: -1 })
+  User.findOne({ _id: req.params.userId })
+    // .sort({ username: -1 })
     .then(user => res.json(user))
     .catch(err => res.status(404).json({ nouserfound: "No user found" }));
 });
@@ -24,6 +24,7 @@ router.get(
       id: req.user.id,
       username: req.user.username,
       email: req.user.email,
+      likes: req.user.likes
     });
   }
 );
@@ -37,15 +38,22 @@ router.get("/allusers", (req, res) => {
 
 // ------
 router.patch('/likeadd/:userId', (req, res) => {
-
-User.updateOne(
-  {_id: req.params.userId},
-    {
-      likes: req.body.likes
+  
+  User.updateOne(
+    {_id: req.params.userId.toString()},
+    { $set: {likes: req.body.likes}},
+    (err, result) => {
+      if (err) return res.status(500).json({ msg: err });
+      const msg = {
+        msg: "success",
+        likes: req.body.likes
+      };
+      return res.json(msg);
     }
-).then( () => res.json( req.body.likes ) ).catch( res.json({ err: "did not save" }))
+  );
+  // .then( () => res.json( req.body.likes ) ).catch( res.json({ err: "did not save" }))
 
-})
+});
 // -----
 
 
@@ -75,6 +83,9 @@ router.post("/register", (req, res) => {
         email: req.body.email,
         username: req.body.username,
         password: req.body.password,
+        likes: {
+          0: ""
+        }
       });
 
       bcrypt.genSalt(10, (err, salt) => {
@@ -88,6 +99,7 @@ router.post("/register", (req, res) => {
                 id: user.id,
                 email: user.email,
                 username: user.username,
+                likes: user.likes
               };
               jwt.sign(
                 payload,
@@ -130,6 +142,7 @@ router.post("/login", (req, res) => {
           id: user.id,
           email: user.email,
           username: user.username,
+          likes: user.likes
         };
         jwt.sign(
           payload,
