@@ -19,7 +19,7 @@ class EventCreate extends React.Component {
       date: '',
       items: '',
       confirmed: false,
-      error: false
+      error: false,
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -92,21 +92,22 @@ class EventCreate extends React.Component {
 
   update(field) {
     return (e) => {
-      if (field === 'date' && !this.validateDate(e.currentTarget.value)) {
-        // console.log("error");
-        this.setState({ error: true });
-      } else if (field === 'date' && this.validateDate(e.currentTarget.value)) {
-        this.setState({ 
-          [field]: e.currentTarget.value,
-          error: false 
-        });
-      } else {
+      // if (field === 'date' && !this.validateDate(e.currentTarget.value)) {
+      //   // console.log("error");
+      //   this.setState({ error: true });
+      // } else if (field === 'date' && this.validateDate(e.currentTarget.value)) {
+      //   this.setState({ 
+      //     [field]: e.currentTarget.value,
+      //     error: false 
+      //   });
+      // } else {
         this.setState({ [field]: e.currentTarget.value });
-      }
+      // }
     };
   }
 
   validateDate(date) {
+    debugger
     const currentDate = new Date();
     let formattedCurrentDate = currentDate.toLocaleDateString("en-US");
     formattedCurrentDate = formattedCurrentDate.split("/");
@@ -125,6 +126,12 @@ class EventCreate extends React.Component {
 
   render() {
     // let submitButton = this.state.confirmed ? <input type="submit" value="submit" /> : '';
+    let date = new Date()
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    var dateNow = `2021-0${month}-${day}`;
+
+    debugger
     let submitButton = this.state.confirmed ? 
       <button type="submit" className="create-button">Submit</button>: 
       <button onClick={e => e.preventDefault()} className="dummy-button">Submit</button>;
@@ -165,6 +172,7 @@ class EventCreate extends React.Component {
             value={this.state.date}
             onChange={this.update('date')}
             placeholder="Date"
+            min={dateNow}
           />
           <div className="form-error">{errorMsg}</div>
           <textarea
