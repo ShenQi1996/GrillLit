@@ -51,11 +51,14 @@ class EventDetail extends React.Component {
       // });
       // const likes = res.event.data.likes.split(" ");
       // const likes = this.props.user.likes;
-      const likes = Object.keys(this.props.user.likes);
       let liked = false;
-
-      if (likes.includes(res.event.data._id)) {
-        liked = true;
+      
+      if (this.props.signedIn) {
+        const likes = Object.keys(this.props.user.likes);
+  
+        if (likes.includes(res.event.data._id)) {
+          liked = true;
+        }
       }
       
 
