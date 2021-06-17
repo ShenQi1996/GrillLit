@@ -177,38 +177,39 @@ class EventDetail extends React.Component {
   toggleLike(e) {
     if (!this.props.signedIn) {
       this.props.history.push('/signin');
-    }
-
-    const target = e.currentTarget.id;
-    if (target === "like-button") {
-      let likes = this.props.user.likes;
-      // likes.push(this.state.event._id);
-      likes[this.state.event._id] = this.state.event;
-      const user = {
-        email: this.props.user.email,
-        id: this.props.user.id,
-        username: this.props.user.username,
-        likes: likes
-      };
-
-      this.props.editUser(user);
-      this.setState({ liked: true });
     } else {
-      // let likes = this.props.user.likes.filter(id => id !== this.state.event._id);
-      let likes = this.props.user.likes;
-      let eventId = this.state.event._id;
-      delete likes.eventId;
-
-      const user = {
-        email: this.props.user.email,
-        id: this.props.user.id,
-        username: this.props.user.username,
-        likes: likes
-      };
-
-      this.props.editUser(user);
-      this.setState({ liked: false });
+      const target = e.currentTarget.id;
+      if (target === "like-button") {
+        let likes = this.props.user.likes;
+        // likes.push(this.state.event._id);
+        likes[this.state.event._id] = this.state.event;
+        const user = {
+          email: this.props.user.email,
+          id: this.props.user.id,
+          username: this.props.user.username,
+          likes: likes
+        };
+  
+        this.props.editUser(user);
+        this.setState({ liked: true });
+      } else {
+        // let likes = this.props.user.likes.filter(id => id !== this.state.event._id);
+        let likes = this.props.user.likes;
+        let eventId = this.state.event._id;
+        delete likes.eventId;
+  
+        const user = {
+          email: this.props.user.email,
+          id: this.props.user.id,
+          username: this.props.user.username,
+          likes: likes
+        };
+  
+        this.props.editUser(user);
+        this.setState({ liked: false });
+      }
     }
+
   }
 
   closeUpdate(event) {
