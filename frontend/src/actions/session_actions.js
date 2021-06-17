@@ -2,14 +2,22 @@ import * as APIUtil from '../util/session_api_util';
 import jwt_decode from 'jwt-decode';
 
 export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
+export const RECEIVE_USER = "RECEIVE_USER";
 export const RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
 export const RECEIVE_USER_LOGOUT = "RECEIVE_USER_LOGOUT";
 export const RECEIVE_USER_SIGN_IN = "RECEIVE_USER_SIGN_IN";
+export const EDIT_CURRENT_USER = "EDIT_CURRENT_USER";
+
 
 
 export const receiveCurrentUser = currentUser => ({
   type: RECEIVE_CURRENT_USER,
   currentUser
+});
+
+export const receiveUser = user => ({
+  type: RECEIVE_USER,
+  user
 });
 
 export const receiveUserSignIn = (user) => ({
@@ -24,6 +32,11 @@ export const receiveErrors = errors => ({
 
 export const logoutUser = () => ({
   type: RECEIVE_USER_LOGOUT
+});
+
+export const alterUser = (likes) => ({
+  type: EDIT_CURRENT_USER,
+  likes
 });
 
 // export const signup = user => dispatch => (
@@ -64,3 +77,19 @@ export const logout = () => dispatch => {
   APIUtil.setAuthToken(false)
   dispatch(logoutUser())
 };
+
+export const editUser = user => dispatch => {
+  
+  return APIUtil.editUser(user)
+    .then(likes => dispatch(alterUser(likes)))
+    .catch(err => {
+      dispatch(receiveErrors(err.response.data));
+    });
+};
+
+export const fetchUser = userId => dispatch =>
+  APIUtil.fetchUser(userId)
+    .then(user => dispatch(receiveUser(user)))
+    .catch(err => {
+      dispatch(receiveErrors(err.response.data));
+    });

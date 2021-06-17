@@ -80,13 +80,13 @@ export class MapContainer extends Component {
 
   grillListeners() {
     const events = {}
-    debugger
+    
     this.props.events.forEach(event => events[event._id] = event);
     const filtered = Object.keys(events).filter(event => !this.state.markers[event._id]);
     // const events = document.querySelectorAll(".event-index-card-index");
     // events.forEach((event) => event.addEventListener("mouseenter", () => this.handleHover(event.id)));
     filtered.forEach((eventId) => {
-      debugger
+      
       const eSelect = document.getElementById(eventId)
       eSelect.addEventListener("mouseenter", () => this.handleHover(eventId));
     });

@@ -17,9 +17,13 @@ export const signup = (userData) => {
   });
 };
 
-// export const editUser = event => {
-//   return axios.patch(`/api/users//likeadd/${user.id}`, user);
-// };
+export const editUser = user => {
+  return axios.patch(`/api/users/likeadd/${user.id}`, user);
+};
+
+export const fetchUser = (userId) => {
+  return axios.get(`/api/users/user/${userId}`);
+};
 
 export const login = (userData) => {
 

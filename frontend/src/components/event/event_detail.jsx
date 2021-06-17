@@ -30,10 +30,12 @@ class EventDetail extends React.Component {
     this.handleClick = this.handleClick.bind(this);
     this.openUpdate = this.openUpdate.bind(this);
     this.closeUpdate = this.closeUpdate.bind(this);
+    this.toggleLike = this.toggleLike.bind(this);
   }
 
 
   componentDidMount() {
+    this.props.fetchUser(this.props.userId);
     this.props.fetchEvent(this.props.eventId).then( res => {
       // this.setState({ 
         // _id: res.event.data._id,
@@ -47,12 +49,14 @@ class EventDetail extends React.Component {
         // items: res.event.data.items,
         // invites: res.event.data.invites 
       // });
-      const likes = res.event.data.likes.split(" ");
+      // const likes = res.event.data.likes.split(" ");
+      const likes = this.props.user.likes;
       let liked = false;
 
-      if (likes.includes(`${res.event.data.userId}`)) {
+      if (likes.includes(res.event.data._id)) {
         liked = true;
       }
+      
 
       const invites = res.event.data.invites.split(" ");
       let joined = false;
@@ -97,7 +101,7 @@ class EventDetail extends React.Component {
 
     const target = e.currentTarget.id;
     let users = this.state.event.invites;
-    let likers = this.state.event.likes;
+    let likers = this.props.user.likes;
     let liked = this.state.liked;
     let joined = this.state.joined;
 
@@ -155,17 +159,50 @@ class EventDetail extends React.Component {
       latitude: this.props.event.latitude,
       date: this.props.event.date,
       items: this.props.event.items,
-      likes: likers
+      likes: this.props.event.likes
     };
 
-   
-
     this.props.editEvent(editEvent);
+    
     this.setState({ 
       event: editEvent,
-      liked: liked,
       joined: joined 
     });
+  }
+
+  toggleLike(e) {
+    if (!this.props.signedIn) {
+      this.props.history.push('/signin');
+    }
+
+    const target = e.currentTarget.id;
+    if (target === "like-button") {
+      let likes = this.props.user.likes;
+      likes.push(this.state.event._id);
+      debugger
+      const user = {
+        email: this.props.user.email,
+        id: this.props.user.id,
+        username: this.props.user.username,
+        likes: likes
+      };
+
+      this.props.editUser(user);
+      this.setState({ liked: true });
+    } else {
+      debugger
+      let likes = this.props.user.likes.filter(id => id !== this.state.event._id);
+
+      const user = {
+        email: this.props.user.email,
+        id: this.props.user.id,
+        username: this.props.user.username,
+        likes: likes
+      };
+
+      this.props.editUser(user);
+      this.setState({ liked: false });
+    }
   }
 
   closeUpdate(event) {
@@ -200,8 +237,8 @@ class EventDetail extends React.Component {
         }
         // const likes = this.state.event.likes.split(" ");
         const heart = this.state.liked ?
-          <div id="liked-button" onClick={this.handleClick} ></div> :
-          <div id="like-button" onClick={this.handleClick} ></div>;
+          <div id="liked-button" onClick={this.toggleLike} ></div> :
+          <div id="like-button" onClick={this.toggleLike} ></div>;
 
         const joinText = this.state.joined ? "Leave Event" : "Join Event"
         

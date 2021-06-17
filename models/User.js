@@ -27,7 +27,7 @@ const UserSchema = new Schema({
         ref: 'events'
     },
     likes: {
-        type: String
+        type: Array
     },
 }, {
     timestamps: true

@@ -1,7 +1,9 @@
 import {
   RECEIVE_CURRENT_USER,
+  RECEIVE_USER,
   RECEIVE_USER_LOGOUT,
   RECEIVE_USER_SIGN_IN,
+  EDIT_CURRENT_USER
 } from "../actions/session_actions";
 import { RECEIVE_USER_EVENTS, DELETE_EVENT } from "../actions/event_actions";
 
@@ -12,7 +14,15 @@ const initialState = {
 };
 
 const SessionReducer = (state = initialState, action) => {
+  let newState = {...state};
   switch (action.type) {
+    case EDIT_CURRENT_USER:
+      newState.user.likes = action.likes.data.likes;
+      return newState;
+    case RECEIVE_USER:
+      debugger
+      newState.user.likes = action.user.data.likes;
+      return newState;
     case RECEIVE_CURRENT_USER:
       return {
         ...state,
@@ -20,7 +30,7 @@ const SessionReducer = (state = initialState, action) => {
         user: action.currentUser,
       };
     case DELETE_EVENT:
-      let newState = Object.assign({}, state);
+      // let newState = Object.assign({}, state);
 
       const filtered = newState.userEvents.filter(
         event => event._id !== action.eventId.data.eventId
@@ -30,6 +40,7 @@ const SessionReducer = (state = initialState, action) => {
         userEvents: filtered,
       };
     case RECEIVE_USER_EVENTS:
+      debugger
       return {
         ...state,
         userEvents: action.events.data,
