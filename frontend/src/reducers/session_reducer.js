@@ -20,7 +20,6 @@ const SessionReducer = (state = initialState, action) => {
       newState.user.likes = action.likes.data.likes;
       return newState;
     case RECEIVE_USER:
-      debugger
       newState.user.likes = action.user.data.likes;
       return newState;
     case RECEIVE_CURRENT_USER:
@@ -40,7 +39,6 @@ const SessionReducer = (state = initialState, action) => {
         userEvents: filtered,
       };
     case RECEIVE_USER_EVENTS:
-      debugger
       return {
         ...state,
         userEvents: action.events.data,

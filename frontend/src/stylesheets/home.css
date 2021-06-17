@@ -593,3 +593,17 @@ button {
   height: 100px;
   margin: 10px;
 }
+
+.event-list-nav {
+  display: flex;
+  width: 100%;
+}
+
+.event-list-nav div {
+  height: 50px;
+  width: 50%;
+  text-align: center;
+  padding: 8% 0 0 0;
+  font-size: 20px;
+  cursor: pointer;
+}

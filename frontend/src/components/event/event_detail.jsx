@@ -50,7 +50,8 @@ class EventDetail extends React.Component {
         // invites: res.event.data.invites 
       // });
       // const likes = res.event.data.likes.split(" ");
-      const likes = this.props.user.likes;
+      // const likes = this.props.user.likes;
+      const likes = Object.keys(this.props.user.likes);
       let liked = false;
 
       if (likes.includes(res.event.data._id)) {
@@ -178,8 +179,8 @@ class EventDetail extends React.Component {
     const target = e.currentTarget.id;
     if (target === "like-button") {
       let likes = this.props.user.likes;
-      likes.push(this.state.event._id);
-      debugger
+      // likes.push(this.state.event._id);
+      likes[this.state.event._id] = this.state.event;
       const user = {
         email: this.props.user.email,
         id: this.props.user.id,
@@ -190,8 +191,10 @@ class EventDetail extends React.Component {
       this.props.editUser(user);
       this.setState({ liked: true });
     } else {
-      debugger
-      let likes = this.props.user.likes.filter(id => id !== this.state.event._id);
+      // let likes = this.props.user.likes.filter(id => id !== this.state.event._id);
+      let likes = this.props.user.likes;
+      let eventId = this.state.event._id;
+      delete likes.eventId;
 
       const user = {
         email: this.props.user.email,
