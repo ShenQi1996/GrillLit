@@ -73,7 +73,7 @@ class Home extends React.Component {
               <div>
                 <a target="_blank" href="https://github.com/chrisweeting"><img className="info-logo" src={Github} alt="gitHub"/></a>
                 <a target="_blank" href="https://www.linkedin.com/in/christopher-sweeting-6878211a3/"><img className="info-logo" src={LinkedIn} alt="LinkedIn"/></a>
-                <a target="_blank" href=""><img className="info-logo" src={AngelList} alt="AngelList"/></a>
+                <a target="_blank" href="https://angel.co/u/chrisweeting"><img className="info-logo" src={AngelList} alt="AngelList"/></a>
               </div>
             </div>
 
