@@ -8,6 +8,7 @@ const mSTP = state => {
     user: state.session.user,
     userEvents: state.session.userEvents,
     likedEvents: Object.values(state.session.user.likes),
+    allEvents: Object.values(state.events.all),
     likes: state.session.user.likes
   };
 };

@@ -34,11 +34,11 @@ class EventDetail extends React.Component {
   }
 
 
-  componentDidMount() {
+  async componentDidMount() {
     if (this.props.signedIn) {
       this.props.fetchUser(this.props.userId);
     }
-    this.props.fetchEvent(this.props.eventId).then( res => {
+    await this.props.fetchEvent(this.props.eventId).then( res => {
       let liked = false;
       
       if (this.props.signedIn) {
@@ -170,6 +170,7 @@ class EventDetail extends React.Component {
         let likes = this.props.user.likes;
        
         likes[this.state.event._id] = this.state.event;
+
         const user = {
           email: this.props.user.email,
           id: this.props.user.id,
@@ -180,11 +181,12 @@ class EventDetail extends React.Component {
         this.props.editUser(user);
         this.setState({ liked: true });
       } else {
-       
+        
         let likes = this.props.user.likes;
         let eventId = this.state.event._id;
-        delete likes.eventId;
-  
+
+        delete likes[eventId];
+        
         const user = {
           email: this.props.user.email,
           id: this.props.user.id,

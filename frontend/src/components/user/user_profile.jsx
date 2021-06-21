@@ -13,16 +13,21 @@ class UserProfile extends React.Component {
 
     this.handleClick = this.handleClick.bind(this);
     this.actButtonClick = this.actButtonClick.bind(this);
+    this.filterLikedEvents = this.filterLikedEvents.bind(this);
   }
 
-  componentDidMount() {
+  async componentDidMount() {
+    await this.props.fetchEvents();
     this.props.fetchUserEvents(this.props.user.id);
     this.props.fetchUser(this.props.user.id);
+    const allEvents = this.props.allEvents;
+    const likedEvents = this.props.likedEvents;
+    const realEvents = [];
+    
     this.setState({
       likedEvents: this.props.likedEvents,
       userEvents: this.props.userEvents,
     });
-    // this.props.fetchEvents();
   }
 
   handleClick(e) {
@@ -40,9 +45,10 @@ class UserProfile extends React.Component {
     const targetId = e.currentTarget.parentElement.id;
     
     if (target === "Cancel Event") {
-      this.props.deleteEvent(targetId)
+      this.props.deleteEvent(targetId);
+      
     } else {
-      let likes = this.props.likes;
+      let likes = this.props.user.likes;
       
       delete likes[targetId];
       
@@ -54,7 +60,42 @@ class UserProfile extends React.Component {
       };
 
       this.props.editUser(user);
+      this.setState({ likedEvents: this.filterLikedEvents() });
     }
+  }
+
+  filterLikedEvents() {
+    const allEvents = this.props.allEvents;
+    const likedEvents = this.props.likedEvents;
+    const likedEventsObj = this.props.user.likes;
+    const realEvents = [];
+
+    allEvents.forEach(element => {
+      realEvents.push(element._id);
+    });
+
+    const liked = [];
+
+    likedEvents.forEach(element => {
+      if (realEvents.includes(element._id)) {
+        liked.push(element);
+      } else {
+        delete likedEventsObj[element._id];
+      }
+    });
+    
+    const user = {
+      email: this.props.user.email,
+      id: this.props.user.id,
+      username: this.props.user.username,
+      likes: likedEventsObj
+    };
+
+    if ((likedEvents.length - 1) !== liked.length) {
+      this.props.editUser(user);
+    }
+
+    return liked;
   }
 
 
@@ -78,9 +119,25 @@ class UserProfile extends React.Component {
         "open-tab":
         ""
 
+      // const allEvents = this.props.allEvents;
+      // const likedEvents = this.props.likedEvents;
+      // const realEvents = [];
+
+      // allEvents.forEach(element => {
+      //   realEvents.push(element._id);
+      // });
+
+      // const liked = [];
+
+      // likedEvents.forEach(element => {
+      //   if (realEvents.includes(element._id)) {
+      //     liked.push(element);
+      //   }
+      // });
+
 
       let filtered = this.state.nextTab ?
-        this.props.likedEvents :
+        this.filterLikedEvents() :
         this.props.userEvents;
       
       const actButton = this.state.nextTab ?
