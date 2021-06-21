@@ -35,22 +35,10 @@ class EventDetail extends React.Component {
 
 
   componentDidMount() {
-    this.props.fetchUser(this.props.userId);
+    if (this.props.signedIn) {
+      this.props.fetchUser(this.props.userId);
+    }
     this.props.fetchEvent(this.props.eventId).then( res => {
-      // this.setState({ 
-        // _id: res.event.data._id,
-        // userId: res.event.data.userId,
-        // title: res.event.data.title,
-        // description: res.event.data.description,
-        // location: res.event.data.location,
-        // longitude: res.event.data.longitude,
-        // latitude: res.event.data.latitude,
-        // date: res.event.data.date,
-        // items: res.event.data.items,
-        // invites: res.event.data.invites 
-      // });
-      // const likes = res.event.data.likes.split(" ");
-      // const likes = this.props.user.likes;
       let liked = false;
       
       if (this.props.signedIn) {
@@ -61,7 +49,6 @@ class EventDetail extends React.Component {
         }
       }
       
-
       const invites = res.event.data.invites.split(" ");
       let joined = false;
 
@@ -181,7 +168,7 @@ class EventDetail extends React.Component {
       const target = e.currentTarget.id;
       if (target === "like-button") {
         let likes = this.props.user.likes;
-        // likes.push(this.state.event._id);
+       
         likes[this.state.event._id] = this.state.event;
         const user = {
           email: this.props.user.email,
@@ -193,7 +180,7 @@ class EventDetail extends React.Component {
         this.props.editUser(user);
         this.setState({ liked: true });
       } else {
-        // let likes = this.props.user.likes.filter(id => id !== this.state.event._id);
+       
         let likes = this.props.user.likes;
         let eventId = this.state.event._id;
         delete likes.eventId;
@@ -209,7 +196,6 @@ class EventDetail extends React.Component {
         this.setState({ liked: false });
       }
     }
-
   }
 
   closeUpdate(event) {
@@ -228,7 +214,7 @@ class EventDetail extends React.Component {
   }
 
   render() {
-    // if (!this.props.event || this.props.event === {}) {
+    
     if (!this.state.event._id) {
       return (
         <h1>Loading...</h1>
@@ -239,10 +225,10 @@ class EventDetail extends React.Component {
         const invites = this.state.event.invites
         let inviteList
         if (invites && invites.length > 0) {
-          // invites = invites.split(' ')
+          
           inviteList = invites.split(" ").map((invite, i) => <li key={`invite-${i}`}>{invite}</li> )
         }
-        // const likes = this.state.event.likes.split(" ");
+        
         const heart = this.state.liked ?
           <div id="liked-button" onClick={this.toggleLike} ></div> :
           <div id="like-button" onClick={this.toggleLike} ></div>;
@@ -275,11 +261,6 @@ class EventDetail extends React.Component {
                     closeUpdate={this.closeUpdate}
                   />
                   <div className="event-r-a">
-                    {/* <div className="event-r-a-1"></div> */}
-                    {/* <div className="event-r-a-2">
-                      <h2>People attending the event:</h2>
-                      {inviteList}
-                    </div> */}
                   </div>
                 </div>
               </div>
@@ -322,7 +303,6 @@ class EventDetail extends React.Component {
                     {description}
                   </div>
                 <div className="event-r-a">
-                  {/* <div className="event-r-a-1"></div> */}
                   <div className="event-r-a-2">
                     <h2>People attending the event:</h2>
                     {inviteList}
