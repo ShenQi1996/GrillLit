@@ -96,17 +96,17 @@ class EventUpdate extends React.Component {
 
   update(field) {
     return (e) => {
-      if (field === 'date' && !this.validateDate(e.currentTarget.value)) {
-        // console.log("error");
-        this.setState({ error: true });
-      } else if (field === 'date' && this.validateDate(e.currentTarget.value)) {
-        this.setState({
-          [field]: e.currentTarget.value,
-          error: false
-        });
-      } else {
+      // if (field === 'date' && !this.validateDate(e.currentTarget.value)) {
+      //   // console.log("error");
+      //   this.setState({ error: true });
+      // } else if (field === 'date' && this.validateDate(e.currentTarget.value)) {
+      //   this.setState({ 
+      //     [field]: e.currentTarget.value,
+      //     error: false 
+      //   });
+      // } else {
         this.setState({ [field]: e.currentTarget.value });
-      }
+      // }
     };
   }
 
@@ -128,7 +128,11 @@ class EventUpdate extends React.Component {
 
 
   render() {
-    // let submitButton = this.state.confirmed ? <input type="submit" value="submit" /> : '';
+    let date = new Date();
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    var dateNow = `2021-0${month}-${day}`;
+    
     let submitButton = this.state.confirmed ?
       <button type="submit" className="edit-submit-btn">Submit</button> :
       <button onClick={e => e.preventDefault()} className="edit-dummy-button">Submit</button>;
@@ -168,6 +172,7 @@ class EventUpdate extends React.Component {
               value={this.state.date}
               onChange={this.update('date')}
               placeholder="Date"
+              min={dateNow}
             />
             <div className="form-error">{errorMsg}</div>
             <textarea

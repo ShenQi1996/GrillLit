@@ -124,8 +124,7 @@ class EventCreate extends React.Component {
 
 
   render() {
-    // let submitButton = this.state.confirmed ? <input type="submit" value="submit" /> : '';
-    let date = new Date()
+    let date = new Date();
     let day = date.getDate();
     let month = date.getMonth() + 1;
     var dateNow = `2021-0${month}-${day}`;
