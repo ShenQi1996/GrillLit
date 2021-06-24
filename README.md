@@ -13,6 +13,10 @@ Kick off the summer with a BBQ with loved ones in an organized and convenient fa
 
 Browse events, create events, join events, like events and much more!
 
+## **About**
+This app is all about getting friends and family together to enjoy some nice delicious barbeque.
+Find grilling events that were created by others within your locality, allowing you to be able to socialize and network with others who love good food and enjoy the company of others. 
+
 ## **How does it work?**
 ___
 In this app, users will be able to create an account or log into an existing account. Once you are officially logged in you will be given the ability to browse through events that interest you. When you have clicked on the event that catches your eye, then you will be given the option to like the event or to join the event. When the join event button is clicked, you will see the username of the current user added to the list of attendees. That event will be in your events page that will be saved into your account.
