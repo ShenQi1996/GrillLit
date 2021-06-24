@@ -63,15 +63,136 @@ The structure for the backend includes MongoDB's No-SQL database structure which
 ![Screen Shot 2021-06-16 at 3 58 39 PM](https://user-images.githubusercontent.com/75746588/122284605-bffa7300-cebb-11eb-9e13-2d3c47267687.png)
 
 This project also uses Mongoose for the routing necessary for requests made from the interaction of the users in the frontend.
-<img width="1342" alt="Screen Shot 2021-06-16 at 4 01 51 PM" src="https://user-images.githubusercontent.com/75746588/122285013-339c8000-cebc-11eb-8931-0486ffdd8fd2.png">
+```
+router.get("/index", (req, res) => {
+  Event.find()
+    .sort({ date: -1 })
+    .then(events => res.json(events))
+    .catch(err => res.status(404).json({ noeventsfound: "No events found" }));
+});
+
+router.get("/user/:user_id", (req, res) => {
+  Event.find({ userId: req.params.user_id })
+    .sort({ date: -1 })
+    .then(events => res.json(events))
+    .catch(err =>
+      res
+        .status(404)
+        .json({ noeventsfound: "No events were found of that user" })
+    );
+});
+
+router.get("/:id", (req, res) => {
+  Event.findById(req.params.id)
+    .then(event => res.json(event))
+    .catch(err =>
+      res.status(404).json({ noeventfound: "No event found with that ID" })
+    );
+});
+```
 
 ### React and Redux
 React was the frontend technology used, it allows to have a smooth and seamless user interaction/experience also allowing for the code to be DRY.
-<img width="1273" alt="Screen Shot 2021-06-16 at 4 05 35 PM" src="https://user-images.githubusercontent.com/75746588/122285434-b6253f80-cebc-11eb-9c0e-f3462918aa4b.png">
+```
+  render() {
+        // debugger
+        
+        const matches = this.matches();
+        // debugger;
+        if (!this.state.matches) {
+          return <h1>Loading...</h1>
+        } else {
 
+          const results = this.state.matches.map(event => {
+            // debugger
+            
+              return (
+                  <Link className="event-index-card-index" key={event._id} to={`/events/${event._id}`} id={event._id} >
+                    <EventIndexCard event={event} />
+                  </Link>
+              )
+          });
+          
+          const events = this.props.events.map(event => {
+            return (
+            <Link className="event-index-card-index" key={event._id} to={`/events/${event._id}`} >
+                <EventIndexCard event={event} />
+            </Link>
+          )
+
+      })
+      // debugger 
+      if (results.length === 0){
+        return (
+          <div className="event-index-container" >
+            {/* <div className="interactive"> */}
+            {/* <Filter events={this.props.events} /> */}
+            {/* <div className="auto"> */}
+            <input
+              onChange={this.handleInput}
+              value={this.state.inputVal}
+              placeholder='Search...'
+            />
+            <ul>
+              <ReactCSSTransitionGroup
+                transitionName='auto'
+                transitionEnterTimeout={600}
+                transitionLeaveTimeout={600}>
+                {events}
+              </ReactCSSTransitionGroup>
+            </ul>
+            {/* </div> */}
+            {/* </div> */}
+            {/* {events} */}
+          </div>
+        )
+      } else {
+        return (
+            <div className="index-wrapper">
+                <MapContainer events={this.state.matches} />
+                <div className="event-index-container" >
+                    {/* <div className="interactive"> */}
+          
+                        {/* <div className="auto"> */}
+                          <input
+                            onChange={this.handleInput}
+                            value={this.state.inputVal}
+                            placeholder='Search...'
+                          />
+                          <ul>     
+                            <ReactCSSTransitionGroup
+                              transitionName='auto'
+                              transitionEnterTimeout={600}
+                              transitionLeaveTimeout={600}>
+                              {results}
+                            </ReactCSSTransitionGroup>
+                          </ul>
+                        {/* </div> */}
+                    {/* </div> */}
+                    {/* {events} */}
+                </div>
+            </div>
+        )
+      }
+    }
+  }
+```
 Redux allows for the saving of data in the frontend which will make the user experience much more fluid and responsive, also minimizing the requests needed to be made to the backend. 
-<img width="628" alt="Screen Shot 2021-06-16 at 4 07 58 PM" src="https://user-images.githubusercontent.com/75746588/122285681-07cdca00-cebd-11eb-887e-5050d8e42480.png">
+```
+  componentWillUnmount() {
+    const navBar = document.querySelector(".header");
+    navBar.classList.remove("white");
+  }
 
+  componentDidMount() {
+    // debugger
+    this.props.fetchEvents().then(({ events }) => {
+      this.setState({ matches: events.data });
+    });
+    const navBar = document.querySelector(".header");
+    navBar.classList.add("white");
+  }
+```
 ## Design Documents
 https://github.com/ShenQi1996/GrillLit.wiki.git
 
