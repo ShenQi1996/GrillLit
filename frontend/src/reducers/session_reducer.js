@@ -17,6 +17,7 @@ const SessionReducer = (state = initialState, action) => {
   let newState = {...state};
   switch (action.type) {
     case EDIT_CURRENT_USER:
+      
       newState.user.likes = action.likes.data.likes;
       return newState;
     case RECEIVE_USER:
@@ -31,9 +32,13 @@ const SessionReducer = (state = initialState, action) => {
     case DELETE_EVENT:
       // let newState = Object.assign({}, state);
 
+
       const filtered = newState.userEvents.filter(
         event => event._id !== action.eventId.data.eventId
       );
+      
+      delete newState.user.likes[action.eventId.data.eventId];
+
       return {
         ...newState,
         userEvents: filtered,
