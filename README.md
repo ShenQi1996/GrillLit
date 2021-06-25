@@ -99,16 +99,14 @@ router.get("/:id", (req, res) => {
 React was the frontend technology used, it allows to have a smooth and seamless user interaction/experience also allowing for the code to be DRY.
 ```
   render() {
-        // debugger
         
         const matches = this.matches();
-        // debugger;
+	
         if (!this.state.matches) {
           return <h1>Loading...</h1>
         } else {
 
           const results = this.state.matches.map(event => {
-            // debugger
             
               return (
                   <Link className="event-index-card-index" key={event._id} to={`/events/${event._id}`} id={event._id} >
@@ -125,13 +123,9 @@ React was the frontend technology used, it allows to have a smooth and seamless 
           )
 
       })
-      // debugger 
       if (results.length === 0){
         return (
           <div className="event-index-container" >
-            {/* <div className="interactive"> */}
-            {/* <Filter events={this.props.events} /> */}
-            {/* <div className="auto"> */}
             <input
               onChange={this.handleInput}
               value={this.state.inputVal}
@@ -145,9 +139,6 @@ React was the frontend technology used, it allows to have a smooth and seamless 
                 {events}
               </ReactCSSTransitionGroup>
             </ul>
-            {/* </div> */}
-            {/* </div> */}
-            {/* {events} */}
           </div>
         )
       } else {
@@ -155,9 +146,6 @@ React was the frontend technology used, it allows to have a smooth and seamless 
             <div className="index-wrapper">
                 <MapContainer events={this.state.matches} />
                 <div className="event-index-container" >
-                    {/* <div className="interactive"> */}
-          
-                        {/* <div className="auto"> */}
                           <input
                             onChange={this.handleInput}
                             value={this.state.inputVal}
@@ -171,9 +159,6 @@ React was the frontend technology used, it allows to have a smooth and seamless 
                               {results}
                             </ReactCSSTransitionGroup>
                           </ul>
-                        {/* </div> */}
-                    {/* </div> */}
-                    {/* {events} */}
                 </div>
             </div>
         )
@@ -189,7 +174,6 @@ Redux allows for the saving of data in the frontend which will make the user exp
   }
 
   componentDidMount() {
-    // debugger
     this.props.fetchEvents().then(({ events }) => {
       this.setState({ matches: events.data });
     });
