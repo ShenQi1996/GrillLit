@@ -16,11 +16,12 @@ class EventUpdate extends React.Component {
       location: this.props.event.location,
       longitude: this.props.event.longitude,
       latitude: this.props.event.latitude,
-      date: '',
+      date: this.props.event.date,
       items: this.props.event.items,
       likes: this.props.event.likes,
       confirmed: false,
-      error: false
+      error: false,
+      changed: false
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -37,9 +38,12 @@ class EventUpdate extends React.Component {
     e.preventDefault();
     // const res = this.geocode(this.state.location);
     // this.geocode(this.state.location);
+    let date = this.state.date;
 
-    let splitDate = this.state.date.split("-");
-    let formatted = `${splitDate[1][1]}/${splitDate[2]}/${splitDate[0]}`;
+    if (this.state.changed) {
+      let splitDate = date.split("-");
+      date = `${splitDate[1][1]}/${splitDate[2]}/${splitDate[0]}`;
+    }
 
     let event = {
       _id: this.props.event._id,
@@ -50,7 +54,7 @@ class EventUpdate extends React.Component {
       location: this.state.location,
       longitude: this.state.longitude.toString(),
       latitude: this.state.latitude.toString(),
-      date: formatted,
+      date: date,
       items: this.state.items,
       likes: this.state.likes
     };
@@ -105,6 +109,14 @@ class EventUpdate extends React.Component {
       //     error: false 
       //   });
       // } else {
+      if (field === 'date') {
+        this.setState({ 
+          [field]: e.currentTarget.value,
+          changed: true
+        });
+      } else {
+        
+      }
         this.setState({ [field]: e.currentTarget.value });
       // }
     };
